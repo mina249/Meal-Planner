@@ -1,5 +1,6 @@
 package com.example.mealplaner;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -16,10 +18,12 @@ import java.util.ArrayList;
 public class VPAdapter extends RecyclerView.Adapter<VPAdapter.ViewHolder> {
     ArrayList<ViewPagerIteam> viewPagerIteams;
     Context context;
+    MoveFragment moveFragment;
 
     public VPAdapter(ArrayList<ViewPagerIteam> viewPagerIteams, Context context) {
         this.viewPagerIteams = viewPagerIteams;
         this.context= context;
+        moveFragment= (MoveFragment) context;
     }
 
     @NonNull
@@ -37,8 +41,7 @@ public class VPAdapter extends RecyclerView.Adapter<VPAdapter.ViewHolder> {
         if(position==viewPagerIteams.size()-1){
             holder.btnNext.setVisibility(View.VISIBLE);
             holder.btnNext.setOnClickListener(view -> {
-                Intent intent = new Intent(context, MainActivity.class);
-                context.startActivity(intent);
+                moveFragment.move();
             });
         }
 
