@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MealPlaner</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">LOGIN</string>
+    <string name="signup">signup</string>
+    <string name="forgetpass">Forget Password</string>
 </resources>
