@@ -4,55 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="20dp"
 
-    android:layout_marginTop="50dp"
+    android:layout_marginVertical="10dp"
     tools:context=".Clender">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginBottom="1dp"
+        android:gravity="center|center_horizontal"
+        android:text="@string/dayly_meals"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/rv_daily_meals"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="357dp"
-            android:layout_height="35dp"
-            app:cardCornerRadius="20dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="367dp"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@android:drawable/ic_input_add" />
-
-                <TextView
-                    android:id="@+id/tv_day"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="@string/sunday"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_selected_meals"
-            android:layout_width="360dp"
-            android:layout_height="117dp"
-            android:layout_marginStart="20dp"
-            tools:listitem="@layout/cleander_meal_iteam" />
-    </LinearLayout>
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_daily_meals"
+        android:layout_width="419dp"
+        android:layout_height="647dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:listitem="@layout/cleander_iteam" />
 </androidx.constraintlayout.widget.ConstraintLayout>

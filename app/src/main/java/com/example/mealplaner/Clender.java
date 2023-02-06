@@ -17,7 +17,8 @@ import java.util.ArrayList;
 
 
 public class Clender extends Fragment {
-    ClenderIteamsAdapter iteamsAdapter;
+    DayMealsAdapter dayMealsAdapter;
+
     ArrayList<Meals> meals;
     RecyclerView view;
     Context context;
@@ -37,7 +38,8 @@ public class Clender extends Fragment {
         meals.add(new Meals("Chikeen", "Health"));
         meals.add(new Meals("Chikeen", "Health"));
         meals.add(new Meals("Chikeen", "Health"));
-        iteamsAdapter = new ClenderIteamsAdapter(meals);
+
+        dayMealsAdapter =new DayMealsAdapter(getActivity(),meals);
 
         return inflater.inflate(R.layout.fragment_clender, container, false);
 
@@ -47,8 +49,8 @@ public class Clender extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-       this. view = view.findViewById(R.id.rv_selected_meals);
-        this.view.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
-        this.view.setAdapter(iteamsAdapter);
+       this. view = view.findViewById(R.id.rv_daily_meals);
+        this.view.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
+        this.view.setAdapter(dayMealsAdapter);
     }
 }
