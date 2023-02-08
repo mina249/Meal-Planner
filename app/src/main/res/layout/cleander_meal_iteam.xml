@@ -11,8 +11,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view_remove"
-        android:layout_width="44dp"
-        android:layout_height="37dp"
+        android:layout_width="69dp"
+        android:layout_height="66dp"
         android:layout_marginStart="20dp"
         app:cardCornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,9 +26,8 @@
             android:id="@+id/iv_remove"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="#FF1C1C"
             android:scaleType="centerCrop"
-            tools:src="@android:drawable/ic_menu_delete" />
+            tools:src="@drawable/iconclos" />
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -36,9 +35,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-
         android:text="Name"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@id/card_view"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,14 +46,14 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="Descript"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@id/card_view"
         app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="79dp"
+        android:layout_height="77dp"
         app:cardCornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            tools:src="@mipmap/ic_launcher" />
+            tools:src="@drawable/face_icon" />
     </androidx.cardview.widget.CardView>
 
 

@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    android:layout_marginVertical="10dp"
-    tools:context=".Clender">
+    android:layout_marginVertical="0dp"
+    android:background="#000000"
+    tools:context=".Clender.View.Clender">
 
     <TextView
         android:id="@+id/textView"
@@ -15,7 +16,7 @@
         android:layout_marginVertical="10dp"
         android:layout_marginBottom="1dp"
         android:gravity="center|center_horizontal"
-        android:text="@string/dayly_meals"
+        android:text="dayly_meals"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/rv_daily_meals"
