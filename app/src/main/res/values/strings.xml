@@ -14,5 +14,7 @@
     <string name="todo1">TODO</string>
     <string name="Catigories">Catigories</string>
     <string name="relatedMeals">Related Meals</string>
+    <string name="meal_name">Meal Name</string>
+    <string name="Category">Category</string>
 
 </resources>
