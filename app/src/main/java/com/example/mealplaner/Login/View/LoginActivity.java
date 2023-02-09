@@ -1,41 +1,40 @@
-package com.example.mealplaner.Login.View;
+package com.example.mealplaner;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
-import com.example.mealplaner.R;
-import com.example.mealplaner.Search.View.Search;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
     TabLayout loginTabLayout;
     ViewPager loginViewPager;
     FloatingActionButton fb, google, twitter;
     LoginFragmentAdapter loginAdapter;
+    Button login_btn;
     float alpha = 0;
     LoginFragment loginFragment;
     SignupFragment signupFragment;
-    Button btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-       btnLogin=findViewById(R.id.btn_login);
         loginFragment = new LoginFragment();
         signupFragment = new SignupFragment();
         inflateUi();
         settingTableLayout();
         animateUi();
-        btnLogin.setOnClickListener(v->{
-            Intent intent =new Intent(this, Search.class);
-            startActivity(intent);
-        });
     }
 
     public void animateUi() {
@@ -59,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         fb = findViewById(R.id.fab_fb);
         google = findViewById(R.id.fab_google);
         twitter = findViewById(R.id.fab_twitter);
+
     }
 
     public void settingTableLayout() {
