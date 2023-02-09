@@ -11,11 +11,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mealplaner.Models.Meal;
+
 import java.util.ArrayList;
 
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder> {
 
-    ArrayList<meals> meals;
+    ArrayList<Meal> meals;
     Context context;
 
     public FavoriteAdapter(Context context) {
@@ -34,7 +36,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
            // holder.mealName.setText(meals.get(position).getName());
     }
 
-    public void setList(ArrayList<meals>meals){
+    public void setList(ArrayList<Meal>meals){
         this.meals = meals;
         notifyDataSetChanged();
     }

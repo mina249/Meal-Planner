@@ -14,17 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
+import com.example.mealplaner.Models.Meal;
 
 import java.util.ArrayList;
 
 public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHolder> {
 
-    ArrayList<meals> meal;
+    ArrayList<Meal> meal;
     Context context;
     ViewPager2 viewPager2;
 
 
-    public HomeRvAdapter(Context context,ArrayList<meals>meal,ViewPager2 viewPager2) {
+    public HomeRvAdapter(Context context,ArrayList<Meal>meal,ViewPager2 viewPager2) {
         this.meal = meal;
         this.context = context;
         this.viewPager2= viewPager2;
@@ -41,7 +42,7 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
 
     @Override
     public void onBindViewHolder(@NonNull HomeRvHolder holder, int position) {
-        meals meals = meal.get(position);
+        Meal meals = meal.get(position);
         holder.txt.setText(meals.getStrMeal());
         Glide.with(context).load(meals.getStrMealThumb()).into(holder.imageView);
         if(position== meal.size()-2){
@@ -76,7 +77,7 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
         return 10;
     }
 
-    public void setMealList(ArrayList<meals>meal) {
+    public void setMealList(ArrayList<Meal>meal) {
        this.meal =meal;
         notifyDataSetChanged();
     }

@@ -23,7 +23,7 @@
             android:name=".SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".MealData"
+            android:name=".Meal.MealData"
             android:exported="false" />
         <activity
             android:name=".Category.View.CategoryData"

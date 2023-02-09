@@ -5,13 +5,15 @@ import android.content.Context;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 
+import com.example.mealplaner.Models.Meal;
+
 import java.util.ArrayList;
 
 public class MealPresenter implements MealPresenterInterface,NetworkDelegate{
 
     RemoteSource remoteSource;
     MealViewInterface mealViewInterface;
-    ArrayList<meals> meals= new ArrayList<>();
+    ArrayList<Meal> meals= new ArrayList<>();
     Context context;
 
     public MealPresenter(RemoteSource remoteSource, MealViewInterface mealViewInterface, Context context) {
@@ -28,7 +30,7 @@ public class MealPresenter implements MealPresenterInterface,NetworkDelegate{
 
 
     @Override
-    public void onSuccess(ArrayList<meals>meals) {
+    public void onSuccess(ArrayList<Meal>meals) {
             mealViewInterface.showData(meals);
             MealService.liveMeals.observe((LifecycleOwner) context,mealViewInterface::showData);
 

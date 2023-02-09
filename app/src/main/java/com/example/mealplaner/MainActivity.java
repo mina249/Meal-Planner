@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.mealplaner.Models.Meal;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
 
     RecyclerView recyclerView;
     HomeRvAdapter homeAdapter;
-    ArrayList<meals> meals = new ArrayList<>();
+    ArrayList<Meal> meals = new ArrayList<>();
     ViewPager2 homePager;
 
 
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
 
 
     @Override
-    public void showData(ArrayList<meals> meals) {
+    public void showData(ArrayList<Meal> meals) {
         RecyclerView.LayoutManager lm = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         homeAdapter = new HomeRvAdapter(this,meals,homePager);
         homePager.setAdapter(homeAdapter);

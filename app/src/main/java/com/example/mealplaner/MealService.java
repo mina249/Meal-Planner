@@ -5,6 +5,8 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.mealplaner.Models.Meal;
+import com.example.mealplaner.Models.Meals;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -22,7 +24,7 @@ public class MealService implements RemoteSource{
 
     private static MealService mealService = null;
 
-    public  static MutableLiveData<ArrayList<meals>>  liveMeals = new MutableLiveData<ArrayList<meals>>();
+    public  static MutableLiveData<ArrayList<Meal>>  liveMeals = new MutableLiveData<ArrayList<Meal>>();
 
     private MealService(){
 
@@ -42,17 +44,17 @@ public class MealService implements RemoteSource{
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL).
                 addConverterFactory(GsonConverterFactory.create(gson)).build();
         APIMeal api = retrofit.create(APIMeal.class);
-        Call<Meal> call = api.getMeal();
+        Call<Meals> call = api.getMeal();
 
-            call.enqueue(new Callback<Meal>() {
+            call.enqueue(new Callback<Meals>() {
                 @Override
-                public void onResponse(Call<Meal> call, Response<Meal> response) {
+                public void onResponse(Call<Meals> call, Response<Meals> response) {
                     networkDelegate.onSuccess(response.body().getMeals());
                     liveMeals.postValue(response.body().getMeals());
                 }
 
 
-                public void onFailure(Call<Meal> call, Throwable t) {
+                public void onFailure(Call<Meals> call, Throwable t) {
                     networkDelegate.onFailure(t.toString());
                 }
             });

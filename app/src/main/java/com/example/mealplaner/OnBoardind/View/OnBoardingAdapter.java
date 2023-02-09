@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mealplaner.Clender.InterFaces.MoveFragment;
+
 import com.example.mealplaner.Login.View.LoginActivity;
 import com.example.mealplaner.R;
 
@@ -45,7 +46,7 @@ public class OnBoardingAdapter extends RecyclerView.Adapter<OnBoardingAdapter.Vi
             holder.btnNext.setOnClickListener(view -> {
                 Intent intent = new Intent(context, LoginActivity.class);
                //context.startActivity(intent);
-                moveFragment.move();
+               moveFragment.move();
 
             });
         }
