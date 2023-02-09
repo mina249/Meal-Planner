@@ -6,7 +6,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -18,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     ViewPager loginViewPager;
     FloatingActionButton fb, google, twitter;
     LoginFragmentAdapter loginAdapter;
+    Button login_btn;
     float alpha = 0;
     LoginFragment loginFragment;
     SignupFragment signupFragment;
@@ -54,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         fb = findViewById(R.id.fab_fb);
         google = findViewById(R.id.fab_google);
         twitter = findViewById(R.id.fab_twitter);
+
     }
 
     public void settingTableLayout() {
