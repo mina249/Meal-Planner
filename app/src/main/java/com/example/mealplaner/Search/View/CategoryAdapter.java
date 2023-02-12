@@ -71,7 +71,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         }
         public void setCategory(Category category){
             tvCatName.setText(category.getStrCategory());
-            tvCatDisc.setText(category.getStrCategoryDescription());
+          //  tvCatDisc.setText(category.getStrCategoryDescription());
+            tvCatDisc.setVisibility(View.GONE);
             Glide.with(ivCategory.getContext()).load(category.getStrCategoryThumb()).into(ivCategory);
 
         }

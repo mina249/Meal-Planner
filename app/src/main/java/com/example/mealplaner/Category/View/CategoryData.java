@@ -2,6 +2,7 @@ package com.example.mealplaner.Category.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -44,7 +45,7 @@ public class CategoryData extends AppCompatActivity implements MealInter {
     @Override
     public void setMeal(ArrayList<Meal> meals) {
         CategoryMealAdapter categoryAdapter = new CategoryMealAdapter(meals);
-        rvMeals.setLayoutManager(new GridLayoutManager(this,2));
+        rvMeals.setLayoutManager(new LinearLayoutManager(this));
         rvMeals.setAdapter(categoryAdapter);
     }
 }

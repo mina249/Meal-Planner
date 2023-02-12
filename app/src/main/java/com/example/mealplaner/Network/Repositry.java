@@ -48,7 +48,7 @@ public class Repositry {
     public static MutableLiveData<ArrayList<Meal>> getCategoryMeals(String mealName) {
 
         mealList = null;
-        Call<Meals> call = CatigoryConn.getPostApi().getCategoryMeals( mealName);
+        Call<Meals> call = CatigoryConn.getPostApi().getCategoryMeals(mealName);
         call.enqueue(new Callback<Meals>() {
 
             @Override

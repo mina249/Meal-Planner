@@ -10,12 +10,16 @@
     <string name="forgetpass">Forget Password</string>
     <string name="name">Name</string>
     <string name="todo">TODO</string>
-    <string name="descript">Descript</string>
+    <string name="descript">Description</string>
     <string name="todo1">TODO</string>
-    <string name="Catigories">Catigories</string>
+    <string name="Catigories">Categories</string>
     <string name="relatedMeals">Related Meals</string>
     <string name="meal_name">Meal Name</string>
     <string name="Category">Category</string>
 
-    <string name="enjoy">Emjoy your favourite meals</string>
+    <string name="enjoy">Enjoy your favourite meals</string>
+    <string name="Meal_instructions">Meal Instructions</string>
+    <string name="meal_tag">MealTag</string>
+    <string name="Ingridiant">Ingridiant</string>
+    <string name="addFavourit">Add To Favourit</string>
 </resources>

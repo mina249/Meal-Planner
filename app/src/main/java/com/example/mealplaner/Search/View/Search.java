@@ -25,11 +25,10 @@ public class Search extends AppCompatActivity implements CategoryInter {
          presenter= new CategoryPresenter(this,this);
 
     }
-
     @Override
     public void setCategory(ArrayList<Category> categories) {
         CategoryAdapter categoryAdapter = new CategoryAdapter(categories);
-        categoryRecyclView.setLayoutManager(new GridLayoutManager(this,2));
+        categoryRecyclView.setLayoutManager(new GridLayoutManager(this,3));
         categoryRecyclView.setAdapter(categoryAdapter);
 
     }
