@@ -20,12 +20,17 @@ public class MealData extends AppCompatActivity implements MealInterface{
     TextView tvInstructions;
     TextView tvCategory;
     MealPresenter mealPresenter;
+    String mealID;
+    Bundle bundle;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+         bundle= getIntent().getBundleExtra("id");
+         mealID=bundle.getString("id");
         setContentView(R.layout.activity_meal_data);
         btnAddToFav=findViewById(R.id.btn_add_to_fav);
         ivMealPic=findViewById(R.id.iv_meal);
@@ -34,9 +39,13 @@ public class MealData extends AppCompatActivity implements MealInterface{
         tvMealName=findViewById(R.id.tv_meal_name);
         tvTag=findViewById(R.id.tv_meal_tag);
         tvInstructions=findViewById(R.id.tv_Instructions);
+        mealPresenter = new MealPresenter(this);
+        mealPresenter.getData(mealID);
+
+
         btnAddToFav.setOnClickListener(view->{
             Toast.makeText(this, "Meal Added To Favourite ", Toast.LENGTH_LONG).show();
-           mealPresenter = new MealPresenter(this,"52772");
+
 
         });
     }

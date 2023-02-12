@@ -10,9 +10,7 @@ import io.reactivex.schedulers.Schedulers;
 public class RxRepositry {
     public  static Observable getMeal(String id){
         Observable<Meals> mealObservable =RxConnection.getPostApi().getMeal(id);
-        mealObservable.observeOn(Schedulers.io()).map(Meals::getMeals).
-                subscribeOn(AndroidSchedulers.mainThread())
-                .subscribe(meals -> System.out.println(meals));
+
 
         return mealObservable;
 

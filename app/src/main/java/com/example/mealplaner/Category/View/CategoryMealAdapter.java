@@ -2,6 +2,7 @@ package com.example.mealplaner.Category.View;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,10 @@ public class CategoryMealAdapter extends RecyclerView.Adapter<CategoryMealAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.setMeal(meals.get(position));
         holder.cvMealIteam.setOnClickListener(view->{
+            Bundle bundle = new Bundle();
+            bundle.putString("id",meals.get(position).getIdMeal());
             Intent intent = new Intent(context, MealData.class);
+            intent.putExtra("id",bundle);
             context.startActivity(intent);
         });
 

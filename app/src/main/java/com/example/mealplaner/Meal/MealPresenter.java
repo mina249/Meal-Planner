@@ -15,17 +15,22 @@ public class MealPresenter {
     Observable<Meals> mealObservable;
     Meal meal;
 
-    public MealPresenter(MealInterface mealInterface,String id) {
+    public MealPresenter(MealInterface mealInterface) {
+
         this.mealInterface = mealInterface;
+    System.out.println("ssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+
+    }
+    void getData(String id){
+        System.out.println(id);
         mealObservable= RxRepositry.getMeal(id);
-        mealObservable.observeOn(Schedulers.io()).subscribeOn(AndroidSchedulers.mainThread()).
-                subscribe(meal -> {
-                    mealInterface.SetMealData(meal.getMeals().get(0), "ssssssss");
-                },er->{
-                           System.out.println( "MealPresenter: erorrrrrrrrrr");
+        mealObservable.subscribeOn(Schedulers.io()).map(Meals::getMeals).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(meal -> {
+                            mealInterface.SetMealData(meal.get(0), "ssssssss");
+                        },er->{
+                            System.out.println( "MealPresenter: erorrrrrrrrrr");
                         }
                 );
-
     }
 
 }
