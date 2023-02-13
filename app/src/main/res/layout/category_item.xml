@@ -53,7 +53,7 @@
                 android:layout_margin="5dp"
                 android:gravity="center"
                 android:text="TextView"
-                android:textColor="#F99417"
+                android:textColor="#A4FFFFFF"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
