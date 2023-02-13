@@ -8,6 +8,7 @@
     tools:context=".Meal.MealData">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="5dp"
@@ -15,6 +16,7 @@
         android:layout_marginTop="2dp"
         android:layout_marginEnd="2dp"
         android:fillViewport="true"
+        android:paddingBottom="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,29 +27,28 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/iv_meal"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/avatars" />
+                app:cardBackgroundColor="#00FFFFFF"
+                app:cardCornerRadius="20dp">
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/meal_name"
-                android:textColor="#F99417"
-                android:textSize="16sp" />
+                <ImageView
+                    android:id="@+id/iv_meal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:srcCompat="@tools:sample/avatars" />
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/tv_meal_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="TextView"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp" />
+                android:text="@string/meal_name"
+                android:textColor="#F99417"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
 
             <TextView
                 android:id="@+id/tv_category"
@@ -55,62 +56,78 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/Category"
-                android:textColor="#F99417"
-                android:textSize="20sp" />
+                android:textColor="#f9c406"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tv_meal_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="TextView"
-                android:textSize="16sp"
-                android:textColor="#FFFFFF"
-                />
+                android:text=""
+                android:textColor="#A4FFFFFF"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/meal_country"
+                android:textColor="#f9c406"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_country"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text=""
+                android:textColor="#A4FFFFFF"
+                android:textSize="12sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/Meal_instructions"
-                android:textColor="#F99417"
-                android:textSize="20sp" />
+                android:textColor="#f9c406"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tv_Instructions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="TextView"
-                android:textSize="16sp"
-                android:textColor="#FFFFFF"
-                />
+                android:text=""
+                android:textColor="#A4FFFFFF"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_meal_tag_str"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/meal_tag"
+                android:textColor="#f9c406"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tv_meal_tag"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/meal_tag"
-                android:textColor="#F99417"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/tv_Indtructions2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="TextView"
-                android:textSize="16sp"
-                android:textColor="#FFFFFF"
-                />
+                android:text=""
+                android:textColor="#A4FFFFFF"
+                android:textSize="12sp" />
 
             <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
                 android:id="@+id/pl_youtube_player"
                 android:layout_width="match_parent"
 
                 android:layout_height="wrap_content"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                android:layout_marginVertical="15dp">
 
             </com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
 
@@ -118,20 +135,18 @@
                 android:id="@+id/tv_Ingridiant_str"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
                 android:gravity="center"
                 android:text="@string/Ingridiant"
-                android:textColor="#F99417"
-                android:textSize="20sp" />
+                android:textColor="#f9c406"
+                android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/tv_Ingridiant"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_ingridiants"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="TextView"
-                android:textSize="16sp"
-                android:textColor="#FFFFFF"
-                />
+                android:layout_height="match_parent"
+                tools:listitem="@layout/ingrediant_iteam" />
+
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
@@ -140,13 +155,11 @@
         android:id="@+id/btn_add_to_fav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
+        android:layout_margin="7dp"
         android:background="@drawable/round_btutton"
         android:text="@string/addFavourit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

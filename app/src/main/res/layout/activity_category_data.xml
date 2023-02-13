@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="TextView"
-                android:textColor="#F9C406"
+                android:textColor="#F99417"
                 android:textSize="24sp"
                 android:textStyle="bold|italic" />
 
@@ -55,7 +55,7 @@
                 android:layout_height="98dp"
                 android:gravity="center"
                 android:text="@string/relatedMeals"
-                android:textColor="#F9C406"
+                android:textColor="#F99417"
                 android:textSize="16sp"
                 android:textStyle="bold|italic" />
 

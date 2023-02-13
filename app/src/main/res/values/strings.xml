@@ -22,4 +22,5 @@
     <string name="meal_tag">MealTag</string>
     <string name="Ingridiant">Ingridiant</string>
     <string name="addFavourit">Add To Favourit</string>
+    <string name="meal_country">Country</string>
 </resources>

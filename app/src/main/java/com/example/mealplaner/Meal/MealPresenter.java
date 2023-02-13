@@ -13,20 +13,21 @@ import io.reactivex.schedulers.Schedulers;
 public class MealPresenter {
     MealInterface mealInterface;
     Observable<Meals> mealObservable;
-    Meal meal;
+
+    MealIngrediant ingrediant;
 
     public MealPresenter(MealInterface mealInterface) {
-
         this.mealInterface = mealInterface;
-    System.out.println("ssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+        ingrediant=new MealIngrediant();
 
     }
     void getData(String id){
-        System.out.println(id);
+
         mealObservable= RxRepositry.getMeal(id);
         mealObservable.subscribeOn(Schedulers.io()).map(Meals::getMeals).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(meal -> {
-                            mealInterface.SetMealData(meal.get(0), "ssssssss");
+                            ingrediant.setMeal(meal.get(0));
+                            mealInterface.SetMealData(meal.get(0), ingrediant.getMealIngriant());
                         },er->{
                             System.out.println( "MealPresenter: erorrrrrrrrrr");
                         }
