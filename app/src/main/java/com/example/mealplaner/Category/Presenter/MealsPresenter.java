@@ -6,10 +6,8 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.mealplaner.Category.InterFace.MealInter;
-import com.example.mealplaner.Models.Category;
 import com.example.mealplaner.Models.Meal;
 import com.example.mealplaner.Network.Repositry;
-import com.example.mealplaner.Search.InterFaces.CategoryInter;
 
 import java.util.ArrayList;
 

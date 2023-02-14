@@ -1,6 +1,6 @@
-package com.example.mealplaner.Meal;
+package com.example.mealplaner.Meal.View;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,16 +14,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.mealplaner.Meal.Interfaces.MealInterface;
+
+import com.example.mealplaner.Meal.Controllers.YouTubeID;
+
+import com.example.mealplaner.Meal.Presenter.MealPresenter;
 import com.example.mealplaner.Models.Meal;
 import com.example.mealplaner.R;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 
-public class MealData extends AppCompatActivity implements MealInterface{
+public class MealData extends AppCompatActivity implements MealInterface {
     Button btnAddToFav;;
     ImageView ivMealPic;
     RecyclerView rvIngrediant;
@@ -72,7 +76,7 @@ public class MealData extends AppCompatActivity implements MealInterface{
     }
 
     @Override
-    public void SetMealData(@NonNull Meal meal, LinkedList<Pair<String, String>> ingridient) {
+    public void SetMealData( Meal meal, LinkedList<Pair<String, String>> ingridient) {
         tvCategory.setText(meal.getStrCategory());
         tvMealName.setText(meal.getStrMeal());
         tvCategory.setText(meal.getStrCategory());
@@ -87,7 +91,7 @@ public class MealData extends AppCompatActivity implements MealInterface{
         String vedioID= youTubeID.getVedioID();
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
-            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+            public void onReady(YouTubePlayer youTubePlayer) {
                 super.onReady(youTubePlayer);
                 youTubePlayer.loadVideo(vedioID,8);
                 youTubePlayer.pause();

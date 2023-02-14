@@ -1,7 +1,6 @@
 package com.example.mealplaner.Category.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,9 +30,9 @@ public class CategoryData extends AppCompatActivity implements MealInter {
         setContentView(R.layout.activity_category_data);
         Bundle bundle=getIntent().getBundleExtra("category");
         category= (Category) bundle.getSerializable("category");
-        ivCategory=findViewById(R.id.iv_category);
-        tvCatName=findViewById(R.id.tv_cat_name);
-        tvDiscription=findViewById(R.id.tv_cat_disc);
+        ivCategory=findViewById(R.id.iv_Ingridoant);
+        tvCatName=findViewById(R.id.tv_ing_name);
+        tvDiscription=findViewById(R.id.tv_ing_disc);
         rvMeals=findViewById(R.id.rv_meals);
 
        Glide.with(this).load(category.getStrCategoryThumb()).into(ivCategory);

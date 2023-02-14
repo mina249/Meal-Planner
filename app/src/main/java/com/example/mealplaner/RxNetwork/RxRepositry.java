@@ -1,11 +1,9 @@
 package com.example.mealplaner.RxNetwork;
 
-import com.example.mealplaner.Models.Meal;
+import com.example.mealplaner.Models.AllIngrediantModel;
 import com.example.mealplaner.Models.Meals;
 
 import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 public class RxRepositry {
     public  static Observable getMeal(String id){
@@ -13,7 +11,16 @@ public class RxRepositry {
 
 
         return mealObservable;
-
+    }
+    public static  Observable  getIngrediants(String ingridiant){
+        Observable<AllIngrediantModel> ingrediantModelObservable =
+                RxConnection.getPostApi().getIngrediants(ingridiant);
+        return ingrediantModelObservable;
+    }
+    public static  Observable  getIngrediantMeals(String ingridiant){
+        Observable<Meals> ingrediantModelObservable =
+                RxConnection.getPostApi().getIngrediantMeals(ingridiant);
+        return ingrediantModelObservable;
     }
 
 }

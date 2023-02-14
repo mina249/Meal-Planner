@@ -14,7 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.mealplaner.Meal.MealData;
+import com.example.mealplaner.Meal.View.MealData;
 import com.example.mealplaner.Models.Meal;
 import com.example.mealplaner.R;
 
@@ -63,9 +63,9 @@ public class CategoryMealAdapter extends RecyclerView.Adapter<CategoryMealAdapte
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivMeal=itemView.findViewById(R.id.category_iv);
-            tvMealName=itemView.findViewById(R.id.tv_category_name);
-            cvMealIteam=itemView.findViewById(R.id.cv_category_item);
+            ivMeal=itemView.findViewById(R.id.iv_ingreadient_iteam_image);
+            tvMealName=itemView.findViewById(R.id.tv_ingrediant_iteam_name);
+            cvMealIteam=itemView.findViewById(R.id.cv_ing_item);
         }
         public void setMeal(Meal meal){
             tvMealName.setText(meal.getStrMeal());

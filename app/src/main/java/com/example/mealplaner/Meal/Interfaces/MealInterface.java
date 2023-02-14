@@ -1,4 +1,4 @@
-package com.example.mealplaner.Meal;
+package com.example.mealplaner.Meal.Interfaces;
 
 import android.util.Pair;
 

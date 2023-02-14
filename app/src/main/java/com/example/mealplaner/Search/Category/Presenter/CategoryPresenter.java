@@ -1,4 +1,4 @@
-package com.example.mealplaner.Search.Presenter;
+package com.example.mealplaner.Search.Category.Presenter;
 
 
 import android.content.Context;
@@ -8,7 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.mealplaner.Models.Category;
 import com.example.mealplaner.Network.Repositry;
-import com.example.mealplaner.Search.InterFaces.CategoryInter;
+import com.example.mealplaner.Search.Category.InterFaces.CategoryInter;
 
 import java.util.ArrayList;
 

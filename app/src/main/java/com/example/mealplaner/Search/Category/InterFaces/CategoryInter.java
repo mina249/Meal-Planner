@@ -1,4 +1,4 @@
-package com.example.mealplaner.Search.InterFaces;
+package com.example.mealplaner.Search.Category.InterFaces;
 
 
 import androidx.lifecycle.Lifecycle;

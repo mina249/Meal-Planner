@@ -1,10 +1,10 @@
-package com.example.mealplaner.Meal;
+package com.example.mealplaner.Meal.Presenter;
 
-import android.util.Log;
-
-import com.example.mealplaner.Models.Meal;
+import com.example.mealplaner.Meal.Controllers.MealIngrediant;
+import com.example.mealplaner.Meal.Interfaces.MealInterface;
 import com.example.mealplaner.Models.Meals;
 import com.example.mealplaner.RxNetwork.RxRepositry;
+import com.example.mealplaner.Search.Ingrediant.View.IngrediantAdapter;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -16,20 +16,21 @@ public class MealPresenter {
 
     MealIngrediant ingrediant;
 
+
     public MealPresenter(MealInterface mealInterface) {
         this.mealInterface = mealInterface;
         ingrediant=new MealIngrediant();
 
     }
-    void getData(String id){
+    public void getData(String id){
 
         mealObservable= RxRepositry.getMeal(id);
-        mealObservable.subscribeOn(Schedulers.io()).map(Meals::getMeals).observeOn(AndroidSchedulers.mainThread())
+
+        mealObservable.subscribeOn(Schedulers.io()).map(Meals::getMeals)
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(meal -> {
                             ingrediant.setMeal(meal.get(0));
                             mealInterface.SetMealData(meal.get(0), ingrediant.getMealIngriant());
-                        },er->{
-                            System.out.println( "MealPresenter: erorrrrrrrrrr");
                         }
                 );
     }

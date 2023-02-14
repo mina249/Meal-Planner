@@ -1,4 +1,4 @@
-package com.example.mealplaner.Search.View;
+package com.example.mealplaner.Search.Category.View;
 
 import android.content.Context;
 import android.content.Intent;
@@ -43,8 +43,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         holder.cvCategory.setOnClickListener(view->{
             Intent intent =new Intent(context, CategoryData.class);
             Bundle bundle =new Bundle();
-            Category c= categoryList.get(position);
-            bundle.putSerializable("category",c);
+            Category category= categoryList.get(position);
+            bundle.putSerializable("category",category);
             intent.putExtra("category",bundle);
             context.startActivity(intent);
         });
@@ -64,10 +64,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivCategory =itemView.findViewById(R.id.category_iv);
-            tvCatName=itemView.findViewById(R.id.tv_category_name);
+            ivCategory =itemView.findViewById(R.id.iv_ingreadient_iteam_image);
+            tvCatName=itemView.findViewById(R.id.tv_ingrediant_iteam_name);
             tvCatDisc=itemView.findViewById(R.id.tv_catigory_discript);
-            cvCategory=itemView.findViewById(R.id.cv_category_item);
+            cvCategory=itemView.findViewById(R.id.cv_ing_item);
         }
         public void setCategory(Category category){
             tvCatName.setText(category.getStrCategory());
