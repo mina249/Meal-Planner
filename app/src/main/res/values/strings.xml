@@ -24,4 +24,5 @@
     <string name="addFavourit">Add To Favourit</string>
     <string name="meal_country">Country</string>
     <string name="Ingrediant">Ingrediant</string>
+    <string name="category">category</string>
 </resources>

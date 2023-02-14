@@ -13,8 +13,7 @@ import com.example.mealplaner.Clender.InterFaces.MoveFragment;
 import com.example.mealplaner.Clender.View.Clender;
 
 import com.example.mealplaner.R;
-import com.example.mealplaner.Search.Category.View.CategorySearch;
-import com.example.mealplaner.Search.Ingrediant.View.IngrediantSearch;
+import com.example.mealplaner.Search.SearchmMethodsActivity;
 
 
 import java.util.ArrayList;
@@ -58,7 +57,7 @@ public class OnBoarding extends AppCompatActivity implements MoveFragment {
         FragmentTransaction transaction =manager.beginTransaction();
         transaction.add(R.id.container, clender, "clender");
        // transaction.commit();
-        Intent intent = new Intent(this, IngrediantSearch.class);
+        Intent intent = new Intent(this, SearchmMethodsActivity.class);
         startActivity(intent);
     }
 }
