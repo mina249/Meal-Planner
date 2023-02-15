@@ -1,12 +1,29 @@
 package com.example.mealplaner;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +36,19 @@ public class SignupFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    EditText name;
+    EditText email;
+    EditText pass;
+    EditText confirmPass;
+    Button register;
+    FirebaseAuth mAuth;
+    String userName;
+    String enteredEmail;
+    String password;
+
+
+   ProgressDialog progressDialog;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -60,6 +90,81 @@ public class SignupFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ViewGroup v = (ViewGroup) inflater.inflate(R.layout.fragment_signup, container, false);
+        inflateUI(v);
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("Getting you registered");
+        mAuth = FirebaseAuth.getInstance();
+
         return v;
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userName = name.getText().toString();
+                enteredEmail = email.getText().toString();
+                password = pass.getText().toString();
+                String confirmedPass= confirmPass.getText().toString();
+                if(!Patterns.EMAIL_ADDRESS.matcher(enteredEmail).matches()){
+                    email.setError("Invalid Email");
+                    email.setFocusable(true);
+                }else if(password.length()<8){
+                    pass.setError("Password must be at least 8 characters");
+                    pass.setFocusable(true);
+                }else if (userName.isEmpty()){
+                    name.setError("This field can not be empty");
+                }else if(!password.equals(confirmedPass)){
+                    confirmPass.setError("Not matches the password");
+                }else{
+                        registerUser(enteredEmail,password);
+                }
+
+
+
+            }
+        });
+
+    }
+
+    private void inflateUI(View v){
+        name = v.findViewById(R.id.et_name_signup);
+        email= v.findViewById(R.id.et_email_signin);
+        pass = v.findViewById(R.id.et_password_signin);
+        confirmPass = v.findViewById(R.id.et_confirm_password);
+        register=v.findViewById(R.id.btn_signup);
+    }
+
+    private void registerUser(String email, String pass){
+        progressDialog.show();
+        mAuth.createUserWithEmailAndPassword(email, pass)
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            Toast.makeText(getActivity(), "Registered", Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(getActivity(), MainActivity.class);
+                            startActivity(i);
+                            getActivity().finish();
+
+                        } else {
+
+                        }
+                        progressDialog.dismiss();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        progressDialog.dismiss();
+                        Toast.makeText(getActivity(), ""+e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+
+
 }

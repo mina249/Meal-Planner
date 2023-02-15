@@ -6,22 +6,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SearchActivity extends AppCompatActivity {
-
+String userType = "loggedUser";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        // Initialize and assign variable
+        navigationBar();
+        userType = getIntent().getStringExtra("checkUserType");
+        if (userType == null){
+            userType = "loggedUser";
+        }
+
+    }
+
+    private void navigationBar(){
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
 
-        // Set Home selected
-        bottomNavigationView.setSelectedItemId(R.id.search);
 
-        // Perform item selected listener
+        bottomNavigationView.setSelectedItemId(R.id.search);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -29,22 +36,34 @@ public class SearchActivity extends AppCompatActivity {
                 switch(item.getItemId())
                 {
                     case R.id.home:
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                      Intent intent = new Intent(SearchActivity.this,MainActivity.class);
+                      intent.putExtra("checkUserType",userType);
+                      startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.search:
                         return true;
                     case R.id.love:
-                        startActivity(new Intent(getApplicationContext(), LovedActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
+                        if(userType.equals("guest")){
+                            Toast.makeText(SearchActivity.this, "You should login first", Toast.LENGTH_SHORT).show();
+                        }else  {
+                            startActivity(new Intent(getApplicationContext(), FavouriteMealActivity.class));
+                            overridePendingTransition(0, 0);
+                            return true;
+                        }
                     case R.id.calendar:
-                        startActivity(new Intent(getApplicationContext(),CalendarActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
+                        if (userType.equals("guest")){
+                            Toast.makeText(SearchActivity.this, "You should login first", Toast.LENGTH_SHORT).show();
+                        }else {
+                            startActivity(new Intent(getApplicationContext(), CalendarActivity.class));
+                            overridePendingTransition(0, 0);
+                            return true;
+                        }
                 }
                 return false;
             }
         });
     }
+
+
     }

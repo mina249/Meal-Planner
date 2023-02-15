@@ -19,15 +19,19 @@ import java.util.ArrayList;
 
 public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHolder> {
 
-    ArrayList<meals> meal;
+    ArrayList<Meal> meal;
     Context context;
     ViewPager2 viewPager2;
+    OnAddToFavouriteClickListener listener;
+    OnDeleteFromFavClickListener deleteListener;
 
 
-    public HomeRvAdapter(Context context,ArrayList<meals>meal,ViewPager2 viewPager2) {
+    public HomeRvAdapter(Context context, ArrayList<Meal>meal, ViewPager2 viewPager2, OnAddToFavouriteClickListener listener, OnDeleteFromFavClickListener deleteListener) {
         this.meal = meal;
         this.context = context;
         this.viewPager2= viewPager2;
+        this.listener =listener;
+        this.deleteListener = deleteListener;
     }
 
     @NonNull
@@ -41,14 +45,10 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
 
     @Override
     public void onBindViewHolder(@NonNull HomeRvHolder holder, int position) {
-        meals meals = meal.get(position);
+        Meal meals = meal.get(position);
         holder.txt.setText(meals.getStrMeal());
         Glide.with(context).load(meals.getStrMealThumb()).into(holder.imageView);
-        if(position== meal.size()-2){
-            viewPager2.post(runnable);
-            position=0;
 
-        }
 
 
 
@@ -59,12 +59,14 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
             public void onClick(View v) {
                 if (!isFavorite) {
                     holder.fav.setBackgroundResource(R.drawable.heart);
+                    listener.onClick(meals);
 
-                    holder.imgMeal.animate().rotation(1440).setDuration(1000).setStartDelay(0).start();
+                    holder.imgMeal.animate().rotationBy(1440).setDuration(1000).setStartDelay(0).start();
                     isFavorite = true;
                 } else {
                     holder.fav.setBackgroundResource(R.drawable.fav);
                     isFavorite = false;
+                    deleteListener.onDeleteClick(meals);
                 }
 
             }
@@ -76,7 +78,7 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
         return 10;
     }
 
-    public void setMealList(ArrayList<meals>meal) {
+    public void setMealList(ArrayList<Meal>meal) {
        this.meal =meal;
         notifyDataSetChanged();
     }
@@ -95,6 +97,7 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
             fav = itemView.findViewById(R.id.fav_button);
             imageCard = itemView.findViewById(R.id.image_card);
             imgMeal = itemView.findViewById(R.id.img_meal);
+
         }
     }
     private Runnable runnable = new Runnable() {

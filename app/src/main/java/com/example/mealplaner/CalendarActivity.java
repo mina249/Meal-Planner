@@ -35,7 +35,7 @@ public class CalendarActivity extends AppCompatActivity {
                     case R.id.calendar:
                         return true;
                     case R.id.love:
-                        startActivity(new Intent(getApplicationContext(), LovedActivity.class));
+                        startActivity(new Intent(getApplicationContext(), FavouriteMealActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.search:

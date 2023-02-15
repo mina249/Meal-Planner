@@ -11,15 +11,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.bumptech.glide.Glide;
+
+import java.util.List;
 
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder> {
 
-    ArrayList<meals> meals;
+    List<Meal> Meals;
     Context context;
+    OnDeleteFromFavClickListener listener;
 
-    public FavoriteAdapter(Context context) {
+    public FavoriteAdapter(Context context, List<Meal> Meals, OnDeleteFromFavClickListener listener) {
         this.context = context;
+        this.Meals = Meals;
+        this.listener = listener;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -30,18 +36,25 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
 
     @Override
     public void onBindViewHolder(@NonNull FavoriteViewHolder holder, int position) {
-          //  holder.mealImg.setImageResource(meals.get(position).getImg());
-           // holder.mealName.setText(meals.get(position).getName());
+        Meal meal = Meals.get(position);
+        holder.mealName.setText(meal.getStrMeal());
+        Glide.with(context).load(meal.getStrMealThumb()).into(holder.mealImg);
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onDeleteClick(meal);
+            }
+        });
     }
 
-    public void setList(ArrayList<meals>meals){
-        this.meals = meals;
+    public void setList(List<Meal> Meals){
+        this.Meals = Meals;
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return meals.size();
+        return Meals.size();
     }
 
     class FavoriteViewHolder extends RecyclerView.ViewHolder{
