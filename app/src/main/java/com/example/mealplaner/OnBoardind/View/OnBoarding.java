@@ -9,12 +9,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.mealplaner.Clender.InterFaces.MoveFragment;
+import com.example.mealplaner.OnBoardind.Interface.MoveFragment;
 import com.example.mealplaner.Clender.View.Clender;
 
 import com.example.mealplaner.Login.View.LoginActivity;
 import com.example.mealplaner.R;
-import com.example.mealplaner.Search.SearchmMethodsActivity;
 
 
 import java.util.ArrayList;

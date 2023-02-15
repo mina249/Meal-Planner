@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mealplaner.Clender.InterFaces.MoveFragment;
+import com.example.mealplaner.OnBoardind.Interface.MoveFragment;
 
 import com.example.mealplaner.Login.View.LoginActivity;
 import com.example.mealplaner.R;
