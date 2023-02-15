@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "659662251188",
+    "project_id": "mealplaner-fcd43",
+    "storage_bucket": "mealplaner-fcd43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659662251188:android:f7eacd24293434d6fda3e1",
+        "android_client_info": {
+          "package_name": "com.example.mealplaner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659662251188-vbiilff26rt5g1gpphgi1vu880o17rq0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9O8cm8VFcW2kVzIuTZ_82mLN5nptfi2U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "659662251188-vbiilff26rt5g1gpphgi1vu880o17rq0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
