@@ -10,14 +10,13 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.mealplaner.CalendarActivity;
+import com.example.mealplaner.Calendar.CalendarActivity;
 import com.example.mealplaner.FavouriteMeals.View.FavouriteMealActivity;
 import com.example.mealplaner.HomePage.View.MainActivity;
 import com.example.mealplaner.Models.Category;
 import com.example.mealplaner.R;
 import com.example.mealplaner.Search.Category.InterFaces.CategoryInter;
 import com.example.mealplaner.Search.Category.Presenter.CategoryPresenter;
-import com.example.mealplaner.Search.SearchActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;

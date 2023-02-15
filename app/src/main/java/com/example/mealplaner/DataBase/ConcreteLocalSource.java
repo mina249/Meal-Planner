@@ -76,4 +76,39 @@ public class ConcreteLocalSource implements LocalSource{
     public Observable<List<Meal>> getFavoriteProducts() {
         return favouriteMeals;
     }
+
+    @Override
+    public Observable<List<Meal>> getSaturdayProducts() {
+        return dao.getSaturdayMeals();
+    }
+
+    @Override
+    public Observable<List<Meal>> getSundayProducts() {
+        return dao.getSundayMeals();
+    }
+
+    @Override
+    public Observable<List<Meal>> getMondayProducts() {
+        return dao.getMondayMeals();
+    }
+
+    @Override
+    public Observable<List<Meal>> getTuesdayProducts() {
+        return dao.getTuesdayMeals();
+    }
+
+    @Override
+    public Observable<List<Meal>> getWednesdayProducts() {
+        return dao.getWednesdayMeals();
+    }
+
+    @Override
+    public Observable<List<Meal>> getThursdayProducts() {
+        return dao.getThursdayMeals();
+    }
+
+    @Override
+    public Observable<List<Meal>> getFridayProducts() {
+        return dao.getFridayMeals();
+    }
 }

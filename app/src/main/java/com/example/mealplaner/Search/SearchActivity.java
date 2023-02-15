@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.mealplaner.CalendarActivity;
+import com.example.mealplaner.Calendar.CalendarActivity;
 import com.example.mealplaner.FavouriteMeals.View.FavouriteMealActivity;
 import com.example.mealplaner.HomePage.View.MainActivity;
 import com.example.mealplaner.R;

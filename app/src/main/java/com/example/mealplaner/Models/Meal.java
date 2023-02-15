@@ -10,6 +10,17 @@ public class Meal {
     @PrimaryKey
     @NonNull
     private String idMeal;
+    @ColumnInfo(name = "status")
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @ColumnInfo(name = "strMeal")
     private String strMeal;
     @ColumnInfo (name = "strDrinkAlternate")
