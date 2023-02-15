@@ -73,6 +73,7 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
             public void onClick(View v) {
                 if (!isFavorite) {
                     holder.fav.setBackgroundResource(R.drawable.heart);
+                    meals.setStatus("favourite");
                     listener.onClick(meals);
 
                     holder.imgMeal.animate().rotationBy(1440).setDuration(1000).setStartDelay(0).start();

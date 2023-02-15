@@ -10,7 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.mealplaner.CalendarActivity;
+import com.example.mealplaner.Calendar.CalendarActivity;
 import com.example.mealplaner.DataBase.ConcreteLocalSource;
 import com.example.mealplaner.FavouriteMeals.Presenter.FavouriteMealPresenter;
 import com.example.mealplaner.FavouriteMeals.Intercafaces.FavouriteMealPresenterInterface;
@@ -20,7 +20,6 @@ import com.example.mealplaner.Models.Meal;
 import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickListener;
 import com.example.mealplaner.R;
 import com.example.mealplaner.Search.Category.View.CategorySearch;
-import com.example.mealplaner.Search.SearchActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;

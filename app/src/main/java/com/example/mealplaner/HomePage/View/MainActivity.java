@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.mealplaner.CalendarActivity;
+import com.example.mealplaner.Calendar.CalendarActivity;
 import com.example.mealplaner.DataBase.ConcreteLocalSource;
 import com.example.mealplaner.FavouriteMeals.View.FavouriteMealActivity;
 import com.example.mealplaner.HomePage.Presenter.MealPresenter;
@@ -31,7 +31,6 @@ import com.example.mealplaner.Models.Meal;
 import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickListener;
 import com.example.mealplaner.R;
 import com.example.mealplaner.Search.Category.View.CategorySearch;
-import com.example.mealplaner.Search.SearchActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
