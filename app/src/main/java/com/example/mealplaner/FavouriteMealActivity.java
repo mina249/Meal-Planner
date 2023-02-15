@@ -5,18 +5,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.mealplaner.DataBase.ConcreteLocalSource;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class LovedActivity extends AppCompatActivity {
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
+public class FavouriteMealActivity extends AppCompatActivity implements FavouriteViewInterface ,OnDeleteFromFavClickListener {
 
     RecyclerView favRV;
     FavoriteAdapter favAdapter;
+    FavouriteMealPresenterInterface favouriteMealPresenterInterface;
+
 
 
 
@@ -25,15 +34,15 @@ public class LovedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loved);
         navigationBar();
-
         favRV = findViewById(R.id.fav_rv);
-        favAdapter = new FavoriteAdapter(this);
-        favRV.setAdapter(favAdapter);
-
-
-        //favAdapter.setList(meals);
+        favAdapter = new FavoriteAdapter(this,new ArrayList<>(),this);
         RecyclerView.LayoutManager lm = new GridLayoutManager(this,2);
+        favouriteMealPresenterInterface = new FavouriteMealPresenter(this, ConcreteLocalSource.getInstance(this));
         favRV.setLayoutManager(lm);
+        favRV.setAdapter(favAdapter);
+        favouriteMealPresenterInterface.getFavouriteMeals();
+
+
 
     }
 
@@ -66,6 +75,27 @@ public class LovedActivity extends AppCompatActivity {
                 }
             });
         }
+
+    @Override
+    public void remove(Meal meal) {
+        favouriteMealPresenterInterface.removeFav(meal);
     }
+
+    @SuppressLint("CheckResult")
+    @Override
+    public void showFav(Observable<List<Meal>> meal) {
+        meal.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(o->favAdapter.setList(o));
+
+        favAdapter.notifyDataSetChanged();
+
+    }
+
+    @Override
+    public void onDeleteClick(Meal meal) {
+        remove(meal);
+    }
+}
 
 

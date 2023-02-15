@@ -25,4 +25,14 @@
     <string name="meal_country">Country</string>
     <string name="Ingrediant">Ingrediant</string>
     <string name="category">category</string>
+    <string name="enjoy">Emjoy your favourite meals</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="pass">Password</string>
+    <string name="confirm_pass">Comfirm Password</string>
+    <string name="guest">Guest</string>
+    <string name="oops">OOPS!</string>
+    <string name="no_internet">No internet Connection</string>
+    <string name="rety">Rety</string>
+
 </resources>

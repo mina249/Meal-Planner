@@ -3,7 +3,8 @@ package com.example.mealplaner;
 import android.content.Context;
 
 import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LiveData;
+
+import com.example.mealplaner.DataBase.LocalSource;
 
 import com.example.mealplaner.Models.Meal;
 
@@ -15,17 +16,24 @@ public class MealPresenter implements MealPresenterInterface,NetworkDelegate{
     MealViewInterface mealViewInterface;
     ArrayList<Meal> meals= new ArrayList<>();
     Context context;
+    LocalSource localSource;
 
-    public MealPresenter(RemoteSource remoteSource, MealViewInterface mealViewInterface, Context context) {
+    public MealPresenter(RemoteSource remoteSource, MealViewInterface mealViewInterface, Context context,LocalSource localSource) {
         this.remoteSource = remoteSource;
         this.mealViewInterface = mealViewInterface;
         this.context = context;
+        this.localSource = localSource;
     }
 
     @Override
     public void getMeal() {
         remoteSource.enqueueCall(this);
 
+    }
+
+    @Override
+    public void addToFav(Meal meal) {
+        localSource.insert(meal);
     }
 
 

@@ -1,12 +1,7 @@
 package com.example.mealplaner;
 
-import android.util.Log;
-
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.mealplaner.Models.Meal;
-import com.example.mealplaner.Models.Meals;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -16,6 +11,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MealService implements RemoteSource{
@@ -25,7 +21,8 @@ public class MealService implements RemoteSource{
     private static MealService mealService = null;
 
     public  static MutableLiveData<ArrayList<Meal>>  liveMeals = new MutableLiveData<ArrayList<Meal>>();
-
+    int number = 10;
+    ArrayList<Meal> meals = new ArrayList<>();
     private MealService(){
 
     }
@@ -42,15 +39,28 @@ public class MealService implements RemoteSource{
     public void enqueueCall(NetworkDelegate networkDelegate) {
         Gson gson = new GsonBuilder().setLenient().create();
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL).
-                addConverterFactory(GsonConverterFactory.create(gson)).build();
+                addConverterFactory(GsonConverterFactory.create(gson)).addCallAdapterFactory(RxJava2CallAdapterFactory.create()).build();
         APIMeal api = retrofit.create(APIMeal.class);
         Call<Meals> call = api.getMeal();
+        callRandomMeal(call,networkDelegate);
+
+    }
+    public void callRandomMeal(Call<Meals>call, NetworkDelegate networkDelegate){
+
+
 
             call.enqueue(new Callback<Meals>() {
                 @Override
                 public void onResponse(Call<Meals> call, Response<Meals> response) {
-                    networkDelegate.onSuccess(response.body().getMeals());
-                    liveMeals.postValue(response.body().getMeals());
+                    if(number>0)
+                    {
+                        enqueueCall(networkDelegate);
+                        meals.add(response.body().getMeals().get(0));
+                        number--;
+                    }else {
+                        networkDelegate.onSuccess(meals);
+                        liveMeals.postValue(meals);
+                    }
                 }
 
 
@@ -58,9 +68,7 @@ public class MealService implements RemoteSource{
                     networkDelegate.onFailure(t.toString());
                 }
             });
-
-
-
-
     }
+
+
 }

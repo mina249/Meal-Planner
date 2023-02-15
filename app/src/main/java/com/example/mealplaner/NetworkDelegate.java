@@ -1,9 +1,5 @@
 package com.example.mealplaner;
 
-import androidx.lifecycle.LiveData;
-
-import com.example.mealplaner.Models.Meal;
-
 import java.util.ArrayList;
 
 public interface NetworkDelegate {
