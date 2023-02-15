@@ -1,63 +1,118 @@
 package com.example.mealplaner.Models;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
-
+@Entity(tableName = "Meals")
 public class Meal {
-
+    @PrimaryKey
+    @NonNull
     private String idMeal;
+    @ColumnInfo(name = "strMeal")
     private String strMeal;
+    @ColumnInfo (name = "strDrinkAlternate")
     private String strDrinkAlternate;
+    @ColumnInfo(name = "strCategory")
     private String strCategory;
+    @ColumnInfo(name = "strArea")
     private String strArea;
+    @ColumnInfo(name = "strInstructions")
     private String strInstructions;
+    @ColumnInfo(name = "strMealThumb")
     private String strMealThumb;
+    @ColumnInfo(name = "strTags")
     private String strTags;
+    @ColumnInfo(name = "strYoutube")
     private String strYoutube;
+    @ColumnInfo(name = "strIngredient1")
     private String strIngredient1;
+    @ColumnInfo(name = "strIngredient2")
     private String strIngredient2;
+    @ColumnInfo(name = "strIngredient3")
     private String strIngredient3;
+    @ColumnInfo(name = "strIngredient4")
     private String strIngredient4;
+    @ColumnInfo(name = "strIngredient5")
     private String strIngredient5;
+    @ColumnInfo(name = "strIngredient6")
     private String strIngredient6;
+    @ColumnInfo(name = "strIngredient7")
     private String strIngredient7;
+    @ColumnInfo(name = "strIngredient8")
     private String strIngredient8;
+    @ColumnInfo(name = "strIngredient9")
     private String strIngredient9;
+    @ColumnInfo(name = "strIngredient10")
     private String strIngredient10;
+    @ColumnInfo(name = "strIngredient11")
     private String strIngredient11;
+    @ColumnInfo(name = "strIngredient12")
     private String strIngredient12;
+    @ColumnInfo(name = "strIngredient13")
     private String strIngredient13;
+    @ColumnInfo(name = "strIngredient14")
     private String strIngredient14;
+    @ColumnInfo(name = "strIngredient15")
     private String strIngredient15;
+    @ColumnInfo(name = "strIngredient16")
     private String strIngredient16;
+    @ColumnInfo(name = "strIngredient17")
     private String strIngredient17;
+    @ColumnInfo(name = "strIngredient18")
     private String strIngredient18;
+    @ColumnInfo(name = "strIngredient19")
     private String strIngredient19;
+    @ColumnInfo(name = "strIngredient20")
     private String strIngredient20;
+    @ColumnInfo(name = "strMeasure1")
     private String strMeasure1;
+    @ColumnInfo(name = "strMeasure2")
     private String strMeasure2;
+    @ColumnInfo(name = "strMeasure3")
     private String strMeasure3;
+    @ColumnInfo(name = "strMeasure4")
     private String strMeasure4;
+    @ColumnInfo(name = "strMeasure5")
     private String strMeasure5;
+    @ColumnInfo(name = "strMeasure6")
     private String strMeasure6;
+    @ColumnInfo(name = "strMeasure7")
     private String strMeasure7;
+    @ColumnInfo(name = "strMeasure8")
     private String strMeasure8;
+    @ColumnInfo(name = "strMeasure9")
     private String strMeasure9;
+    @ColumnInfo(name = "strMeasure10")
     private String strMeasure10;
+    @ColumnInfo(name = "strMeasure11")
     private String strMeasure11;
+    @ColumnInfo(name = "strMeasure12")
     private String strMeasure12;
+    @ColumnInfo(name = "strMeasure13")
     private String strMeasure13;
+    @ColumnInfo(name = "strMeasure14")
     private String strMeasure14;
+    @ColumnInfo(name = "strMeasure15")
     private String strMeasure15;
+    @ColumnInfo(name = "strMeasure16")
     private String strMeasure16;
+    @ColumnInfo(name = "strMeasure17")
     private String strMeasure17;
+    @ColumnInfo(name = "strMeasure18")
     private String strMeasure18;
+    @ColumnInfo(name = "strMeasure19")
     private String strMeasure19;
+    @ColumnInfo(name = "strMeasure20")
     private String strMeasure20;
+    @ColumnInfo(name = "strSource")
     private String strSource;
+    @ColumnInfo(name = "strImageSource")
     private String strImageSource;
+    @ColumnInfo(name = "strCreativeCommonsConfirmed")
     private String strCreativeCommonsConfirmed;
+    @ColumnInfo(name = "dateModified")
     private String dateModified;
 
 
@@ -484,5 +539,6 @@ public class Meal {
     public void setDateModified(String dateModified) {
         this.dateModified = dateModified;
     }
+
 
 }

@@ -17,15 +17,15 @@ public class SearchmMethodsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        btnCat=findViewById(R.id.btn_category);
-        btnIngr=findViewById(R.id.btn_ingridiant);
-        btnCat.setOnClickListener(view->{
+       /* btnCat=findViewById(R.id.btn_category);
+       // btnIngr=findViewById(R.id.btn_ingridiant);
+        /*btnCat.setOnClickListener(view->{
             Intent intent = new Intent(this, CategorySearch.class);
             startActivity(intent);
         });
         btnIngr.setOnClickListener(view->{
             Intent intent = new Intent(this, IngrediantSearch.class);
             startActivity(intent);
-        });
+        });*/
     }
 }

@@ -1,6 +1,6 @@
 package com.example.mealplaner.DataBase;
 
-import com.example.mealplaner.Meal;
+import com.example.mealplaner.Models.Meal;
 
 import java.util.List;
 

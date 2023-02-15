@@ -1,4 +1,4 @@
-package com.example.mealplaner;
+package com.example.mealplaner.HomePage.View;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,6 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
+import com.example.mealplaner.HomePage.Interfaces.OnAddToFavouriteClickListener;
+import com.example.mealplaner.Models.Meal;
+import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickListener;
+import com.example.mealplaner.R;
 
 import java.util.ArrayList;
 

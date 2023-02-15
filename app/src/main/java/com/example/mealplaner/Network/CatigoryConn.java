@@ -1,4 +1,6 @@
 package com.example.mealplaner.Network;
+import com.example.mealplaner.Network.Interfaces.APIs;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

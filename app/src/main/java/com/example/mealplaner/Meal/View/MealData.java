@@ -1,10 +1,6 @@
 package com.example.mealplaner.Meal.View;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
@@ -13,12 +9,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
-import com.example.mealplaner.Meal.Interfaces.MealInterface;
-
 import com.example.mealplaner.Meal.Controllers.YouTubeID;
-
+import com.example.mealplaner.Meal.Interfaces.MealInterface;
 import com.example.mealplaner.Meal.Presenter.MealPresenter;
+
 import com.example.mealplaner.Models.Meal;
 import com.example.mealplaner.R;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
@@ -76,7 +75,7 @@ public class MealData extends AppCompatActivity implements MealInterface {
     }
 
     @Override
-    public void SetMealData( Meal meal, LinkedList<Pair<String, String>> ingridient) {
+    public void SetMealData(Meal meal, LinkedList<Pair<String, String>> ingridient) {
         tvCategory.setText(meal.getStrCategory());
         tvMealName.setText(meal.getStrMeal());
         tvCategory.setText(meal.getStrCategory());

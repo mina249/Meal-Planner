@@ -28,7 +28,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import com.example.mealplaner.MainActivity;
+import com.example.mealplaner.HomePage.View.MainActivity;
 import com.example.mealplaner.R;
 
 /**
@@ -133,7 +133,7 @@ public class LoginFragment extends Fragment {
         guest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(),MainActivity.class);
+                Intent i = new Intent(getActivity(), MainActivity.class);
                 i.putExtra("checkUserType","guest");
                 startActivity(i);
             }

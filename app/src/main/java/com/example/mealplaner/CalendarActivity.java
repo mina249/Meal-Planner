@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.mealplaner.FavouriteMeals.View.FavouriteMealActivity;
+import com.example.mealplaner.HomePage.View.MainActivity;
+import com.example.mealplaner.Search.SearchActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class CalendarActivity extends AppCompatActivity {
@@ -29,7 +32,7 @@ public class CalendarActivity extends AppCompatActivity {
                 switch(item.getItemId())
                 {
                     case R.id.home:
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.calendar:

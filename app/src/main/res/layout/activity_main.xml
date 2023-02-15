@@ -7,7 +7,7 @@
     android:background="@color/theme"
     android:backgroundTint="@color/theme"
     android:elevation="20dp"
-    tools:context=".MainActivity"
+    tools:context=".HomePage.View.MainActivity"
     tools:ignore="NamespaceTypo">
 
     <androidx.viewpager2.widget.ViewPager2
@@ -34,6 +34,7 @@
         app:itemTextColor="@drawable/selector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu_navigation" />
 

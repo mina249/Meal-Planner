@@ -17,8 +17,6 @@ import com.example.mealplaner.R;
 
 import java.util.ArrayList;
 
-import retrofit2.http.GET;
-
 public class IngridiantActivity extends AppCompatActivity implements MealInter {
     IngrediantModel ingridiant;
     ImageView ivIngridant;

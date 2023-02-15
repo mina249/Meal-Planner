@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/theme"
     android:backgroundTint="@color/theme"
-    tools:context=".FavouriteMealActivity">
+    tools:context=".FavouriteMeals.View.FavouriteMealActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

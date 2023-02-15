@@ -1,4 +1,4 @@
-package com.example.mealplaner.Network;
+package com.example.mealplaner.Network.Interfaces;
 
 import com.example.mealplaner.Models.AllCategories;
 import com.example.mealplaner.Models.Meals;
@@ -12,5 +12,7 @@ public interface APIs {
     Call<AllCategories> getCategories();
     @GET("/api/json/v1/1/search.php?")
     Call<Meals> getCategoryMeals(@Query("s") String mealName);
+    @GET("api/json/v1/1/random.php")
+    Call<Meals> getRandomMeal();
 
 }

@@ -1,8 +1,11 @@
-package com.example.mealplaner;
+package com.example.mealplaner.FavouriteMeals.Presenter;
 
 import com.example.mealplaner.DataBase.LocalSource;
+import com.example.mealplaner.FavouriteMeals.Intercafaces.FavouriteMealPresenterInterface;
+import com.example.mealplaner.FavouriteMeals.Intercafaces.FavouriteViewInterface;
+import com.example.mealplaner.Models.Meal;
 
-public class FavouriteMealPresenter implements FavouriteMealPresenterInterface{
+public class FavouriteMealPresenter implements FavouriteMealPresenterInterface {
     FavouriteViewInterface favouriteViewInterface;
     LocalSource localSource;
 

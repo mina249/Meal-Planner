@@ -1,4 +1,4 @@
-package com.example.mealplaner;
+package com.example.mealplaner.FavouriteMeals.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +10,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.mealplaner.CalendarActivity;
 import com.example.mealplaner.DataBase.ConcreteLocalSource;
+import com.example.mealplaner.FavouriteMeals.Presenter.FavouriteMealPresenter;
+import com.example.mealplaner.FavouriteMeals.Intercafaces.FavouriteMealPresenterInterface;
+import com.example.mealplaner.FavouriteMeals.Intercafaces.FavouriteViewInterface;
+import com.example.mealplaner.HomePage.View.MainActivity;
+import com.example.mealplaner.Models.Meal;
+import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickListener;
+import com.example.mealplaner.R;
+import com.example.mealplaner.Search.SearchActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -20,7 +29,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class FavouriteMealActivity extends AppCompatActivity implements FavouriteViewInterface ,OnDeleteFromFavClickListener {
+public class FavouriteMealActivity extends AppCompatActivity implements FavouriteViewInterface, OnDeleteFromFavClickListener {
 
     RecyclerView favRV;
     FavoriteAdapter favAdapter;
@@ -62,11 +71,11 @@ public class FavouriteMealActivity extends AppCompatActivity implements Favourit
                         case R.id.love:
                             return true;
                         case R.id.home:
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             overridePendingTransition(0,0);
                             return true;
                         case R.id.calendar:
-                            startActivity(new Intent(getApplicationContext(),CalendarActivity.class));
+                            startActivity(new Intent(getApplicationContext(), CalendarActivity.class));
                             overridePendingTransition(0,0);
                             return true;
 

@@ -1,4 +1,4 @@
-package com.example.mealplaner;
+package com.example.mealplaner.HomePage.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +18,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mealplaner.CalendarActivity;
 import com.example.mealplaner.DataBase.ConcreteLocalSource;
+import com.example.mealplaner.FavouriteMeals.View.FavouriteMealActivity;
+import com.example.mealplaner.HomePage.Presenter.MealPresenter;
+import com.example.mealplaner.HomePage.Interfaces.MealPresenterInterface;
+import com.example.mealplaner.HomePage.Interfaces.MealViewInterface;
+import com.example.mealplaner.HomePage.Interfaces.OnAddToFavouriteClickListener;
+import com.example.mealplaner.Login.View.LoginActivity;
+import com.example.mealplaner.Network.MealService;
+import com.example.mealplaner.Models.Meal;
+import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickListener;
+import com.example.mealplaner.R;
+import com.example.mealplaner.Search.Category.View.CategorySearch;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -82,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.search:
-                        Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                        Intent intent = new Intent(MainActivity.this, CategorySearch.class);
                         intent.putExtra("checkUserType", userType);
                         startActivity(intent);
                         overridePendingTransition(0, 0);

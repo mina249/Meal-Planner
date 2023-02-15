@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.mealplaner.Models.Meal;
-import com.example.mealplaner.Models.Meals;
 import com.example.mealplaner.R;
 
 import java.util.ArrayList;

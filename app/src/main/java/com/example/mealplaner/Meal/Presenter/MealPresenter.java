@@ -2,9 +2,10 @@ package com.example.mealplaner.Meal.Presenter;
 
 import com.example.mealplaner.Meal.Controllers.MealIngrediant;
 import com.example.mealplaner.Meal.Interfaces.MealInterface;
+
+
 import com.example.mealplaner.Models.Meals;
 import com.example.mealplaner.RxNetwork.RxRepositry;
-import com.example.mealplaner.Search.Ingrediant.View.IngrediantAdapter;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;

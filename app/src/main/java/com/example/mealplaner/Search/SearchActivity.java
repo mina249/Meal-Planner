@@ -1,4 +1,4 @@
-package com.example.mealplaner;
+package com.example.mealplaner.Search;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,15 +8,22 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.mealplaner.CalendarActivity;
+import com.example.mealplaner.FavouriteMeals.View.FavouriteMealActivity;
+import com.example.mealplaner.HomePage.View.MainActivity;
+import com.example.mealplaner.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SearchActivity extends AppCompatActivity {
 String userType = "loggedUser";
+    BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        bottomNavigationView=findViewById(R.id.bottom_navigation);
         navigationBar();
+
         userType = getIntent().getStringExtra("checkUserType");
         if (userType == null){
             userType = "loggedUser";
@@ -25,7 +32,7 @@ String userType = "loggedUser";
     }
 
     private void navigationBar(){
-        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
+
 
 
         bottomNavigationView.setSelectedItemId(R.id.search);
@@ -36,7 +43,7 @@ String userType = "loggedUser";
                 switch(item.getItemId())
                 {
                     case R.id.home:
-                      Intent intent = new Intent(SearchActivity.this,MainActivity.class);
+                      Intent intent = new Intent(SearchActivity.this, MainActivity.class);
                       intent.putExtra("checkUserType",userType);
                       startActivity(intent);
                         overridePendingTransition(0,0);

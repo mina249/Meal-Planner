@@ -1,4 +1,6 @@
-package com.example.mealplaner;
+package com.example.mealplaner.HomePage.Interfaces;
+
+import com.example.mealplaner.Models.Meal;
 
 import java.util.ArrayList;
 

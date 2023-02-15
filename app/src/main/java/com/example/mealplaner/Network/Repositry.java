@@ -8,7 +8,6 @@ import com.example.mealplaner.Models.Meal;
 import com.example.mealplaner.Models.Meals;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

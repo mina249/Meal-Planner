@@ -4,8 +4,6 @@ import android.util.Pair;
 
 import com.example.mealplaner.Models.Meal;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 
 public class MealIngrediant {

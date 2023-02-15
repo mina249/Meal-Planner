@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -8,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.mealplaner"
-        minSdk 24
+        minSdk 27
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -78,7 +79,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.12'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.7.1'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.7.1'
+   // implementation 'com.squareup.retrofit2:adapter-rxjava2:2.7.1'
 
     // google sign in library
     implementation 'com.google.android.gms:play-services-auth:20.4.1'
