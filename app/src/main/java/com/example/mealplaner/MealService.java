@@ -1,8 +1,5 @@
 package com.example.mealplaner;
 
-import android.util.Log;
-
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.gson.Gson;
@@ -14,6 +11,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MealService implements RemoteSource{
@@ -22,8 +20,9 @@ public class MealService implements RemoteSource{
 
     private static MealService mealService = null;
 
-    public  static MutableLiveData<ArrayList<meals>>  liveMeals = new MutableLiveData<ArrayList<meals>>();
-
+    public  static MutableLiveData<ArrayList<Meal>>  liveMeals = new MutableLiveData<ArrayList<Meal>>();
+    int number = 10;
+    ArrayList<Meal> meals = new ArrayList<>();
     private MealService(){
 
     }
@@ -40,25 +39,36 @@ public class MealService implements RemoteSource{
     public void enqueueCall(NetworkDelegate networkDelegate) {
         Gson gson = new GsonBuilder().setLenient().create();
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL).
-                addConverterFactory(GsonConverterFactory.create(gson)).build();
+                addConverterFactory(GsonConverterFactory.create(gson)).addCallAdapterFactory(RxJava2CallAdapterFactory.create()).build();
         APIMeal api = retrofit.create(APIMeal.class);
-        Call<Meal> call = api.getMeal();
+        Call<Meals> call = api.getMeal();
+        callRandomMeal(call,networkDelegate);
 
-            call.enqueue(new Callback<Meal>() {
+    }
+    public void callRandomMeal(Call<Meals>call, NetworkDelegate networkDelegate){
+
+
+
+            call.enqueue(new Callback<Meals>() {
                 @Override
-                public void onResponse(Call<Meal> call, Response<Meal> response) {
-                    networkDelegate.onSuccess(response.body().getMeals());
-                    liveMeals.postValue(response.body().getMeals());
+                public void onResponse(Call<Meals> call, Response<Meals> response) {
+                    if(number>0)
+                    {
+                        enqueueCall(networkDelegate);
+                        meals.add(response.body().getMeals().get(0));
+                        number--;
+                    }else {
+                        networkDelegate.onSuccess(meals);
+                        liveMeals.postValue(meals);
+                    }
                 }
 
 
-                public void onFailure(Call<Meal> call, Throwable t) {
+                public void onFailure(Call<Meals> call, Throwable t) {
                     networkDelegate.onFailure(t.toString());
                 }
             });
-
-
-
-
     }
+
+
 }
