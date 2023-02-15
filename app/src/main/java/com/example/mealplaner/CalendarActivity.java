@@ -9,6 +9,7 @@ import android.view.MenuItem;
 
 import com.example.mealplaner.FavouriteMeals.View.FavouriteMealActivity;
 import com.example.mealplaner.HomePage.View.MainActivity;
+import com.example.mealplaner.Search.Category.View.CategorySearch;
 import com.example.mealplaner.Search.SearchActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -42,7 +43,7 @@ public class CalendarActivity extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.search:
-                        startActivity(new Intent(getApplicationContext(), SearchActivity.class));
+                        startActivity(new Intent(getApplicationContext(), CategorySearch.class));
                         overridePendingTransition(0,0);
                         return true;
                 }

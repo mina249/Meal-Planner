@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "809637570789",
+    "project_id": "mealplaner-74b3e",
+    "storage_bucket": "mealplaner-74b3e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:809637570789:android:3bef619a7f6343d72d4c0c",
+        "android_client_info": {
+          "package_name": "com.example.mealplaner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "809637570789-dhfn0p4rvpd5isg84v1cshu9l2p2uc5b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mealplaner",
+            "certificate_hash": "eb7e0468742f7b2739260ae1382f3d43e342df61"
+          }
+        },
+        {
+          "client_id": "809637570789-irp431oad810on8r1lg4rs7ln1rasv2i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmAwats27udMPOzOKgr9WmMneL_1rR75s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "809637570789-dvh7fndnhpp3vlfugg75rk48ievm2dao.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

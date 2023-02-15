@@ -12,6 +12,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.mealplaner.Clender.InterFaces.MoveFragment;
 import com.example.mealplaner.Clender.View.Clender;
 
+import com.example.mealplaner.Login.View.LoginActivity;
 import com.example.mealplaner.R;
 import com.example.mealplaner.Search.SearchmMethodsActivity;
 
@@ -57,7 +58,7 @@ public class OnBoarding extends AppCompatActivity implements MoveFragment {
         FragmentTransaction transaction =manager.beginTransaction();
         transaction.add(R.id.container, clender, "clender");
        // transaction.commit();
-        Intent intent = new Intent(this, SearchmMethodsActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 }

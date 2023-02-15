@@ -1,6 +1,8 @@
 package com.example.mealplaner.HomePage.View;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
 import com.example.mealplaner.HomePage.Interfaces.OnAddToFavouriteClickListener;
+import com.example.mealplaner.Meal.View.MealData;
 import com.example.mealplaner.Models.Meal;
 import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickListener;
 import com.example.mealplaner.R;
@@ -52,6 +55,13 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
         Meal meals = meal.get(position);
         holder.txt.setText(meals.getStrMeal());
         Glide.with(context).load(meals.getStrMealThumb()).into(holder.imageView);
+        holder.itemCard.setOnClickListener(view->{
+            Bundle bundle = new Bundle();
+            bundle.putString("id",meals.getIdMeal());
+            Intent intent = new Intent(context, MealData.class);
+            intent.putExtra("id",bundle);
+            context.startActivity(intent);
+        });
 
 
 
@@ -91,8 +101,9 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
         TextView txt;
         ImageView imageView;
         Button fav;
-        CardView imageCard;
+        CardView imageCard,itemCard;
         ImageView imgMeal;
+
 
         public HomeRvHolder(@NonNull View itemView) {
             super(itemView);
@@ -101,6 +112,7 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
             fav = itemView.findViewById(R.id.fav_button);
             imageCard = itemView.findViewById(R.id.image_card);
             imgMeal = itemView.findViewById(R.id.img_meal);
+            itemCard=itemView.findViewById(R.id.cv_home_meal);
 
         }
     }

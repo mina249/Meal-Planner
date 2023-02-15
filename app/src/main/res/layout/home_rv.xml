@@ -9,7 +9,7 @@
 
     <androidx.cardview.widget.CardView
 
-        android:id="@+id/cardView2"
+        android:id="@+id/cv_home_meal"
         android:layout_width="250dp"
         android:layout_height="200dp"
         android:backgroundTint="#272727"
@@ -60,10 +60,10 @@
         android:backgroundTint="#272727"
         app:cardCornerRadius="65dp"
         app:cardElevation="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardView2"
+        app:layout_constraintBottom_toTopOf="@+id/cv_home_meal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cardView2">
+        app:layout_constraintTop_toTopOf="@+id/cv_home_meal">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_meal"

@@ -9,6 +9,7 @@ import android.os.Handler;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.mealplaner.Login.View.LoginActivity;
 import com.example.mealplaner.HomePage.View.MainActivity;
+import com.example.mealplaner.OnBoardind.View.OnBoarding;
 import com.example.mealplaner.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -41,7 +42,7 @@ public class SplashScreen extends AppCompatActivity {
             startActivity(new Intent(SplashScreen.this, MainActivity.class));
 
         }else{
-            startActivity(new Intent(SplashScreen.this, LoginActivity.class));
+            startActivity(new Intent(SplashScreen.this, OnBoarding.class));
             finish();
         }
     }

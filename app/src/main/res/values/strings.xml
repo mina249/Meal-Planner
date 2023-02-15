@@ -21,17 +21,20 @@
     <string name="Meal_instructions">Meal Instructions</string>
     <string name="meal_tag">MealTag</string>
     <string name="Ingridiant">Ingridiant</string>
-    <string name="addFavourit">Add To Favourit</string>
+    <string name="addFavourit">Add To Favourite</string>
     <string name="meal_country">Country</string>
     <string name="Ingrediant">Ingrediant</string>
     <string name="category">category</string>
 
     <string name="email">Email</string>
     <string name="pass">Password</string>
-    <string name="confirm_pass">Comfirm Password</string>
+    <string name="confirm_pass">Confirm Password</string>
     <string name="guest">Guest</string>
     <string name="oops">OOPS!</string>
     <string name="no_internet">No internet Connection</string>
-    <string name="rety">Rety</string>
+    <string name="rety">Retry</string>
+    <string name="country">country</string>
+    <string name="meal">meal</string>
+    <string name="search_by">Search With :</string>
 
 </resources>
