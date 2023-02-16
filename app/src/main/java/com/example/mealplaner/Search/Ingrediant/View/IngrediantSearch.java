@@ -24,7 +24,7 @@ public class IngrediantSearch extends AppCompatActivity implements IngrediantSet
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingrediant_search);
-        rvIngrediant=findViewById(R.id.rv_ingrediant);
+        rvIngrediant=findViewById(R.id.rv_country);
          ingrediantAdapter = new IngrediantAdapter();
         presenter= new IngrediantPresenter(this);
         presenter.setIngrediant();
