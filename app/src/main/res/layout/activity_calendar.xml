@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#212121"
+    android:visibility="visible"
     tools:context=".FavouriteMeals.View.FavouriteMealActivity">
 
     <androidx.core.widget.NestedScrollView
@@ -66,7 +67,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_sunday"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
                 tools:listitem="@layout/favorite_rv" />
 
             <androidx.cardview.widget.CardView
@@ -106,7 +108,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_monday"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 tools:listitem="@layout/favorite_rv" />
 
             <androidx.cardview.widget.CardView
@@ -146,7 +148,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_tuesday"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 tools:listitem="@layout/favorite_rv" />
 
             <androidx.cardview.widget.CardView
@@ -186,7 +188,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_tharsday"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 tools:listitem="@layout/favorite_rv" />
 
             <androidx.cardview.widget.CardView
@@ -227,7 +229,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_wednesday"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 tools:listitem="@layout/favorite_rv" />
 
             <androidx.cardview.widget.CardView
@@ -267,7 +269,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_friday"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 tools:listitem="@layout/favorite_rv" />
 
             <androidx.cardview.widget.CardView
@@ -307,7 +309,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_satarday"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 tools:listitem="@layout/favorite_rv">
 
             </androidx.recyclerview.widget.RecyclerView>

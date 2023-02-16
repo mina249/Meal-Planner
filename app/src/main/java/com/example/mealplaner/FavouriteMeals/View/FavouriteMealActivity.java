@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+
 import com.example.mealplaner.Calendar.CalendarActivity;
 import com.example.mealplaner.DataBase.ConcreteLocalSource;
 import com.example.mealplaner.FavouriteMeals.Presenter.FavouriteMealPresenter;
@@ -78,7 +79,6 @@ public class FavouriteMealActivity extends AppCompatActivity implements Favourit
                             startActivity(new Intent(getApplicationContext(), CalendarActivity.class));
                             overridePendingTransition(0,0);
                             return true;
-
                     }
                     return false;
                 }
