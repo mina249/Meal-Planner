@@ -61,7 +61,7 @@ public class OnBoardingAdapter extends RecyclerView.Adapter<OnBoardingAdapter.Vi
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        TextView  tvDescript;
+        TextView tvDescript;
         Button btnNext;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

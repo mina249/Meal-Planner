@@ -2,6 +2,7 @@ package com.example.mealplaner.Calendar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,12 +30,21 @@ public class CalendarActivity extends AppCompatActivity implements CalendarViewI
     RecyclerView rvSunday,rvMonday,rvTuesday,rvThurasday,rvWednesday,rvFriday,rvSatrday;
     ClenderAdapter sundayAdapter,mondayAdapter,tuesdayAdapter,thurasdayAdapter,
             wednesdayAdapter,fridayAdapter,satrdayAdapter;
+    CardView  cvSunday,cvMonday,cvTuesday,cvThurasday,cvWednesday,cvFriday,cvSatrday;
 
     CalendarPresenterInterface calendarPresenterInterface;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
+
+        cvSatrday=findViewById(R.id.cv_saterday);
+        cvFriday=findViewById(R.id.cv_friday);
+        cvMonday=findViewById(R.id.cv_monday);
+        cvSunday=findViewById(R.id.cv_sunday);
+        cvTuesday=findViewById(R.id.cv_tuesday);
+        cvThurasday=findViewById(R.id.cv_thursday);
+        cvWednesday=findViewById(R.id.cv_wednesday);
 
 
         rvSunday=findViewById(R.id.rv_sunday);
@@ -45,13 +55,13 @@ public class CalendarActivity extends AppCompatActivity implements CalendarViewI
         rvFriday=findViewById(R.id.rv_friday);
         rvSatrday=findViewById(R.id.rv_satarday);
 
-        sundayAdapter=new ClenderAdapter(this);
-        mondayAdapter=new ClenderAdapter(this);
-        tuesdayAdapter=new ClenderAdapter(this);
-        thurasdayAdapter=new ClenderAdapter(this);
-        wednesdayAdapter=new ClenderAdapter(this);
-        fridayAdapter=new ClenderAdapter(this);
-        satrdayAdapter=new ClenderAdapter(this);
+        sundayAdapter=new ClenderAdapter(this,cvSunday);
+        mondayAdapter=new ClenderAdapter(this,cvMonday);
+        tuesdayAdapter=new ClenderAdapter(this,cvTuesday);
+        thurasdayAdapter=new ClenderAdapter(this,cvThurasday);
+        wednesdayAdapter=new ClenderAdapter(this,cvWednesday);
+        fridayAdapter=new ClenderAdapter(this,cvFriday);
+        satrdayAdapter=new ClenderAdapter(this,cvSatrday);
 
         rvSunday.setLayoutManager(new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false));
         rvSunday.setAdapter(sundayAdapter);

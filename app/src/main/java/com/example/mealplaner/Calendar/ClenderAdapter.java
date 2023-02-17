@@ -1,5 +1,7 @@
 package com.example.mealplaner.Calendar;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,10 +9,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickListener;
+import com.example.mealplaner.Meal.View.MealData;
 import com.example.mealplaner.Models.Meal;
 import com.example.mealplaner.R;
 
@@ -22,13 +27,17 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ClenderAdapter extends RecyclerView.Adapter<ClenderAdapter.ViewHolder> {
     OnDeleteFromFavClickListener delete;
     ArrayList<Meal> mealList;
+    CardView dayCV;
 
-    public ClenderAdapter(OnDeleteFromFavClickListener delete) {
+    public ClenderAdapter(OnDeleteFromFavClickListener delete, CardView dayCV) {
         this.mealList = new ArrayList<>();
         this.delete=delete;
+        this.dayCV=dayCV;
     }
     public void setMealList(ArrayList<Meal> meals){
         mealList=meals;
+        if(mealList.size()>0)
+            dayCV.setVisibility(View.VISIBLE);
         notifyDataSetChanged();
     }
 
@@ -44,9 +53,19 @@ public class ClenderAdapter extends RecyclerView.Adapter<ClenderAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.setDaylyMeal(mealList.get(position));
         holder.btnDelete.setOnClickListener(view->{
+            if(mealList.size()-1==0){
+                dayCV.setVisibility(View.GONE);
+            }
             delete.onDeleteClick(mealList.get(position));
             mealList.remove(position);
             notifyDataSetChanged();
+        });
+        holder.cvMealPlanIteam.setOnClickListener(view->{
+            Bundle bundle = new Bundle();
+            bundle.putString("id",mealList.get(position).getIdMeal());
+            Intent intent = new Intent(holder.btnDelete.getContext(), MealData.class);
+            intent.putExtra("id",bundle);
+            holder.btnDelete.getContext().startActivity(intent);
         });
     }
 
@@ -59,12 +78,17 @@ public class ClenderAdapter extends RecyclerView.Adapter<ClenderAdapter.ViewHold
         CircleImageView mealphoto;
         Button btnDelete;
         TextView tvMealName;
+        AppCompatAutoCompleteTextView droplistPlan;
+        CardView cvMealPlanIteam;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mealphoto=itemView.findViewById(R.id.meal_img_fav);
             btnDelete=itemView.findViewById(R.id.delete_btn_fav);
             tvMealName=itemView.findViewById(R.id.tv_fav_meal_name);
+            droplistPlan=itemView.findViewById(R.id.dp_fav);
+            droplistPlan.setVisibility(View.GONE);
+            cvMealPlanIteam=itemView.findViewById(R.id.cv_meal_plan_iteam);
         }
         void setDaylyMeal(Meal meal){
             tvMealName.setText(meal.getStrMeal());

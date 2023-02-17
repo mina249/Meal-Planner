@@ -1,6 +1,8 @@
 package com.example.mealplaner.FavouriteMeals.View;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +15,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.mealplaner.HomePage.Interfaces.OnAddToFavouriteClickListener;
-import com.example.mealplaner.Models.Meal;
 import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickListener;
+import com.example.mealplaner.HomePage.Interfaces.OnAddToFavouriteClickListener;
+import com.example.mealplaner.Meal.View.MealData;
+import com.example.mealplaner.Models.Meal;
 import com.example.mealplaner.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,7 +40,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
     FirebaseUser user;
 
 
-    public FavoriteAdapter(Context context, List<Meal> Meals, OnDeleteFromFavClickListener listener,OnAddToFavouriteClickListener favouriteClickListener) {
+    public FavoriteAdapter(Context context, List<Meal> Meals, OnDeleteFromFavClickListener listener, OnAddToFavouriteClickListener favouriteClickListener) {
         this.context = context;
         this.Meals = Meals;
         this.listener = listener;
@@ -63,16 +67,16 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
                 listener.onDeleteClick(meal);
             }
         });
-        String [] days ={"Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday"};
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1,days);
+        String[] days = {"Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, days);
         holder.autoCompleteTextView.setAdapter(adapter);
         holder.autoCompleteTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(user != null) {
+                if (user != null) {
                     holder.autoCompleteTextView.showDropDown();
-                }else{
+                } else {
                     Toast.makeText(context, "You Should Login first", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -85,55 +89,59 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
                 switch (day) {
                     case "Saturday":
                         meal.setStatus("saturday");
-                       favouriteClickListener.onClick(meal);
-                        Toast.makeText(context, "Meal added to "+meal.getStatus(), Toast.LENGTH_SHORT).show();
+                        favouriteClickListener.onClick(meal);
+                        Toast.makeText(context, "Meal added to " + meal.getStatus(), Toast.LENGTH_SHORT).show();
 
                         break;
                     case "Sunday":
                         meal.setStatus("sunday");
                         favouriteClickListener.onClick(meal);
-                        Toast.makeText(context, "Meal added to "+meal.getStatus(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Meal added to " + meal.getStatus(), Toast.LENGTH_SHORT).show();
                         break;
                     case "Monday":
                         meal.setStatus("monday");
                         favouriteClickListener.onClick(meal);
-                        Toast.makeText(context, "Meal added to "+meal.getStatus(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Meal added to " + meal.getStatus(), Toast.LENGTH_SHORT).show();
                         break;
                     case "Tuesday":
                         meal.setStatus("tuesday");
                         favouriteClickListener.onClick(meal);
-                        Toast.makeText(context, "Meal added to "+meal.getStatus(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Meal added to " + meal.getStatus(), Toast.LENGTH_SHORT).show();
                         break;
 
                     case "Wednesday":
                         meal.setStatus("wednesday");
                         favouriteClickListener.onClick(meal);
-                        Toast.makeText(context, "Meal added to "+meal.getStatus(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Meal added to " + meal.getStatus(), Toast.LENGTH_SHORT).show();
                         break;
 
                     case "Thursday":
                         meal.setStatus("thursday");
                         favouriteClickListener.onClick(meal);
-                        Toast.makeText(context, "Meal added to "+meal.getStatus(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Meal added to " + meal.getStatus(), Toast.LENGTH_SHORT).show();
                         break;
                     case "Friday":
                         meal.setStatus("friday");
                         favouriteClickListener.onClick(meal);
-                        Toast.makeText(context, "Meal added to "+meal.getStatus(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Meal added to " + meal.getStatus(), Toast.LENGTH_SHORT).show();
                         break;
 
 
                 }
             }
         });
-
-
-
+        holder.cvMealPlanIteam.setOnClickListener(view -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("id", Meals.get(position).getIdMeal());
+            Intent intent = new Intent(holder.delete.getContext(), MealData.class);
+            intent.putExtra("id", bundle);
+            holder.delete.getContext().startActivity(intent);
+        });
 
 
     }
 
-    public void setList(List<Meal> Meals){
+    public void setList(List<Meal> Meals) {
         this.Meals = Meals;
         notifyDataSetChanged();
     }
@@ -143,18 +151,21 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
         return Meals.size();
     }
 
-    class FavoriteViewHolder extends RecyclerView.ViewHolder{
+    class FavoriteViewHolder extends RecyclerView.ViewHolder {
         TextView mealName;
         ImageView mealImg;
         Button delete;
         AutoCompleteTextView autoCompleteTextView;
+        CardView cvMealPlanIteam;
 
         public FavoriteViewHolder(@NonNull View itemView) {
             super(itemView);
             mealImg = itemView.findViewById(R.id.meal_img_fav);
             mealName = itemView.findViewById(R.id.tv_fav_meal_name);
-            delete= itemView.findViewById(R.id.delete_btn_fav);
+            delete = itemView.findViewById(R.id.delete_btn_fav);
             autoCompleteTextView = itemView.findViewById(R.id.dp_fav);
+            cvMealPlanIteam = itemView.findViewById(R.id.cv_meal_plan_iteam);
+
         }
     }
 }
