@@ -25,6 +25,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import com.example.mealplaner.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -148,6 +152,18 @@ public class SignupFragment extends Fragment {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
+
+                            String email = user.getEmail();
+                            String uId = user.getUid();
+
+                            HashMap<Object,String> userData = new HashMap<>();
+                            userData.put("email",email);
+                            userData.put("uid",uId);
+                            userData.put("name",userName);
+                            userData.put("image","");
+                            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                            DatabaseReference reference = firebaseDatabase.getReference("Users");
+                            reference.child(uId).setValue(userData);
                             Toast.makeText(getActivity(), "Registered", Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(getActivity(), MainActivity.class);
                             startActivity(i);

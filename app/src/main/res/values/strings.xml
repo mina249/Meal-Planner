@@ -43,5 +43,6 @@
     <string name="tharsday">tharsday</string>
     <string name="friday">friday</string>
     <string name="satarday">satarday</string>
+    <string name="drop_hint">Add to plan</string>
 
 </resources>

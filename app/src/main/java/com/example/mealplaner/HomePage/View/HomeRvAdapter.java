@@ -6,9 +6,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -52,6 +56,7 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
 
     @Override
     public void onBindViewHolder(@NonNull HomeRvHolder holder, int position) {
+
         Meal meals = meal.get(position);
         holder.txt.setText(meals.getStrMeal());
         Glide.with(context).load(meals.getStrMealThumb()).into(holder.imageView);
@@ -62,10 +67,64 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
             intent.putExtra("id",bundle);
             context.startActivity(intent);
         });
+        String [] days ={"Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday"};
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1,days);
+        holder.autoCompleteTextView.setAdapter(adapter);
+        holder.autoCompleteTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    holder.autoCompleteTextView.showDropDown();
+            }
+        });
+
+        holder.autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String day = parent.getItemAtPosition(position).toString();
+                switch (day) {
+                    case "Saturday":
+                        meals.setStatus("saturday");
+                        listener.onClick(meals);
+                        Toast.makeText(context, "Meal added to "+meals.getStatus(), Toast.LENGTH_SHORT).show();
+
+                        break;
+                    case "Sunday":
+                        meals.setStatus("sunday");
+                        listener.onClick(meals);
+                        Toast.makeText(context, "Meal added to "+meals.getStatus(), Toast.LENGTH_SHORT).show();
+                        break;
+                    case "Monday":
+                        meals.setStatus("monday");
+                        listener.onClick(meals);
+                        Toast.makeText(context, "Meal added to "+meals.getStatus(), Toast.LENGTH_SHORT).show();
+                        break;
+                    case "Tuesday":
+                        meals.setStatus("tuesday");
+                        listener.onClick(meals);
+                        Toast.makeText(context, "Meal added to "+meals.getStatus(), Toast.LENGTH_SHORT).show();
+                        break;
+
+                    case "Wednesday":
+                        meals.setStatus("wednesday");
+                        listener.onClick(meals);
+                        Toast.makeText(context, "Meal added to "+meals.getStatus(), Toast.LENGTH_SHORT).show();
+                        break;
+
+                    case "Thursday":
+                        meals.setStatus("thursday");
+                        listener.onClick(meals);
+                        Toast.makeText(context, "Meal added to "+meals.getStatus(), Toast.LENGTH_SHORT).show();
+                        break;
+                    case "Friday":
+                        meals.setStatus("friday");
+                        listener.onClick(meals);
+                        Toast.makeText(context, "Meal added to "+meals.getStatus(), Toast.LENGTH_SHORT).show();
+                        break;
 
 
-
-
+                }
+            }
+        });
         holder.fav.setOnClickListener(new View.OnClickListener() {
             boolean isFavorite = false;
 
@@ -90,7 +149,7 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
 
     @Override
     public int getItemCount() {
-        return 10;
+        return 7;
     }
 
     public void setMealList(ArrayList<Meal>meal) {
@@ -104,6 +163,8 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
         Button fav;
         CardView imageCard,itemCard;
         ImageView imgMeal;
+        AutoCompleteTextView autoCompleteTextView;
+
 
 
         public HomeRvHolder(@NonNull View itemView) {
@@ -114,6 +175,7 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
             imageCard = itemView.findViewById(R.id.image_card);
             imgMeal = itemView.findViewById(R.id.img_meal);
             itemCard=itemView.findViewById(R.id.cv_home_meal);
+            autoCompleteTextView =itemView.findViewById(R.id.dp_fav);
 
         }
     }

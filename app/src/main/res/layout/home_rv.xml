@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    android:backgroundTint="#272727">
+    >
 
     <androidx.cardview.widget.CardView
 
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:text="TextView"
-                android:textColor="#fe7e34"
+                android:textColor="#F99417"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -42,13 +42,36 @@
 
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="80dp"
+                android:layout_marginStart="120dp"
                 android:background="@drawable/fav"
                 android:elevation="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/meal_name" />
+
+            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                android:id="@+id/dp_fav"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:background="#F99417"
+                android:completionHint="select a day"
+                android:completionThreshold="0"
+                android:defaultFocusHighlightEnabled="true"
+                android:editable="false"
+                android:hint="@string/drop_hint"
+                android:paddingStart="12dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:textAlignment="center"
+                android:textColorHint="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/fav_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/meal_name"
+                tools:ignore="Deprecated" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

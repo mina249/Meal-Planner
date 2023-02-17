@@ -27,7 +27,7 @@ public class MealService implements RemoteSource {
     private static MealService mealService = null;
 
     public  static MutableLiveData<ArrayList<Meal>>  liveMeals = new MutableLiveData<ArrayList<Meal>>();
-    int number = 10;
+    int number = 7;
     ArrayList<Meal> meals = new ArrayList<>();
     private MealService(){
 
