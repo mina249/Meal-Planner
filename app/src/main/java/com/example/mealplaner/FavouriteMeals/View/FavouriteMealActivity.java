@@ -124,6 +124,11 @@ public class FavouriteMealActivity extends AppCompatActivity implements Favourit
     }
 
     @Override
+    public void showRecommendedMeals(ArrayList<Meal> recommendedMeals) {
+
+    }
+
+    @Override
     public void onClick(Meal meal) {
             addToFav(meal);
     }

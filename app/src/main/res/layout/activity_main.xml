@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="150dp"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="210dp"
         android:paddingStart="80dp"
         android:paddingEnd="80dp"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
@@ -148,7 +148,7 @@
         android:backgroundTint="#fe7e34"
         android:text="@string/rety"
         android:textColor="@color/white"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/viewpager_home"
         app:layout_constraintEnd_toEndOf="@+id/viewpager_home"
         app:layout_constraintStart_toStartOf="parent"
@@ -178,6 +178,35 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.228"
         app:srcCompat="@drawable/ic_profile_img" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="250dp"
+        android:text="@string/recommended"
+        android:textColor="#fe7e34"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewpager_home" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewpager_recommended"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="37dp"
+        android:paddingStart="80dp"
+        android:paddingEnd="80dp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewpager_home">
+
+    </androidx.viewpager2.widget.ViewPager2>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

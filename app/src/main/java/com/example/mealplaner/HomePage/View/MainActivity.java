@@ -83,16 +83,21 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
         favouriteMealPresenterInterface = new FavouriteMealPresenter(this, ConcreteLocalSource.getInstance(this));
         firebaseAuth = FirebaseAuth.getInstance();
         setHomeViewPager();
-       profImg.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               startActivity(new Intent(MainActivity.this, ProfileActivity.class));
-           }
-       });
+
         userType = getIntent().getStringExtra("checkUserType");
         if (userType == null) {
             userType = "loggedUser";
         }
+        profImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(userType.equals("loggedUser")) {
+                    startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                }else{
+                    Toast.makeText(MainActivity.this, "You should login first", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void navigationBar() {
@@ -147,6 +152,11 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
     @Override
     public void addToFav(Meal meal) {
         mealPresenterInterface.addToFav(meal);
+    }
+
+    @Override
+    public void showRecommendedMeals(ArrayList<Meal> recommendedMeals) {
+
     }
 
     private void checkUserStatus() {

@@ -39,6 +39,8 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.firebase:firebase-database:20.1.0'
     implementation 'com.google.firebase:firebase-storage:20.1.0'
+    //implementation 'com.google.android.gms:play-services-cast-framework:21.2.0'
+    //implementation 'com.github.Drjacky:ImagePicker:v2.3.22'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
@@ -79,8 +81,8 @@ dependencies {
     implementation 'androidx.room:room-runtime:2.5.0'
     annotationProcessor 'androidx.room:room-compiler:2.5.0'
     implementation 'androidx.room:room-rxjava2:2.5.0'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.12'
+    //implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    //implementation 'io.reactivex.rxjava2:rxjava:2.2.12'
    // implementation 'com.squareup.retrofit2:adapter-rxjava2:2.7.1'
    // implementation 'com.squareup.retrofit2:adapter-rxjava2:2.7.1'
 
