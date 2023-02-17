@@ -9,17 +9,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.mealplaner.Calendar.CalendarPresenter;
-import com.example.mealplaner.Calendar.CalendarPresenterInterface;
-import com.example.mealplaner.Calendar.CalendarViewInterface;
-import com.example.mealplaner.Calendar.ClenderAdapter;
 import com.example.mealplaner.DataBase.ConcreteLocalSource;
 import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickListener;
 import com.example.mealplaner.FavouriteMeals.View.FavouriteMealActivity;
 import com.example.mealplaner.HomePage.View.MainActivity;
 import com.example.mealplaner.Models.Meal;
 import com.example.mealplaner.R;
-import com.example.mealplaner.Search.Category.View.CategorySearch;
+import com.example.mealplaner.Search.HomeSearchPage.SearchActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -117,7 +113,7 @@ public class CalendarActivity extends AppCompatActivity implements CalendarViewI
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.search:
-                        startActivity(new Intent(getApplicationContext(), CategorySearch.class));
+                        startActivity(new Intent(getApplicationContext(), SearchActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                 }

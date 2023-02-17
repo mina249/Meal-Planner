@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
+        android:verticalScrollbarPosition="defaultPosition"
         app:backgroundTint="@color/theme"
         app:itemBackground="@color/theme"
         app:itemIconTint="@drawable/selector"
@@ -28,6 +29,7 @@
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:fillViewport="true"
+        android:paddingBottom="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -37,87 +39,47 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_marginTop="16dp"
-                app:cardCornerRadius="20dp">
-
-                <SearchView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:circularflow_radiusInDP="20dp">
-
-                </SearchView>
-
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:id="@+id/textView6"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/search_by"
-                android:textColor="#F99417"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="10dp">
+                android:layout_height="wrap_content">
 
                 <Button
-                    android:id="@+id/btn_category"
+                    android:id="@+id/btn_back"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/back_btn"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/cardView4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.044"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/cardView4"
+                    app:layout_constraintVertical_bias="0.842" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView4"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/login_signup_button"
-                    android:text="@string/Category" />
+                    android:layout_height="49dp"
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.956"
+                    app:layout_constraintStart_toEndOf="@+id/btn_back"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.65">
 
-                <Button
-                    android:id="@+id/btn_ingrediant"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/login_signup_button"
-                    android:onClick="btnIngrediant"
-                    android:text="@string/Ingrediant" />
+                    <SearchView
+                        android:id="@+id/country_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:maxWidth="0dp"
+                        app:circularflow_radiusInDP="20dp">
 
-            </LinearLayout>
+                    </SearchView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="10dp">
-
-                <Button
-                    android:id="@+id/btn_country"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/login_signup_button"
-                    android:onClick="btnCountry"
-                    android:padding="10dp"
-                    android:text="@string/country" />
-
-                <Button
-                    android:id="@+id/btn_meal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/login_signup_button"
-                    android:onClick="btnMeals"
-                    android:text="@string/meal" />
-
-            </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/textView2"
@@ -130,7 +92,7 @@
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_country"
+                android:id="@+id/rv_search_meal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"

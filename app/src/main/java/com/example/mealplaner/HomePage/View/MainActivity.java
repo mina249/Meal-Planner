@@ -30,7 +30,7 @@ import com.example.mealplaner.Network.MealService;
 import com.example.mealplaner.Models.Meal;
 import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickListener;
 import com.example.mealplaner.R;
-import com.example.mealplaner.Search.Category.View.CategorySearch;
+import com.example.mealplaner.Search.HomeSearchPage.SearchActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.search:
-                        Intent intent = new Intent(MainActivity.this, CategorySearch.class);
+                        Intent intent = new Intent(MainActivity.this, SearchActivity.class);
                         intent.putExtra("checkUserType", userType);
                         startActivity(intent);
                         overridePendingTransition(0, 0);

@@ -15,10 +15,16 @@
         android:theme="@style/Theme.MealPlaner"
         tools:targetApi="31">
         <activity
-            android:name=".Search.FlagSearch.FlagActivity"
+            android:name=".Search.MealSearch.MealSearchActivity"
             android:exported="false" />
         <activity
-            android:name=".Search.SearchActivity"
+            android:name=".Search.FlagSearch.View.CountryData"
+            android:exported="false" />
+        <activity
+            android:name=".Search.FlagSearch.View.FlagActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Search.HomeSearchPage.SearchActivity"
             android:exported="false" />
         <activity
             android:name=".IngridiantData.IngridiantActivity"
@@ -33,7 +39,7 @@
             android:name=".FavouriteMeals.View.FavouriteMealActivity"
             android:exported="false" />
         <activity
-            android:name=".Search.SearchmMethodsActivity"
+            android:name=".Search.HomeSearchPage.SearchmMethodsActivity"
             android:exported="false" />
         <activity
             android:name=".Meal.View.MealData"

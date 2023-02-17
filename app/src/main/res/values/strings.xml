@@ -33,8 +33,8 @@
     <string name="oops">OOPS!</string>
     <string name="no_internet">No internet Connection</string>
     <string name="rety">Retry</string>
-    <string name="country">country</string>
-    <string name="meal">meal</string>
+    <string name="country">Countries</string>
+    <string name="meal">Meals</string>
     <string name="search_by">Search With :</string>
     <string name="daily_meals">week plan</string>
     <string name="monday">monday</string>
@@ -43,5 +43,9 @@
     <string name="tharsday">tharsday</string>
     <string name="friday">friday</string>
     <string name="satarday">satarday</string>
+    <string name="search_methoda">Search Methods</string>
+    <string name="countries">Countries</string>
+    <string name="meals">Meals</string>
+    <string name="back">Back</string>
 
 </resources>

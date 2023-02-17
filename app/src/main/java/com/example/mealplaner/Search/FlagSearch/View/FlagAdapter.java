@@ -1,8 +1,8 @@
-package com.example.mealplaner.Search.FlagSearch;
+package com.example.mealplaner.Search.FlagSearch.View;
 
+import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mealplaner.Models.Meal;
 import com.example.mealplaner.R;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class FlagAdapter extends RecyclerView.Adapter<FlagAdapter.ViewHolder> {
@@ -37,6 +37,13 @@ public class FlagAdapter extends RecyclerView.Adapter<FlagAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull FlagAdapter.ViewHolder holder, int position) {
         if(!meals.get(position).getStrArea().equals("Unknown"))
             holder.setCountry(meals.get(position));
+        holder.cvCountry.setOnClickListener(view -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("country",meals.get(position).getStrArea());
+            Intent intent = new Intent(holder.iv.getContext(), CountryData.class);
+            intent.putExtra("country",bundle);
+            holder.cvCountry.getContext().startActivity(intent);
+        });
     }
 
     @Override
@@ -52,6 +59,7 @@ public class FlagAdapter extends RecyclerView.Adapter<FlagAdapter.ViewHolder> {
         TextView tvCountryName;
         ImageView iv ;
         Resources res;
+        CardView cvCountry;
 
 
 
@@ -60,6 +68,7 @@ public class FlagAdapter extends RecyclerView.Adapter<FlagAdapter.ViewHolder> {
             tvCountryName=itemView.findViewById(R.id.tv_country_name);
             iv=itemView.findViewById(R.id.iv_flag);
             res=itemView.getResources();
+            cvCountry=itemView.findViewById(R.id.cv_country_iteam);
         }
         void setCountry(Meal country){
 
