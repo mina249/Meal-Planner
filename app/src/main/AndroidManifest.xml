@@ -15,6 +15,9 @@
         android:theme="@style/Theme.MealPlaner"
         tools:targetApi="31">
         <activity
+            android:name=".Profile.ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".Search.MealSearch.MealSearchActivity"
             android:exported="false" />
         <activity

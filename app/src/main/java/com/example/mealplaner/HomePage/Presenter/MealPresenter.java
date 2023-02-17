@@ -40,12 +40,24 @@ public class MealPresenter implements MealPresenterInterface, NetworkDelegate {
         localSource.insert(meal);
     }
 
+    @Override
+    public void getRecommendedMeal() {
+        remoteSource.enqueueRecommended(this);
+    }
+
 
     @Override
     public void onSuccess(ArrayList<Meal>meals) {
             mealViewInterface.showData(meals);
             MealService.liveMeals.observe((LifecycleOwner) context,mealViewInterface::showData);
 
+
+
+    }
+
+    @Override
+    public void onRecommendedSuccess(ArrayList<Meal> meals) {
+        mealViewInterface.showRecommendedMeals(meals);
     }
 
     @Override

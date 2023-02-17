@@ -13,10 +13,14 @@ import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
@@ -27,7 +31,7 @@ public class MealService implements RemoteSource {
     private static MealService mealService = null;
 
     public  static MutableLiveData<ArrayList<Meal>>  liveMeals = new MutableLiveData<ArrayList<Meal>>();
-    int number = 10;
+    int number = 7;
     ArrayList<Meal> meals = new ArrayList<>();
     private MealService(){
 
@@ -75,4 +79,21 @@ public class MealService implements RemoteSource {
         Call<Meals> call = api.getRandomMeal();
         callRandomMeal(call,networkDelegate);
     }
+
+    @Override
+    public void enqueueRecommended(NetworkDelegate networkDelegate) {
+        Gson gson = new GsonBuilder().setLenient().create();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+        APIs apIs = retrofit.create(APIs.class);
+        Observable<Meals> observable = apIs.getRecommendedMeals()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+
+        observable.subscribe(o -> networkDelegate.onRecommendedSuccess(o.getMeals()));
+    }
+
+
+
 }

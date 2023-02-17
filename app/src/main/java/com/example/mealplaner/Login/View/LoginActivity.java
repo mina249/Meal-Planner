@@ -26,6 +26,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
     TabLayout loginTabLayout;
@@ -40,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 100;
     GoogleSignInClient googleSignInClient;
+   // FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,84 +70,97 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = mAuth.getCurrentUser();
-        if (firebaseUser != null) {
+
+        /*if (user != null) {
             // When user already sign in redirect to profile activity
             startActivity(new Intent(this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 
-        }
+        }*/
     }
 
-        public void animateUi () {
-            fb.setTranslationY(300);
-            google.setTranslationY(300);
-            twitter.setTranslationY(300);
-            loginTabLayout.setTranslationY(300);
-            fb.setAlpha(alpha);
-            google.setAlpha(alpha);
-            twitter.setAlpha(alpha);
-            loginTabLayout.setAlpha(alpha);
-            fb.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(400).start();
-            google.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(600).start();
-            twitter.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(800).start();
-            loginTabLayout.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(100).start();
-        }
+    public void animateUi() {
+        fb.setTranslationY(300);
+        google.setTranslationY(300);
+        twitter.setTranslationY(300);
+        loginTabLayout.setTranslationY(300);
+        fb.setAlpha(alpha);
+        google.setAlpha(alpha);
+        twitter.setAlpha(alpha);
+        loginTabLayout.setAlpha(alpha);
+        fb.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(400).start();
+        google.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(600).start();
+        twitter.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(800).start();
+        loginTabLayout.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(100).start();
+    }
 
-        public void inflateUi () {
-            loginTabLayout = findViewById(R.id.tab_layout);
-            loginViewPager = findViewById(R.id.view_pager);
-            fb = findViewById(R.id.fab_fb);
-            google = findViewById(R.id.fab_google);
-            twitter = findViewById(R.id.fab_twitter);
+    public void inflateUi() {
+        loginTabLayout = findViewById(R.id.tab_layout);
+        loginViewPager = findViewById(R.id.view_pager);
+        fb = findViewById(R.id.fab_fb);
+        google = findViewById(R.id.fab_google);
+        twitter = findViewById(R.id.fab_twitter);
 
-        }
+    }
 
-        public void settingTableLayout () {
+    public void settingTableLayout() {
 
-            loginTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-            loginAdapter = new LoginFragmentAdapter(getSupportFragmentManager(), this);
-            loginAdapter.setData(new LoginFragment(), "Login");
-            loginAdapter.setData(new SignupFragment(), "Signup");
-            loginTabLayout.setupWithViewPager(loginViewPager);
+        loginTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        loginAdapter = new LoginFragmentAdapter(getSupportFragmentManager(), this);
+        loginAdapter.setData(new LoginFragment(), "Login");
+        loginAdapter.setData(new SignupFragment(), "Signup");
+        loginTabLayout.setupWithViewPager(loginViewPager);
 
-            loginViewPager.setAdapter(loginAdapter);
+        loginViewPager.setAdapter(loginAdapter);
 
-        }
+    }
 
-        @Override
-        protected void onActivityResult ( int requestCode, int resultCode, @Nullable Intent data){
-            super.onActivityResult(requestCode, resultCode, data);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-            if (requestCode == RC_SIGN_IN) {
-                Task<GoogleSignInAccount> signInAccountTask = GoogleSignIn.getSignedInAccountFromIntent(data);
-                // check condition
-                if (signInAccountTask.isSuccessful()) {
-                    try {
-                        GoogleSignInAccount googleSignInAccount = signInAccountTask.getResult(ApiException.class);
-                        if (googleSignInAccount != null) {
-                            AuthCredential authCredential = GoogleAuthProvider.getCredential(googleSignInAccount.getIdToken(), null);
-                            // Check credential
-                           mAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    // Check condition
-                                    if (task.isSuccessful()) {
-                                        // When task is successful redirect to profile activity display Toast
-                                        startActivity(new Intent(LoginActivity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> signInAccountTask = GoogleSignIn.getSignedInAccountFromIntent(data);
 
-                                    } else {
-                                        // When task is unsuccessful display Toast
+            if (signInAccountTask.isSuccessful()) {
+                try {
+                    GoogleSignInAccount googleSignInAccount = signInAccountTask.getResult(ApiException.class);
+                    if (googleSignInAccount != null) {
+                        AuthCredential authCredential = GoogleAuthProvider.getCredential(googleSignInAccount.getIdToken(), null);
 
+                        mAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                // Check condition
+                                if (task.isSuccessful()) {
+                                   FirebaseUser user = mAuth.getCurrentUser();
+
+                                    if (task.getResult().getAdditionalUserInfo().isNewUser()) {
+                                        String email = user.getEmail();
+                                        String uId = user.getUid();
+                                        HashMap<Object, String> userData = new HashMap<>();
+                                        userData.put("email", email);
+                                        userData.put("uid", uId);
+                                        userData.put("name", "");
+                                        userData.put("image", "");
+                                        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                                        DatabaseReference reference = firebaseDatabase.getReference("Users");
+                                        reference.child(uId).setValue(userData);
                                     }
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+
+                                } else {
+
+
                                 }
-                            });
-                        }
-                    } catch (ApiException e) {
-                       e.printStackTrace();
+                            }
+                        });
                     }
+                } catch (ApiException e) {
+                    e.printStackTrace();
                 }
             }
         }
+    }
 
        /* private void firebaseAuthWithGoogleAccount (GoogleSignInAccount account){
             AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
@@ -167,4 +185,4 @@ public class LoginActivity extends AppCompatActivity {
         }*/
 
 
-    }
+}
