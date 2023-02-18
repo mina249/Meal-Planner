@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.mealplaner.IngridiantData.IngridiantActivity;
+import com.example.mealplaner.Models.AllIngrediantModel;
 import com.example.mealplaner.Models.IngrediantModel;
 import com.example.mealplaner.R;
 

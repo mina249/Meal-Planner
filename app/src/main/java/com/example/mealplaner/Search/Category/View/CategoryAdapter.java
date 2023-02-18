@@ -18,6 +18,7 @@ import com.example.mealplaner.Category.View.CategoryData;
 import com.example.mealplaner.Models.Category;
 import com.example.mealplaner.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
@@ -27,6 +28,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public CategoryAdapter(List<Category> categoryList) {
         this.categoryList = categoryList;
     }
+
 
     @NonNull
     @Override

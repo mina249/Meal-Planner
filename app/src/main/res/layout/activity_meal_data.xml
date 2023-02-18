@@ -84,7 +84,8 @@
                 android:gravity="center"
                 android:text=""
                 android:textColor="#A4FFFFFF"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -119,7 +120,8 @@
                 android:gravity="center"
                 android:text=""
                 android:textColor="#A4FFFFFF"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_Ingridiant_str"

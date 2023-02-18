@@ -28,6 +28,10 @@ public class CategoryMealAdapter extends RecyclerView.Adapter<CategoryMealAdapte
     public CategoryMealAdapter(ArrayList<Meal> meals) {
         this.meals = meals;
     }
+    public void setMeals(ArrayList<Meal> meals){
+        this.meals = meals;
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override

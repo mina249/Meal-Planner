@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:paddingHorizontal="10dp">
+        android:paddingHorizontal="10dp"
+        android:paddingBottom="70dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,9 +32,11 @@
                 android:textStyle="bold|italic" />
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cv_sunday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
+                android:visibility="gone"
                 app:cardCornerRadius="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -72,9 +75,12 @@
                 tools:listitem="@layout/favorite_rv" />
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cv_monday"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
+                android:visibility="gone"
                 app:cardCornerRadius="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -112,9 +118,12 @@
                 tools:listitem="@layout/favorite_rv" />
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cv_tuesday"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
+                android:visibility="gone"
                 app:cardCornerRadius="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -152,11 +161,14 @@
                 tools:listitem="@layout/favorite_rv" />
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cv_thursday"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 app:cardCornerRadius="20dp"
                 app:layout_constraintStart_toStartOf="parent"
+                android:visibility="gone"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -164,7 +176,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/iv_add_Tharsday_meal"
+                        android:id="@+id/iv_add_Thursday_meal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -192,10 +204,13 @@
                 tools:listitem="@layout/favorite_rv" />
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cv_wednesday"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 app:cardCornerRadius="20dp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -233,9 +248,13 @@
                 tools:listitem="@layout/favorite_rv" />
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cv_friday"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
+                android:visibility="gone"
+
                 app:cardCornerRadius="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -273,10 +292,14 @@
                 tools:listitem="@layout/favorite_rv" />
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cv_saterday"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 app:cardCornerRadius="20dp"
+                android:visibility="gone"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 

@@ -22,5 +22,20 @@ public class RxRepositry {
                 RxConnection.getPostApi().getIngrediantMeals(ingridiant);
         return ingrediantModelObservable;
     }
+    public static  Observable getCountries(String country){
+        Observable<Meals> contryObservable=
+                RxConnection.getPostApi().getCountries(country);
+        return contryObservable;
+    }
+    public static  Observable getCountriesMeals(String country){
+        Observable<Meals> contryObservable=
+                RxConnection.getPostApi().getCountriesMeals(country);
+        return contryObservable;
+    }
+    public static  Observable getSearchMeals(String meal){
+        Observable<Meals> contryObservable=
+                RxConnection.getPostApi().getSearchMeals(meal);
+        return contryObservable;
+    }
 
 }

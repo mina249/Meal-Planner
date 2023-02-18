@@ -16,5 +16,11 @@ public interface RxAPI {
     Observable<AllIngrediantModel>getIngrediants(@Query("i") String name);
     @GET("/api/json/v1/1/filter.php?")
     Observable<Meals>getIngrediantMeals(@Query("i") String name);
+    @GET("/api/json/v1/1/list.php?")
+    Observable<Meals>getCountries(@Query("a") String country);
+    @GET("/api/json/v1/1/filter.php?")
+    Observable<Meals>getCountriesMeals(@Query("a") String country);
+    @GET("/api/json/v1/1/search.php?")
+    Observable<Meals>getSearchMeals(@Query("s") String meal);
 
 }

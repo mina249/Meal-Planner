@@ -1,4 +1,4 @@
-package com.example.mealplaner.Search;
+package com.example.mealplaner.Search.HomeSearchPage;
 
 import androidx.appcompat.app.AppCompatActivity;
 

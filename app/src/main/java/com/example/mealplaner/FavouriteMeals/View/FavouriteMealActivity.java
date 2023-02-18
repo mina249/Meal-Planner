@@ -25,7 +25,7 @@ import com.example.mealplaner.Models.Meal;
 import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickListener;
 import com.example.mealplaner.Network.MealService;
 import com.example.mealplaner.R;
-import com.example.mealplaner.Search.Category.View.CategorySearch;
+import com.example.mealplaner.Search.HomeSearchPage.SearchActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -73,7 +73,7 @@ public class FavouriteMealActivity extends AppCompatActivity implements Favourit
                     switch(item.getItemId())
                     {
                         case R.id.search:
-                            startActivity(new Intent(getApplicationContext(), CategorySearch.class));
+                            startActivity(new Intent(getApplicationContext(), SearchActivity.class));
                             overridePendingTransition(0,0);
                             return true;
                         case R.id.love:

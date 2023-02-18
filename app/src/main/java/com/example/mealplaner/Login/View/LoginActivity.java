@@ -52,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         loginFragment = new LoginFragment();
         signupFragment = new SignupFragment();
+
         inflateUi();
         settingTableLayout();
         animateUi();

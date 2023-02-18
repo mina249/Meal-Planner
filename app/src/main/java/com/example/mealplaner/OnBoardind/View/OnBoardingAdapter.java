@@ -50,18 +50,14 @@ public class OnBoardingAdapter extends RecyclerView.Adapter<OnBoardingAdapter.Vi
 
             });
         }
-
-
     }
-
-
     @Override
     public int getItemCount() {
         return onBoardinfIteams.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        TextView  tvDescript;
+        TextView tvDescript;
         Button btnNext;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
