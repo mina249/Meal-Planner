@@ -23,6 +23,7 @@ import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickLi
 import com.example.mealplaner.HomePage.Interfaces.OnAddToFavouriteClickListener;
 import com.example.mealplaner.Meal.View.MealData;
 import com.example.mealplaner.Models.Meal;
+import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickListener;
 import com.example.mealplaner.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -58,13 +59,13 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
 
     @Override
     public void onBindViewHolder(@NonNull FavoriteViewHolder holder, int position) {
-        Meal meal = Meals.get(position);
-        holder.mealName.setText(meal.getStrMeal());
-        Glide.with(context).load(meal.getStrMealThumb()).into(holder.mealImg);
+        Meal meals = Meals.get(position);
+        holder.mealName.setText(meals.getStrMeal());
+        Glide.with(context).load(meals.getStrMealThumb()).into(holder.mealImg);
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onDeleteClick(meal);
+                listener.onDeleteClick(meals);
             }
         });
         String[] days = {"Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
@@ -124,6 +125,9 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
                         meal.setStatus("friday");
                         favouriteClickListener.onClick(meal);
                         Toast.makeText(context, "Meal added to " + meal.getStatus(), Toast.LENGTH_SHORT).show();
+                        meals.setStatus("friday");
+                        favouriteClickListener.onClick(meals);
+                        Toast.makeText(context, "Meal added to Friday ", Toast.LENGTH_SHORT).show();
                         break;
 
 
