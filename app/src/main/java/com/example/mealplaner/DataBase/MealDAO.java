@@ -35,4 +35,8 @@ public interface MealDAO {
     Observable<List<Meal>> getThursdayMeals();
     @Query("SELECT * From Meals WHERE STATUS LIKE 'friday'")
     Observable<List<Meal>> getFridayMeals();
+
+    @Query("DELETE FROM Meals")
+    Completable deleteTableRecords();
+
 }

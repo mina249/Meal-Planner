@@ -13,7 +13,7 @@
         android:layout_width="250dp"
         android:layout_height="200dp"
         android:backgroundTint="#272727"
-        app:cardCornerRadius="90dp"
+        app:cardCornerRadius="50dp"
         app:cardElevation="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,9 +29,9 @@
                 android:id="@+id/meal_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="8dp"
                 android:text="TextView"
-                android:textColor="#F99417"
+                android:textColor="#A4FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -90,8 +90,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_meal"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:src="@drawable/pizza" />
 
     </androidx.cardview.widget.CardView>

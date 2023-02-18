@@ -53,6 +53,7 @@
             android:background="@drawable/delete"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.893"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_fav_meal_name"
             app:layout_constraintVertical_bias="0.78" />
@@ -86,9 +87,10 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.238"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_fav_meal_name"
-            app:layout_constraintVertical_bias="0.015"
+            app:layout_constraintVertical_bias="0.746"
             tools:ignore="Deprecated" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

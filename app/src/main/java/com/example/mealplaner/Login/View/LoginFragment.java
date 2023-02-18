@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mealplaner.Network.FireBaseData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -120,6 +121,7 @@ public class LoginFragment extends Fragment {
                         pass.setFocusable(true);
                 }else{
                     loginUser(userEmail,userPassword);
+
                 }
             }
         });
@@ -179,6 +181,14 @@ public class LoginFragment extends Fragment {
                             FirebaseUser user = mAuth.getCurrentUser();
                             Intent i = new Intent(getActivity(),MainActivity.class);
                             i.putExtra("checkUserType","loggedUser");
+                            FireBaseData.getPlanFromFireBase(getContext(),mAuth.getCurrentUser(),"saturday");
+                            FireBaseData.getPlanFromFireBase(getContext(),mAuth.getCurrentUser(),"sunday");
+                            FireBaseData.getPlanFromFireBase(getContext(),mAuth.getCurrentUser(),"monday");
+                            FireBaseData.getPlanFromFireBase(getContext(),mAuth.getCurrentUser(),"tuesday");
+                            FireBaseData.getPlanFromFireBase(getContext(),mAuth.getCurrentUser(),"wednesday");
+                            FireBaseData.getPlanFromFireBase(getContext(),mAuth.getCurrentUser(),"thursday");
+                            FireBaseData.getPlanFromFireBase(getContext(),mAuth.getCurrentUser(),"friday");
+                            FireBaseData.getFavouriteFromFirebase(getContext(),mAuth.getCurrentUser());
                             startActivity(i);
                             getActivity().finish();
                         } else {

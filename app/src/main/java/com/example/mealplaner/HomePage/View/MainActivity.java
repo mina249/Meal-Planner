@@ -33,6 +33,7 @@ import com.example.mealplaner.HomePage.Interfaces.MealPresenterInterface;
 import com.example.mealplaner.HomePage.Interfaces.MealViewInterface;
 import com.example.mealplaner.HomePage.Interfaces.OnAddToFavouriteClickListener;
 import com.example.mealplaner.Login.View.LoginActivity;
+import com.example.mealplaner.Network.FireBaseData;
 import com.example.mealplaner.Network.NetworkListener;
 import com.example.mealplaner.Network.MealService;
 import com.example.mealplaner.Models.Meal;
@@ -47,6 +48,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import io.reactivex.Observable;
 
@@ -78,6 +80,14 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
     private Handler handler;
     private Runnable runnable;
 
+    TextView daily;
+
+    FirebaseAuth aut;
+    FirebaseUser user;
+    ArrayList<Meal> random;
+
+
+
 
 
     @Override
@@ -85,6 +95,8 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         handler=new Handler();
+        aut = FirebaseAuth.getInstance();
+        user = aut.getCurrentUser();
 
         navigationBar();
         inflateUI();
@@ -92,6 +104,8 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
         favouriteMealPresenterInterface = new FavouriteMealPresenter(this, ConcreteLocalSource.getInstance(this));
         firebaseAuth = FirebaseAuth.getInstance();
         setHomeViewPager();
+        random = new ArrayList<>();
+
 
         userType = getIntent().getStringExtra("checkUserType");
         if (userType == null) {
@@ -118,7 +132,15 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
             public void onPageScrollStateChanged(int state) {
                 super.onPageScrollStateChanged(state);
                 handler.removeCallbacks(runnable);
-                handler.postDelayed(runnable,500);
+                handler.postDelayed(runnable,5000);
+            }
+        });
+
+        daily.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FireBaseData.getPlanFromFireBase(MainActivity.this,user,"sunday");
+                FireBaseData.getFavouriteFromFirebase(MainActivity.this,user);
             }
         });
     }
@@ -179,6 +201,16 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
 
     @Override
     public void showRecommendedMeals(ArrayList<Meal> recommendedMeals) {
+        Random rand = new Random();
+
+        for (int i =0 ; i<10 ; i++){
+            int s =    rand.nextInt(24);
+            random.add(recommendedMeals.get(s));
+        }
+
+        sliderAdapter=new SliderAdapter(vpRecommended,random,this,this,this);
+        vpRecommended.setAdapter(sliderAdapter);
+        sliderAdapter.notifyDataSetChanged();
 
     }
 
@@ -202,7 +234,8 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
         retry = findViewById(R.id.btn_rety_main);
         loadingBar = findViewById(R.id.load);
         vpRecommended =findViewById(R.id.viewpager_recommended);
-        sliderAdapter=new SliderAdapter(vpRecommended);
+        daily = findViewById(R.id.tv_inspiration);
+
         vpRecommended.setAdapter(sliderAdapter);
         vpRecommended.setClipChildren(false);
         vpRecommended.setClipToPadding(false);
@@ -259,9 +292,9 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
             oops.setVisibility(View.GONE);
             retry.setVisibility(View.GONE);
             loadingBar.setVisibility(View.VISIBLE);
-
             mealPresenterInterface = new MealPresenter(MealService.getInstance(), this, this, ConcreteLocalSource.getInstance(this));
             mealPresenterInterface.getMeal();
+            mealPresenterInterface.getRecommendedMeal();
         }else{
             noInternet.setVisibility(View.VISIBLE);
             tv_noInternet.setVisibility(View.VISIBLE);
