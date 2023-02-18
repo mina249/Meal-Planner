@@ -50,11 +50,7 @@ public class OnBoardingAdapter extends RecyclerView.Adapter<OnBoardingAdapter.Vi
 
             });
         }
-
-
     }
-
-
     @Override
     public int getItemCount() {
         return onBoardinfIteams.size();

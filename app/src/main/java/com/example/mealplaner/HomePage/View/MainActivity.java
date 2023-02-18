@@ -11,6 +11,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -71,12 +72,19 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
     ImageButton profImg;
 
     ConnectivityManager connectivityManager;
+    ViewPager2 vpRecommended;
+    SliderAdapter sliderAdapter;
+    CompositePageTransformer pageTransformer;
+    private Handler handler;
+    private Runnable runnable;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        handler=new Handler();
+
         navigationBar();
         inflateUI();
         checkNetwork();
@@ -96,6 +104,20 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
                 }else{
                     Toast.makeText(MainActivity.this, "You should login first", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+            vpRecommended.setCurrentItem(vpRecommended.getCurrentItem()+1);
+            }
+        };
+        vpRecommended.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                super.onPageScrollStateChanged(state);
+                handler.removeCallbacks(runnable);
+                handler.postDelayed(runnable,500);
             }
         });
     }
@@ -178,6 +200,24 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
         tv_noInternet = findViewById(R.id.noInternet_tv_main);
         retry = findViewById(R.id.btn_rety_main);
         loadingBar = findViewById(R.id.load);
+        vpRecommended =findViewById(R.id.viewpager_recommended);
+        sliderAdapter=new SliderAdapter(vpRecommended);
+        vpRecommended.setAdapter(sliderAdapter);
+        vpRecommended.setClipChildren(false);
+        vpRecommended.setClipToPadding(false);
+        vpRecommended.setOffscreenPageLimit(3);
+        vpRecommended.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+         pageTransformer =new CompositePageTransformer();
+         pageTransformer.addTransformer(new MarginPageTransformer(30));
+         pageTransformer.addTransformer(new ViewPager2.PageTransformer() {
+             @Override
+             public void transformPage(@NonNull View page, float position) {
+                 float r = 1-Math.abs(position);
+                 page.setScaleY(0.85f+r*0.15f);
+             }
+         });
+         vpRecommended.setPageTransformer(pageTransformer);
+
 
     }
 
@@ -247,5 +287,17 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
     @Override
     public void showFav(Observable<List<Meal>> products) {
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        handler.removeCallbacks(runnable);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        handler.postDelayed(runnable,500);
     }
 }

@@ -31,15 +31,15 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button"
+            app:layout_constraintEnd_toStartOf="@+id/btn_favourit"
             app:layout_constraintHorizontal_bias="0.54"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/iv_meal_pic"
             app:layout_constraintVertical_bias="0.4"
             tools:ignore="Deprecated" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/iv_meal_pic"
             android:layout_width="match_parent"
             android:layout_height="120dp"
 
@@ -49,7 +49,7 @@
             app:srcCompat="@drawable/burger" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btn_favourit"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginTop="20dp"
@@ -58,7 +58,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.927"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_meal_pic" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
