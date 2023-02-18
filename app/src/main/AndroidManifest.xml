@@ -54,6 +54,9 @@
             android:name=".Search.Category.View.CategorySearch"
             android:exported="false" />
         <activity
+        android:name=".HomePage.View.FaceBook"
+        android:exported="false" />
+        <activity
             android:name=".OnBoardind.View.OnBoarding"
             android:exported="false" />
         <activity
@@ -71,6 +74,9 @@
         <activity
             android:name=".HomePage.View.MainActivity"
             android:exported="true" />
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
+
     </application>
 
 </manifest>

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.mealplaner.HomePage.View.FaceBook;
 import com.example.mealplaner.HomePage.View.MainActivity;
 import com.example.mealplaner.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -70,6 +71,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         mAuth = FirebaseAuth.getInstance();
+        fb.setOnClickListener(view -> {
+           Intent intent =new Intent(this,FaceBook.class);
+           startActivity(intent);
+        });
 
         /*if (user != null) {
             // When user already sign in redirect to profile activity
