@@ -18,7 +18,7 @@
         android:theme="@style/Theme.MealPlaner"
         tools:targetApi="31">
         <activity
-            android:name=".Profile.ProfileActivity"
+            android:name=".Profile.View.ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".Search.MealSearch.MealSearchActivity"
@@ -66,6 +66,11 @@
             android:name=".Login.View.LoginActivity"
             android:exported="false" />
         <activity
+            android:name=".HomePage.View.MainActivity"
+            android:exported="true" />
+
+
+        <activity
             android:name=".SplashScree.View.SplashScreen"
             android:exported="true">
             <intent-filter>
@@ -75,16 +80,10 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".HomePage.View.MainActivity"
-            android:exported="true" />
+
+
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-        <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
-
-            android:exported="true" >
-
-        </activity>
-
+    <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
 
     </application>
 

@@ -21,7 +21,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.airbnb.lottie.LottieAnimationView;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.example.mealplaner.Calendar.CalendarActivity;
 import com.example.mealplaner.DataBase.ConcreteLocalSource;
 import com.example.mealplaner.FavouriteMeals.Intercafaces.FavouriteMealPresenterInterface;
@@ -38,7 +37,7 @@ import com.example.mealplaner.Network.NetworkListener;
 import com.example.mealplaner.Network.MealService;
 import com.example.mealplaner.Models.Meal;
 import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickListener;
-import com.example.mealplaner.Profile.ProfileActivity;
+import com.example.mealplaner.Profile.View.ProfileActivity;
 import com.example.mealplaner.R;
 import com.example.mealplaner.Search.HomeSearchPage.SearchActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

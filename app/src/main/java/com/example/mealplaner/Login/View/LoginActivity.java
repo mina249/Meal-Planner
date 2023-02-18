@@ -161,6 +161,14 @@ public class LoginActivity extends AppCompatActivity {
                                         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
                                         DatabaseReference reference = firebaseDatabase.getReference("Users");
                                         reference.child(uId).setValue(userData);
+                                        FireBaseData.getPlanFromFireBase(LoginActivity.this,mAuth.getCurrentUser(),"saturday");
+                                        FireBaseData.getPlanFromFireBase(LoginActivity.this,mAuth.getCurrentUser(),"sunday");
+                                        FireBaseData.getPlanFromFireBase(LoginActivity.this,mAuth.getCurrentUser(),"monday");
+                                        FireBaseData.getPlanFromFireBase(LoginActivity.this,mAuth.getCurrentUser(),"tuesday");
+                                        FireBaseData.getPlanFromFireBase(LoginActivity.this,mAuth.getCurrentUser(),"wednesday");
+                                        FireBaseData.getPlanFromFireBase(LoginActivity.this,mAuth.getCurrentUser(),"thursday");
+                                        FireBaseData.getPlanFromFireBase(LoginActivity.this,mAuth.getCurrentUser(),"friday");
+                                        FireBaseData.getFavouriteFromFirebase(LoginActivity.this,mAuth.getCurrentUser());
                                     }
                                     startActivity(new Intent(LoginActivity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 

@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.example.mealplaner.Login.View.LoginActivity;
+import com.example.mealplaner.Network.FireBaseData;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -94,7 +95,16 @@ public class FaceBook extends LoginActivity {
         Log.i("Name", "updateUI: "+user.getDisplayName());
         user.getDisplayName();
         Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
+
+            FireBaseData.getPlanFromFireBase(FaceBook.this,mAuth.getCurrentUser(),"saturday");
+            FireBaseData.getPlanFromFireBase(FaceBook.this,mAuth.getCurrentUser(),"sunday");
+            FireBaseData.getPlanFromFireBase(FaceBook.this,mAuth.getCurrentUser(),"monday");
+            FireBaseData.getPlanFromFireBase(FaceBook.this,mAuth.getCurrentUser(),"tuesday");
+            FireBaseData.getPlanFromFireBase(FaceBook.this,mAuth.getCurrentUser(),"wednesday");
+            FireBaseData.getPlanFromFireBase(FaceBook.this,mAuth.getCurrentUser(),"thursday");
+            FireBaseData.getPlanFromFireBase(FaceBook.this,mAuth.getCurrentUser(),"friday");
+            FireBaseData.getFavouriteFromFirebase(FaceBook.this,mAuth.getCurrentUser());
+            startActivity(intent);
     }
     }
 }
