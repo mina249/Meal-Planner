@@ -91,40 +91,40 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
                     case "Saturday":
                         meals.setStatus("saturday");
                         favouriteClickListener.onClick(meals);
-                        Toast.makeText(context, "Meal added to Saturday", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Meal added to " + meals.getStatus(), Toast.LENGTH_SHORT).show();
 
                         break;
                     case "Sunday":
                         meals.setStatus("sunday");
                         favouriteClickListener.onClick(meals);
-                        Toast.makeText(context, "Meal added to Sunday ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Meal added to " + meals.getStatus(), Toast.LENGTH_SHORT).show();
                         break;
                     case "Monday":
                         meals.setStatus("monday");
                         favouriteClickListener.onClick(meals);
-                        Toast.makeText(context, "Meal added to Monday", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Meal added to " + meals.getStatus(), Toast.LENGTH_SHORT).show();
                         break;
                     case "Tuesday":
                         meals.setStatus("tuesday");
                         favouriteClickListener.onClick(meals);
-                        Toast.makeText(context, "Meal added to Tuesday", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Meal added to " + meals.getStatus(), Toast.LENGTH_SHORT).show();
                         break;
 
                     case "Wednesday":
                         meals.setStatus("wednesday");
                         favouriteClickListener.onClick(meals);
-                        Toast.makeText(context, "Meal added to Wednesday ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Meal added to " + meals.getStatus(), Toast.LENGTH_SHORT).show();
                         break;
 
                     case "Thursday":
                         meals.setStatus("thursday");
                         favouriteClickListener.onClick(meals);
-                        Toast.makeText(context, "Meal added to Thursday", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Meal added to " + meals.getStatus(), Toast.LENGTH_SHORT).show();
                         break;
                     case "Friday":
                         meals.setStatus("friday");
                         favouriteClickListener.onClick(meals);
-                        Toast.makeText(context, "Meal added to Friday ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Meal added to " + meals.getStatus(), Toast.LENGTH_SHORT).show();
                         break;
 
 
@@ -153,6 +153,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
         ImageView mealImg;
         Button delete;
         AutoCompleteTextView autoCompleteTextView;
+        CardView cvMealPlanIteam;
 
         public FavoriteViewHolder(@NonNull View itemView) {
             super(itemView);
