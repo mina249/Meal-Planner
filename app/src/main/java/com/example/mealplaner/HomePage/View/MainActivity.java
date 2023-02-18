@@ -221,6 +221,7 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
 
             mealPresenterInterface = new MealPresenter(MealService.getInstance(), this, this, ConcreteLocalSource.getInstance(this));
             mealPresenterInterface.getMeal();
+            mealPresenterInterface.getRecommendedMeal();
         }else{
             noInternet.setVisibility(View.VISIBLE);
             tv_noInternet.setVisibility(View.VISIBLE);

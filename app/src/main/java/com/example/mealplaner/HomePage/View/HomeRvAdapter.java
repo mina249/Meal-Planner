@@ -85,46 +85,45 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
                     case "Saturday":
                         meals.setStatus("saturday");
                         listener.onClick(meals);
-                        Toast.makeText(context, "Meal added to "+meals.getStatus(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Meal added to Saturday", Toast.LENGTH_SHORT).show();
 
                         break;
                     case "Sunday":
                         meals.setStatus("sunday");
                         listener.onClick(meals);
-                        Toast.makeText(context, "Meal added to "+meals.getStatus(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Meal added to Sunday ", Toast.LENGTH_SHORT).show();
                         break;
                     case "Monday":
                         meals.setStatus("monday");
                         listener.onClick(meals);
-                        Toast.makeText(context, "Meal added to "+meals.getStatus(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Meal added to Monday", Toast.LENGTH_SHORT).show();
                         break;
                     case "Tuesday":
                         meals.setStatus("tuesday");
                         listener.onClick(meals);
-                        Toast.makeText(context, "Meal added to "+meals.getStatus(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Meal added to Tuesday", Toast.LENGTH_SHORT).show();
                         break;
 
                     case "Wednesday":
                         meals.setStatus("wednesday");
                         listener.onClick(meals);
-                        Toast.makeText(context, "Meal added to "+meals.getStatus(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Meal added to Wednesday ", Toast.LENGTH_SHORT).show();
                         break;
 
                     case "Thursday":
                         meals.setStatus("thursday");
                         listener.onClick(meals);
-                        Toast.makeText(context, "Meal added to "+meals.getStatus(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Meal added to Thursday", Toast.LENGTH_SHORT).show();
                         break;
                     case "Friday":
                         meals.setStatus("friday");
                         listener.onClick(meals);
-                        Toast.makeText(context, "Meal added to "+meals.getStatus(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Meal added to Friday ", Toast.LENGTH_SHORT).show();
                         break;
-
-
                 }
             }
         });
+
         holder.fav.setOnClickListener(new View.OnClickListener() {
             boolean isFavorite = false;
 

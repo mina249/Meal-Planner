@@ -5,12 +5,13 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "Meals")
+@Entity(tableName = "Meals",primaryKeys = {"idMeal","status"})
 public class Meal {
-    @PrimaryKey
+
     @NonNull
     private String idMeal;
-    @ColumnInfo(name = "status")
+
+@NonNull
     private String status;
 
     public String getStatus() {

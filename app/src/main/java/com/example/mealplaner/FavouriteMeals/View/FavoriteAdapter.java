@@ -1,6 +1,8 @@
 package com.example.mealplaner.FavouriteMeals.View;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +15,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickListener;
 import com.example.mealplaner.HomePage.Interfaces.OnAddToFavouriteClickListener;
+import com.example.mealplaner.Meal.View.MealData;
 import com.example.mealplaner.Models.Meal;
 import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickListener;
 import com.example.mealplaner.R;
@@ -54,13 +59,13 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
 
     @Override
     public void onBindViewHolder(@NonNull FavoriteViewHolder holder, int position) {
-        Meal meal = Meals.get(position);
-        holder.mealName.setText(meal.getStrMeal());
-        Glide.with(context).load(meal.getStrMealThumb()).into(holder.mealImg);
+        Meal meals = Meals.get(position);
+        holder.mealName.setText(meals.getStrMeal());
+        Glide.with(context).load(meals.getStrMealThumb()).into(holder.mealImg);
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onDeleteClick(meal);
+                listener.onDeleteClick(meals);
             }
         });
         String [] days ={"Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday"};
@@ -84,42 +89,42 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
                 String day = parent.getItemAtPosition(position).toString();
                 switch (day) {
                     case "Saturday":
-                        meal.setStatus("saturday");
-                       favouriteClickListener.onClick(meal);
-                        Toast.makeText(context, "Meal added to "+meal.getStatus(), Toast.LENGTH_SHORT).show();
+                        meals.setStatus("saturday");
+                        favouriteClickListener.onClick(meals);
+                        Toast.makeText(context, "Meal added to Saturday", Toast.LENGTH_SHORT).show();
 
                         break;
                     case "Sunday":
-                        meal.setStatus("sunday");
-                        favouriteClickListener.onClick(meal);
-                        Toast.makeText(context, "Meal added to "+meal.getStatus(), Toast.LENGTH_SHORT).show();
+                        meals.setStatus("sunday");
+                        favouriteClickListener.onClick(meals);
+                        Toast.makeText(context, "Meal added to Sunday ", Toast.LENGTH_SHORT).show();
                         break;
                     case "Monday":
-                        meal.setStatus("monday");
-                        favouriteClickListener.onClick(meal);
-                        Toast.makeText(context, "Meal added to "+meal.getStatus(), Toast.LENGTH_SHORT).show();
+                        meals.setStatus("monday");
+                        favouriteClickListener.onClick(meals);
+                        Toast.makeText(context, "Meal added to Monday", Toast.LENGTH_SHORT).show();
                         break;
                     case "Tuesday":
-                        meal.setStatus("tuesday");
-                        favouriteClickListener.onClick(meal);
-                        Toast.makeText(context, "Meal added to "+meal.getStatus(), Toast.LENGTH_SHORT).show();
+                        meals.setStatus("tuesday");
+                        favouriteClickListener.onClick(meals);
+                        Toast.makeText(context, "Meal added to Tuesday", Toast.LENGTH_SHORT).show();
                         break;
 
                     case "Wednesday":
-                        meal.setStatus("wednesday");
-                        favouriteClickListener.onClick(meal);
-                        Toast.makeText(context, "Meal added to "+meal.getStatus(), Toast.LENGTH_SHORT).show();
+                        meals.setStatus("wednesday");
+                        favouriteClickListener.onClick(meals);
+                        Toast.makeText(context, "Meal added to Wednesday ", Toast.LENGTH_SHORT).show();
                         break;
 
                     case "Thursday":
-                        meal.setStatus("thursday");
-                        favouriteClickListener.onClick(meal);
-                        Toast.makeText(context, "Meal added to "+meal.getStatus(), Toast.LENGTH_SHORT).show();
+                        meals.setStatus("thursday");
+                        favouriteClickListener.onClick(meals);
+                        Toast.makeText(context, "Meal added to Thursday", Toast.LENGTH_SHORT).show();
                         break;
                     case "Friday":
-                        meal.setStatus("friday");
-                        favouriteClickListener.onClick(meal);
-                        Toast.makeText(context, "Meal added to "+meal.getStatus(), Toast.LENGTH_SHORT).show();
+                        meals.setStatus("friday");
+                        favouriteClickListener.onClick(meals);
+                        Toast.makeText(context, "Meal added to Friday ", Toast.LENGTH_SHORT).show();
                         break;
 
 
