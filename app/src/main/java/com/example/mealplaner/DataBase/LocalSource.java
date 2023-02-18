@@ -18,4 +18,6 @@ public interface LocalSource {
     public Observable<List<Meal>> getThursdayProducts();
     public Observable<List<Meal>> getFridayProducts();
 
+    public void deleteAllTable();
+
 }

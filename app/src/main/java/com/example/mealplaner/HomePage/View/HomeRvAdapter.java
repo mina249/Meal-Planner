@@ -24,7 +24,10 @@ import com.example.mealplaner.HomePage.Interfaces.OnAddToFavouriteClickListener;
 import com.example.mealplaner.Meal.View.MealData;
 import com.example.mealplaner.Models.Meal;
 import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickListener;
+import com.example.mealplaner.Network.FireBaseData;
 import com.example.mealplaner.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
@@ -36,6 +39,9 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
     OnAddToFavouriteClickListener listener;
     OnDeleteFromFavClickListener deleteListener;
 
+    FirebaseAuth auth;
+    FirebaseUser user;
+
 
     public HomeRvAdapter(Context context, ArrayList<Meal>meal, ViewPager2 viewPager2, OnAddToFavouriteClickListener listener, OnDeleteFromFavClickListener deleteListener) {
         this.meal = meal;
@@ -43,6 +49,8 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
         this.viewPager2= viewPager2;
         this.listener =listener;
         this.deleteListener = deleteListener;
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
     }
 
     @NonNull
@@ -73,7 +81,11 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
         holder.autoCompleteTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    holder.autoCompleteTextView.showDropDown();
+                    if(user!=null) {
+                        holder.autoCompleteTextView.showDropDown();
+                    }else{
+                        Toast.makeText(context, "You Should Login first", Toast.LENGTH_SHORT).show();
+                    }
             }
         });
 
@@ -85,39 +97,46 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
                     case "Saturday":
                         meals.setStatus("saturday");
                         listener.onClick(meals);
+                        FireBaseData.addPlanToFirebase(context,meals);
                         Toast.makeText(context, "Meal added to Saturday", Toast.LENGTH_SHORT).show();
 
                         break;
                     case "Sunday":
                         meals.setStatus("sunday");
                         listener.onClick(meals);
+                        FireBaseData.addPlanToFirebase(context,meals);
                         Toast.makeText(context, "Meal added to Sunday ", Toast.LENGTH_SHORT).show();
                         break;
                     case "Monday":
                         meals.setStatus("monday");
                         listener.onClick(meals);
+                        FireBaseData.addPlanToFirebase(context,meals);
                         Toast.makeText(context, "Meal added to Monday", Toast.LENGTH_SHORT).show();
                         break;
                     case "Tuesday":
                         meals.setStatus("tuesday");
                         listener.onClick(meals);
+                        FireBaseData.addPlanToFirebase(context,meals);
                         Toast.makeText(context, "Meal added to Tuesday", Toast.LENGTH_SHORT).show();
                         break;
 
                     case "Wednesday":
                         meals.setStatus("wednesday");
                         listener.onClick(meals);
+                        FireBaseData.addPlanToFirebase(context,meals);
                         Toast.makeText(context, "Meal added to Wednesday ", Toast.LENGTH_SHORT).show();
                         break;
 
                     case "Thursday":
                         meals.setStatus("thursday");
                         listener.onClick(meals);
+                        FireBaseData.addPlanToFirebase(context,meals);
                         Toast.makeText(context, "Meal added to Thursday", Toast.LENGTH_SHORT).show();
                         break;
                     case "Friday":
                         meals.setStatus("friday");
                         listener.onClick(meals);
+                        FireBaseData.addPlanToFirebase(context,meals);
                         Toast.makeText(context, "Meal added to Friday ", Toast.LENGTH_SHORT).show();
                         break;
                 }
@@ -129,17 +148,23 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
 
             @Override
             public void onClick(View v) {
-                if (!isFavorite) {
-                    holder.fav.setBackgroundResource(R.drawable.heart);
-                    meals.setStatus("favourite");
-                    listener.onClick(meals);
+                if(user!=null) {
+                    if (!isFavorite) {
+                        holder.fav.setBackgroundResource(R.drawable.heart);
+                        meals.setStatus("favourite");
+                        listener.onClick(meals);
+                        FireBaseData.addFavouriteToFirebase(context,meals);
 
-                    holder.imgMeal.animate().rotationBy(1440).setDuration(1000).setStartDelay(0).start();
-                    isFavorite = true;
-                } else {
-                    holder.fav.setBackgroundResource(R.drawable.fav);
-                    isFavorite = false;
-                    deleteListener.onDeleteClick(meals);
+                        holder.imgMeal.animate().rotationBy(1440).setDuration(1000).setStartDelay(0).start();
+                        isFavorite = true;
+                    } else {
+                        holder.fav.setBackgroundResource(R.drawable.fav);
+                        isFavorite = false;
+                        deleteListener.onDeleteClick(meals);
+                        FireBaseData.removeFavouriteFromFirebase(context,meals);
+                    }
+                }else {
+                    Toast.makeText(context, "You Should Login first", Toast.LENGTH_SHORT).show();
                 }
 
             }

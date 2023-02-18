@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickListener;
 import com.example.mealplaner.Meal.View.MealData;
 import com.example.mealplaner.Models.Meal;
+import com.example.mealplaner.Network.FireBaseData;
 import com.example.mealplaner.R;
 
 import java.util.ArrayList;
@@ -57,8 +58,10 @@ public class ClenderAdapter extends RecyclerView.Adapter<ClenderAdapter.ViewHold
                 dayCV.setVisibility(View.GONE);
             }
             delete.onDeleteClick(mealList.get(position));
+            FireBaseData.removePlanFromFireBase(view.getContext(), mealList.get(position));
             mealList.remove(position);
             notifyDataSetChanged();
+
         });
         holder.cvMealPlanIteam.setOnClickListener(view->{
             Bundle bundle = new Bundle();
@@ -95,4 +98,5 @@ public class ClenderAdapter extends RecyclerView.Adapter<ClenderAdapter.ViewHold
             Glide.with(mealphoto.getContext()).load(meal.getStrMealThumb()).into(mealphoto);
         }
     }
+
 }

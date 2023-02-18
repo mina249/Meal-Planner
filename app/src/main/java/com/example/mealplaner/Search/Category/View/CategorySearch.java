@@ -9,14 +9,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.mealplaner.Calendar.CalendarActivity;
+import com.example.mealplaner.DataBase.ConcreteLocalSource;
 import com.example.mealplaner.FavouriteMeals.View.FavouriteMealActivity;
+import com.example.mealplaner.HomePage.Presenter.MealPresenter;
 import com.example.mealplaner.HomePage.View.MainActivity;
 import com.example.mealplaner.Models.Category;
+import com.example.mealplaner.Network.MealService;
+import com.example.mealplaner.Network.NetworkListener;
 import com.example.mealplaner.R;
 import com.example.mealplaner.Search.Category.InterFaces.CategoryInter;
 import com.example.mealplaner.Search.Category.InterFaces.FilterCategory;
@@ -34,6 +42,11 @@ public class CategorySearch extends AppCompatActivity implements CategoryInter, 
     SearchView categorySearch;
     CategoryAdapter categoryAdapter;
     Button btnBack;
+    TextView oops;
+    TextView noInternet;
+    Button retry;
+    LottieAnimationView load;
+    ImageView wifi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +56,16 @@ public class CategorySearch extends AppCompatActivity implements CategoryInter, 
         navigationBar();
         btnBack=findViewById(R.id.btn_back);
         categoryRecyclView = findViewById(R.id.rv_search_meal);
+        oops = findViewById(R.id.oops_tv_category);
+        noInternet = findViewById(R.id.noInternet_tv_category);
+        retry = findViewById(R.id.btn_rety_category);
+        wifi = findViewById(R.id.wifi_img_category);
+        load = findViewById(R.id.load_cat);
         categorySearch=findViewById(R.id.country_search);
         categorySearch.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
-        presenter = new CategoryPresenter(this, this);
+
         categorySearch.setMaxWidth(700);
+        checkNetwork();
         categorySearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -56,13 +75,13 @@ public class CategorySearch extends AppCompatActivity implements CategoryInter, 
             @Override
             public boolean onQueryTextChange(String s) {
             presenter.filterList(s);
+
                 return false;
             }
         });
         btnBack.setOnClickListener(view->{
             this.finish();
         });
-
 
 
 
@@ -73,6 +92,7 @@ public class CategorySearch extends AppCompatActivity implements CategoryInter, 
          categoryAdapter = new CategoryAdapter(categories);
         categoryRecyclView.setLayoutManager(new GridLayoutManager(this, 3));
         categoryRecyclView.setAdapter(categoryAdapter);
+        load.setVisibility(View.GONE);
 
     }
 
@@ -120,5 +140,32 @@ public class CategorySearch extends AppCompatActivity implements CategoryInter, 
         categoryAdapter = new CategoryAdapter(categories);
         categoryRecyclView.setLayoutManager(new GridLayoutManager(this, 3));
         categoryRecyclView.setAdapter(categoryAdapter);
+    }
+    private void checkNetwork(){
+
+        if(NetworkListener.getConnectivity(this)){
+            noInternet.setVisibility(View.GONE);
+            wifi.setVisibility(View.GONE);
+            oops.setVisibility(View.GONE);
+            retry.setVisibility(View.GONE);
+            load.setVisibility(View.VISIBLE);
+            categoryRecyclView.setVisibility(View.VISIBLE);
+            presenter = new CategoryPresenter(this, this);
+        }else{
+            wifi.setVisibility(View.VISIBLE);
+            noInternet.setVisibility(View.VISIBLE);
+            oops.setVisibility(View.VISIBLE);
+            retry.setVisibility(View.VISIBLE);
+            load.setVisibility(View.GONE);
+            categoryRecyclView.setVisibility(View.GONE);
+
+            retry.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    checkNetwork();
+
+                }
+            });
+        }
     }
 }
