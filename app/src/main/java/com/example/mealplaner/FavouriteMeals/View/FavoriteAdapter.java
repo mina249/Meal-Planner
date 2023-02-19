@@ -23,7 +23,6 @@ import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickLi
 import com.example.mealplaner.HomePage.Interfaces.OnAddToFavouriteClickListener;
 import com.example.mealplaner.Meal.View.MealData;
 import com.example.mealplaner.Models.Meal;
-import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickListener;
 import com.example.mealplaner.Network.FireBaseData;
 import com.example.mealplaner.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -166,7 +165,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
             mealImg = itemView.findViewById(R.id.meal_img_fav);
             mealName = itemView.findViewById(R.id.tv_fav_meal_name);
             delete = itemView.findViewById(R.id.delete_btn_fav);
-            autoCompleteTextView = itemView.findViewById(R.id.dp_fav);
+            autoCompleteTextView = itemView.findViewById(R.id.dp_plan);
             cvMealPlanIteam = itemView.findViewById(R.id.cv_meal_plan_iteam);
 
         }

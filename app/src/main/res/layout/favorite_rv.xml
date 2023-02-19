@@ -68,7 +68,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-            android:id="@+id/dp_fav"
+            android:id="@+id/dp_plan"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginTop="10dp"

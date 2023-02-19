@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.airbnb.lottie.LottieAnimationView;
 
+import com.bumptech.glide.Glide;
 import com.example.mealplaner.Calendar.CalendarActivity;
 import com.example.mealplaner.DataBase.ConcreteLocalSource;
 import com.example.mealplaner.FavouriteMeals.Intercafaces.FavouriteMealPresenterInterface;
@@ -44,6 +45,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,7 +91,13 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
     FirebaseAuth aut;
     FirebaseUser user;
     ArrayList<Meal> random;
+    TextView tvRecomnded,tvDailyIns;
 
+
+
+
+    FirebaseDatabase database;
+    DatabaseReference reference;
 
 
 
@@ -96,6 +109,8 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
         handler=new Handler();
         aut = FirebaseAuth.getInstance();
         user = aut.getCurrentUser();
+        database = FirebaseDatabase.getInstance();
+        reference = database.getReference("Users");
 
         navigationBar();
         inflateUI();
@@ -120,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
                 }
             }
         });
+        getUserDataFromFireBase();
         runnable = new Runnable() {
             @Override
             public void run() {
@@ -190,6 +206,9 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
         homeAdapter = new HomeRvAdapter(this, meals, homePager, this, this);
         homePager.setAdapter(homeAdapter);
         homeAdapter.notifyDataSetChanged();
+        vpRecommended.setVisibility(View.VISIBLE);
+        tvRecomnded.setVisibility(View.VISIBLE);
+        daily.setVisibility(View.VISIBLE);
 
     }
 
@@ -234,6 +253,8 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
         loadingBar = findViewById(R.id.load);
         vpRecommended =findViewById(R.id.viewpager_recommended);
         daily = findViewById(R.id.tv_inspiration);
+        tvRecomnded =findViewById(R.id.tv_recomended);
+
 
         vpRecommended.setAdapter(sliderAdapter);
         vpRecommended.setClipChildren(false);
@@ -294,12 +315,17 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
             mealPresenterInterface = new MealPresenter(MealService.getInstance(), this, this, ConcreteLocalSource.getInstance(this));
             mealPresenterInterface.getMeal();
             mealPresenterInterface.getRecommendedMeal();
+            vpRecommended.setVisibility(View.GONE);
+            tvRecomnded.setVisibility(View.GONE);
+            daily.setVisibility(View.GONE);
+
         }else{
             noInternet.setVisibility(View.VISIBLE);
             tv_noInternet.setVisibility(View.VISIBLE);
             oops.setVisibility(View.VISIBLE);
             retry.setVisibility(View.VISIBLE);
             loadingBar.setVisibility(View.GONE);
+
 
             retry.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -332,5 +358,26 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
     protected void onResume() {
         super.onResume();
         handler.postDelayed(runnable,500);
+    }
+    private void getUserDataFromFireBase() {
+        if (user != null) {
+            Query query = reference.orderByChild("email").equalTo(user.getEmail());
+            query.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot ds : snapshot.getChildren()) {
+                        String uname = "" + ds.child("name").getValue();
+                        String uemail = "" + ds.child("email").getValue();
+                        String uimage = "" + ds.child("image").getValue();
+                        loggedUserName.setText(uname);
+
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
     }
 }

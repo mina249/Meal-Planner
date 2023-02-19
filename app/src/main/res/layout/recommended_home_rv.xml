@@ -17,8 +17,8 @@
 
         <androidx.appcompat.widget.AppCompatAutoCompleteTextView
             android:id="@+id/recomended_dp"
-            android:layout_width="120dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="#F99417"
             android:backgroundTint="#F99417"
             android:completionHint="@string/add_to_plan"
@@ -28,6 +28,7 @@
             android:hint="@string/drop_hint"
             android:paddingStart="12dp"
             android:paddingTop="3dp"
+            android:paddingRight="8dp"
             android:paddingBottom="3dp"
             android:textAlignment="center"
             android:textColorHint="@color/white"
@@ -35,23 +36,30 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_favourit"
-            app:layout_constraintHorizontal_bias="0.564"
+            app:layout_constraintHorizontal_bias="0.559"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_meal_pic"
-            app:layout_constraintVertical_bias="0.486"
+            app:layout_constraintTop_toBottomOf="@+id/cardView5"
+            app:layout_constraintVertical_bias="0.734"
             tools:ignore="Deprecated" />
 
-        <ImageView
-            android:id="@+id/iv_meal_pic"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-
-            android:scaleType="fitXY"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:cardBackgroundColor="#272727"
+            app:cardCornerRadius="70dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/burger" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_meal_pic"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+
+                app:srcCompat="@drawable/burger" />
+        </androidx.cardview.widget.CardView>
 
         <Button
             android:id="@+id/btn_favourit"
@@ -74,7 +82,7 @@
             app:layout_constraintBottom_toTopOf="@+id/recomended_dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_meal_pic" />
+            app:layout_constraintTop_toBottomOf="@+id/cardView5" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

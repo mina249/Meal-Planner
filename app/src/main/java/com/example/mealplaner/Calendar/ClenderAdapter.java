@@ -88,7 +88,7 @@ public class ClenderAdapter extends RecyclerView.Adapter<ClenderAdapter.ViewHold
             mealphoto=itemView.findViewById(R.id.meal_img_fav);
             btnDelete=itemView.findViewById(R.id.delete_btn_fav);
             tvMealName=itemView.findViewById(R.id.tv_fav_meal_name);
-            droplistPlan=itemView.findViewById(R.id.dp_fav);
+            droplistPlan=itemView.findViewById(R.id.dp_plan);
             droplistPlan.setVisibility(View.GONE);
             cvMealPlanIteam=itemView.findViewById(R.id.cv_meal_plan_iteam);
         }

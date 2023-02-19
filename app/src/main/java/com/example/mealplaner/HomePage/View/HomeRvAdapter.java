@@ -199,7 +199,7 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
             imageCard = itemView.findViewById(R.id.image_card);
             imgMeal = itemView.findViewById(R.id.img_meal);
             itemCard=itemView.findViewById(R.id.cv_home_meal);
-            autoCompleteTextView =itemView.findViewById(R.id.dp_fav);
+            autoCompleteTextView =itemView.findViewById(R.id.dp_plan);
 
         }
     }

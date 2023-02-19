@@ -1,7 +1,6 @@
 package com.example.mealplaner.Profile.View;
 
 
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -41,6 +40,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
 import java.util.HashMap;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -56,7 +56,7 @@ public class ProfileActivity extends AppCompatActivity {
     Uri profImgUri;
     FloatingActionButton editProf;
     ProfilePresenyterInterface profilePresenyterInterface;
-    static final int  IMA_PICK_GALLERY_CODE =200;
+    static final int IMA_PICK_GALLERY_CODE = 200;
 
 
     @Override
@@ -70,6 +70,7 @@ public class ProfileActivity extends AppCompatActivity {
         reference = database.getReference("Users");
         profilePresenyterInterface = new ProfilePresenter(ConcreteLocalSource.getInstance(this));
         getUserDataFromFireBase();
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,13 +88,14 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-    private void inflateUi(){
+    private void inflateUi() {
         profImg = findViewById(R.id.profile_img_prof);
         name = findViewById(R.id.name_prof_tv);
         email = findViewById(R.id.email_prof_tv);
         logout = findViewById(R.id.logout);
         editProf = findViewById(R.id.fb_edit_prof);
     }
+
     private void checkUserStatus() {
         FirebaseUser user = auth.getCurrentUser();
         if (user != null) {
@@ -104,47 +106,50 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
-    private void getUserDataFromFireBase(){
-        Query query = reference.orderByChild("email").equalTo(user.getEmail());
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot ds : snapshot.getChildren()){
-                    String uname = ""+ds.child("name").getValue();
-                    String uemail = ""+ds.child("email").getValue();
-                    String uimage = ""+ds.child("image").getValue();
-                    name.setText(uname);
-                    email.setText(uemail);
-                    try {
-                        Glide.with(ProfileActivity.this).load(uimage).into(profImg);
-                    }catch (Exception e){
+    private void getUserDataFromFireBase() {
+        if (user != null) {
+            Query query = reference.orderByChild("email").equalTo(user.getEmail());
+            query.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot ds : snapshot.getChildren()) {
+                        String uname = "" + ds.child("name").getValue();
+                        String uemail = "" + ds.child("email").getValue();
+                        String uimage = "" + ds.child("image").getValue();
+                        name.setText(uname);
+                        email.setText(uemail);
+                        try {
+                            profImg.setImageURI(Uri.fromFile(new File(uimage)));
+                           // Glide.with(ProfileActivity.this).load(uimage).into(profImg);
+                        } catch (Exception e) {
 
+                        }
                     }
                 }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+                }
+            });
+        }
     }
 
-    private void showEditProfDialog(){
-        String [] options = {"Edit Name","Edit Profile image","Go to Favourite" , "Go to your plan"};
+    private void showEditProfDialog() {
+        String[] options = {"Edit Name", "Edit Profile image", "Go to Favourite", "Go to your plan"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Edit profile data");
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if(which==0){
+                if (which == 0) {
                     showUpdateDialog("name");
 
-                }else if (which==1){
+                } else if (which == 1) {
                     pickFromGallery();
-                } else if (which==2) {
+                } else if (which == 2) {
                     startActivity(new Intent(ProfileActivity.this, FavouriteMealActivity.class));
                     finish();
-                }else if (which==3){
+                } else if (which == 3) {
                     startActivity(new Intent(ProfileActivity.this, CalendarActivity.class));
                     finish();
                 }
@@ -152,13 +157,14 @@ public class ProfileActivity extends AppCompatActivity {
         });
         builder.create().show();
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == IMA_PICK_GALLERY_CODE) {
             profImgUri = data.getData();
-            HashMap<String,Object> img = new HashMap<>();
-            img.put("image",profImgUri.toString());
+            HashMap<String, Object> img = new HashMap<>();
+            img.put("image", profImgUri.toString());
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
             ref.child(user.getUid()).updateChildren(img).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -170,11 +176,11 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-    private void showUpdateDialog(String key){
+    private void showUpdateDialog(String key) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Update "+key);
+        builder.setTitle("Update " + key);
         LinearLayout linearLayout = new LinearLayout(this);
-        linearLayout.setPadding(10,10,10,10);
+        linearLayout.setPadding(10, 10, 10, 10);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         EditText editText = new EditText(this);
         editText.setHint("Enter Your name");
@@ -185,9 +191,9 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String value = editText.getText().toString().trim();
-                if(!TextUtils.isEmpty(value)){
+                if (!TextUtils.isEmpty(value)) {
                     HashMap<String, Object> result = new HashMap<>();
-                    result.put(key,value);
+                    result.put(key, value);
                     reference.child(user.getUid()).updateChildren(result).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
@@ -196,7 +202,7 @@ public class ProfileActivity extends AppCompatActivity {
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(ProfileActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ProfileActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -206,17 +212,18 @@ public class ProfileActivity extends AppCompatActivity {
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
+                dialog.dismiss();
             }
         });
 
-            builder.create().show();
+        builder.create().show();
     }
+
     private void pickFromGallery() {
         Intent galleryIntent = new Intent();
         galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
         galleryIntent.setType("image/*");
-        startActivityForResult(galleryIntent,IMA_PICK_GALLERY_CODE);
+        startActivityForResult(galleryIntent, IMA_PICK_GALLERY_CODE);
     }
 
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,14 +24,21 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 
 public class FaceBook extends LoginActivity {
     CallbackManager callbackManager;
     FirebaseAuth mAuth;
+
+    FirebaseDatabase database;
+    DatabaseReference reference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +64,8 @@ public class FaceBook extends LoginActivity {
                         // App code
                     }
                 });
+        database = FirebaseDatabase.getInstance();
+        reference = database.getReference("Users");
     }
 
     @Override
@@ -92,8 +102,9 @@ public class FaceBook extends LoginActivity {
 
     private void updateUI(FirebaseUser user) {
         if(user!=null){
+            HashMap  <String,Object> result = new HashMap<>();
         Log.i("Name", "updateUI: "+user.getDisplayName());
-        user.getDisplayName();
+        result.put("name",user.getDisplayName());
         Intent intent = new Intent(this,MainActivity.class);
 
             FireBaseData.getPlanFromFireBase(FaceBook.this,mAuth.getCurrentUser(),"saturday");
@@ -105,6 +116,9 @@ public class FaceBook extends LoginActivity {
             FireBaseData.getPlanFromFireBase(FaceBook.this,mAuth.getCurrentUser(),"friday");
             FireBaseData.getFavouriteFromFirebase(FaceBook.this,mAuth.getCurrentUser());
             startActivity(intent);
-    }
+
+            result.put("image", user.getPhotoUrl().toString());
+            reference.child(user.getUid()).updateChildren(result);
+        }
     }
 }
