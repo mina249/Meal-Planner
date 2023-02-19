@@ -35,8 +35,13 @@ public class FlagAdapter extends RecyclerView.Adapter<FlagAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull FlagAdapter.ViewHolder holder, int position) {
-        if(!meals.get(position).getStrArea().equals("Unknown"))
+        if(!meals.get(position).getStrArea().equals("Unknown")) {
             holder.setCountry(meals.get(position));
+        }
+            else{
+                holder.tvCountryName.setText("Rest of World");
+            }
+        
         holder.cvCountry.setOnClickListener(view -> {
             Bundle bundle = new Bundle();
             bundle.putString("country",meals.get(position).getStrArea());

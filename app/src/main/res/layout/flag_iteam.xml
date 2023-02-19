@@ -51,7 +51,7 @@
                     android:id="@+id/iv_flag"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    app:srcCompat="@drawable/googleg_standard_color_18" />
+                    app:srcCompat="@drawable/burger" />
             </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

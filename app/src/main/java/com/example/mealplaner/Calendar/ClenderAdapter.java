@@ -29,7 +29,6 @@ public class ClenderAdapter extends RecyclerView.Adapter<ClenderAdapter.ViewHold
     OnDeleteFromFavClickListener delete;
     ArrayList<Meal> mealList;
     CardView dayCV;
-
     public ClenderAdapter(OnDeleteFromFavClickListener delete, CardView dayCV) {
         this.mealList = new ArrayList<>();
         this.delete=delete;

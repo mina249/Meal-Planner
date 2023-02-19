@@ -7,6 +7,68 @@
     android:background="#212121"
     tools:context=".Meal.View.MealData">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/load_meal_data"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:elevation="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/loading" />
+
+    <Button
+        android:id="@+id/btn_rety_meal_data"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#fe7e34"
+        android:text="@string/rety"
+        android:textColor="@color/white"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/nestedScrollView2"
+        app:layout_constraintEnd_toEndOf="@+id/noInternet_tv_meal_data"
+        app:layout_constraintStart_toStartOf="@+id/noInternet_tv_meal_data"
+        app:layout_constraintTop_toBottomOf="@+id/oops_tv_meal_data" />
+
+    <TextView
+        android:id="@+id/noInternet_tv_meal_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_internet"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/btn_add_to_fav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wifi_img_meal_data" />
+
+    <ImageView
+        android:id="@+id/wifi_img_meal_data"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/btn_add_to_fav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/wifi" />
+
+    <TextView
+        android:id="@+id/oops_tv_meal_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/oops"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/noInternet_tv_meal_data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wifi_img_meal_data" />
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView2"
         android:layout_width="match_parent"
@@ -69,7 +131,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/tv_country_string"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -88,6 +150,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tv_meal_instruction_str"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
