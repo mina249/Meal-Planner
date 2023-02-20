@@ -2,7 +2,10 @@ package com.example.mealplaner.OnBoardind.View;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +29,7 @@ public class OnBoardingAdapter extends RecyclerView.Adapter<OnBoardingAdapter.Vi
     Context context;
     MoveFragment moveFragment;
 
+
     public OnBoardingAdapter(ArrayList<OnBoardinfIteam> onBoardinfIteams, Context context) {
         this.onBoardinfIteams = onBoardinfIteams;
         this.context= context;
@@ -46,6 +50,7 @@ public class OnBoardingAdapter extends RecyclerView.Adapter<OnBoardingAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         holder.setData(onBoardinfIteams.get(position).getTvDiscript(),(onBoardinfIteams.get(position).getLotteName()));
+        holder.bts[position].setBackgroundResource(R.drawable.onboardin_orange);
         if(position== onBoardinfIteams.size()-1){
             holder.btnNext.setVisibility(View.VISIBLE);
             holder.btnNext.setOnClickListener(view -> {
@@ -65,12 +70,18 @@ public class OnBoardingAdapter extends RecyclerView.Adapter<OnBoardingAdapter.Vi
         TextView tvDescript;
         Button btnNext;
         Resources res;
+        Button b1,b2,b3;
+        Button[]bts;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvDescript= itemView.findViewById(R.id.tvDescription);
             btnNext=itemView.findViewById(R.id.next);
             animationView=itemView.findViewById(R.id.lottie_onboarding);
             res=itemView.getResources();
+            b1=itemView.findViewById(R.id.btn_onboadring1);
+            b2=itemView.findViewById(R.id.btn_onboadring2);
+            b3=itemView.findViewById(R.id.btn_onboadring3);
+            bts=new Button[]{b1,b2,b3};
         }
         public void setData(String descrip,String raw){
             tvDescript.setText(descrip);
