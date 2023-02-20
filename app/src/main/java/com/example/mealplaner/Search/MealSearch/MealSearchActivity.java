@@ -19,6 +19,8 @@ import com.example.mealplaner.HomePage.View.MainActivity;
 import com.example.mealplaner.Models.Meal;
 import com.example.mealplaner.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
@@ -30,6 +32,8 @@ public class MealSearchActivity extends AppCompatActivity implements SearchforMe
     String userType = "loggedUser";
     BottomNavigationView bottomNavigationView;
     Button btnBack;
+    FirebaseAuth auth;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,8 @@ public class MealSearchActivity extends AppCompatActivity implements SearchforMe
         setContentView(R.layout.activity_meal_search);
         mealSearch = findViewById(R.id.country_search);
         rvMeals = findViewById(R.id.rv_search_meal);
+        auth=FirebaseAuth.getInstance();
+        user=auth.getCurrentUser();
         mealAdapter = new CategoryMealAdapter(new ArrayList<>());
         rvMeals.setLayoutManager(new LinearLayoutManager(this));
         rvMeals.setAdapter(mealAdapter);
@@ -89,7 +95,7 @@ public class MealSearchActivity extends AppCompatActivity implements SearchforMe
                     case R.id.search:
                         return true;
                     case R.id.love:
-                        if (userType.equals("guest")) {
+                        if (user==null) {
                             Toast.makeText(MealSearchActivity.this, "You should login first", Toast.LENGTH_SHORT).show();
                         } else {
                             startActivity(new Intent(getApplicationContext(), FavouriteMealActivity.class));
@@ -97,7 +103,7 @@ public class MealSearchActivity extends AppCompatActivity implements SearchforMe
                             return true;
                         }
                     case R.id.calendar:
-                        if (userType.equals("guest")) {
+                        if (user==null) {
                             Toast.makeText(MealSearchActivity.this, "You should login first", Toast.LENGTH_SHORT).show();
                         } else {
                             startActivity(new Intent(getApplicationContext(), CalendarActivity.class));

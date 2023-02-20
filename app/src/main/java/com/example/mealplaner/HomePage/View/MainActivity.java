@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
         profImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(userType.equals("loggedUser")) {
+                if(user!=null) {
                     startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                 }else{
                     Toast.makeText(MainActivity.this, "You should login first", Toast.LENGTH_SHORT).show();
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
             public void onPageScrollStateChanged(int state) {
                 super.onPageScrollStateChanged(state);
                 handler.removeCallbacks(runnable);
-                handler.postDelayed(runnable,5000);
+                handler.postDelayed(runnable,2000);
             }
         });
 
@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
                     case R.id.home:
                         return true;
                     case R.id.love:
-                        if (userType.equals("guest")) {
+                        if (user == null) {
                             Toast.makeText(MainActivity.this, "You should login first", Toast.LENGTH_SHORT).show();
                         } else {
                             startActivity(new Intent(MainActivity.this, FavouriteMealActivity.class));
@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
                             return true;
                         }
                     case R.id.calendar:
-                        if (userType.equals("guest")) {
+                        if (user == null) {
                             Toast.makeText(MainActivity.this, "You should login first", Toast.LENGTH_SHORT).show();
                         } else {
                             startActivity(new Intent(MainActivity.this, CalendarActivity.class));

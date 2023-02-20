@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.mealplaner.HomePage.View.FaceBook;
 import com.example.mealplaner.HomePage.View.MainActivity;
@@ -20,6 +21,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -44,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
     SignupFragment signupFragment;
     private FirebaseAuth mAuth;
 
-    private static final int RC_SIGN_IN = 100;
+    private static final int RC_SIGN_IN = 200;
     GoogleSignInClient googleSignInClient;
    // FirebaseUser user;
 
@@ -72,18 +75,18 @@ public class LoginActivity extends AppCompatActivity {
                 startActivityForResult(signInIntent, RC_SIGN_IN);
               }
         });
-        mAuth = FirebaseAuth.getInstance();
+       // mAuth = FirebaseAuth.getInstance();
         fb.setOnClickListener(view -> {
            Intent intent =new Intent(this,FaceBook.class);
            startActivity(intent);
         });
 
 
-        /*if (user != null) {
+        if (mAuth.getCurrentUser() != null) {
             // When user already sign in redirect to profile activity
             startActivity(new Intent(this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 
-        }*/
+        }
     }
 
     public void animateUi() {
@@ -141,14 +144,14 @@ public class LoginActivity extends AppCompatActivity {
                                 // Check condition
                                 if (task.isSuccessful()) {
                                    FirebaseUser user = mAuth.getCurrentUser();
-
+                                  //  firebaseAuthWithGoogleAccount(googleSignInAccount);
                                     if (task.getResult().getAdditionalUserInfo().isNewUser()) {
                                         String email = user.getEmail();
                                         String uId = user.getUid();
                                         HashMap<Object, String> userData = new HashMap<>();
                                         userData.put("email", email);
                                         userData.put("uid", uId);
-                                        userData.put("name", "");
+                                        userData.put("name", user.getDisplayName());
                                         userData.put("image", "");
                                         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
                                         DatabaseReference reference = firebaseDatabase.getReference("Users");
@@ -178,7 +181,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-       /* private void firebaseAuthWithGoogleAccount (GoogleSignInAccount account){
+       private void firebaseAuthWithGoogleAccount (GoogleSignInAccount account){
             AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
             mAuth.signInWithCredential(credential).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                 @Override
@@ -198,7 +201,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
             });
-        }*/
+        }
 
 
 }

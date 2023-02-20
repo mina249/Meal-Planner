@@ -18,14 +18,21 @@ import com.example.mealplaner.Search.FlagSearch.View.FlagActivity;
 import com.example.mealplaner.Search.Ingrediant.View.IngrediantSearch;
 import com.example.mealplaner.Search.MealSearch.MealSearchActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SearchActivity extends AppCompatActivity {
     Button btnCategory,btnCountry,btnIngridiant,btnMeals;
 String userType = "loggedUser";
     BottomNavigationView bottomNavigationView;
+
+    FirebaseAuth auth;
+    FirebaseUser user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        auth=FirebaseAuth.getInstance();
+        user=auth.getCurrentUser();
         setContentView(R.layout.activity_search);
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         navigationBar();
@@ -78,7 +85,7 @@ String userType = "loggedUser";
                     case R.id.search:
                         return true;
                     case R.id.love:
-                        if(userType.equals("guest")){
+                        if(user==null){
                             Toast.makeText(SearchActivity.this, "You should login first", Toast.LENGTH_SHORT).show();
                         }else  {
                             startActivity(new Intent(getApplicationContext(), FavouriteMealActivity.class));
@@ -86,7 +93,7 @@ String userType = "loggedUser";
                             return true;
                         }
                     case R.id.calendar:
-                        if (userType.equals("guest")){
+                        if (user==null){
                             Toast.makeText(SearchActivity.this, "You should login first", Toast.LENGTH_SHORT).show();
                         }else {
                             startActivity(new Intent(getApplicationContext(), CalendarActivity.class));

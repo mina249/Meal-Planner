@@ -123,6 +123,8 @@ public class MealData extends AppCompatActivity implements MealInterface , MealV
         tvMealName.setVisibility(View.GONE);
         tvTag.setVisibility(View.GONE);
         tvTagStr.setVisibility(View.GONE);
+        autoCompleteTextView.setVisibility(View.GONE);
+        btnAddtoToFav.setVisibility(View.GONE);
 
 
         btnAddToCalendar.setOnClickListener(view -> {
@@ -144,6 +146,8 @@ public class MealData extends AppCompatActivity implements MealInterface , MealV
             tvTag.setVisibility(View.GONE);
             tvTagStr.setVisibility(View.GONE);
         }
+        autoCompleteTextView.setVisibility(View.VISIBLE);
+        btnAddtoToFav.setVisibility(View.VISIBLE);
         tvTag.setText(meal.getStrTags());
         tvCountry.setText(meal.getStrArea());
         YouTubeID youTubeID = new YouTubeID(meal.getStrYoutube());
@@ -208,6 +212,8 @@ public class MealData extends AppCompatActivity implements MealInterface , MealV
             tvCategory.setVisibility(View.VISIBLE);
             tvCountry.setVisibility(View.VISIBLE);
             tvTagStr.setVisibility(View.VISIBLE);
+            autoCompleteTextView.setVisibility(View.GONE);
+            btnAddtoToFav.setVisibility(View.GONE);
 
             tvMealName.setVisibility(View.VISIBLE);
             tvTag.setVisibility(View.VISIBLE);
@@ -227,6 +233,8 @@ public class MealData extends AppCompatActivity implements MealInterface , MealV
             tvCategory.setVisibility(View.GONE);
             tvCountry.setVisibility(View.GONE);
             tvTagStr.setVisibility(View.GONE);
+            autoCompleteTextView.setVisibility(View.GONE);
+            btnAddtoToFav.setVisibility(View.GONE);
 
             tvMealName.setVisibility(View.GONE);
             tvTag.setVisibility(View.GONE);

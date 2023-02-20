@@ -28,6 +28,8 @@ import com.example.mealplaner.Search.Ingrediant.InterFaces.IngrediantFilter;
 import com.example.mealplaner.Search.Ingrediant.InterFaces.IngrediantSetData;
 import com.example.mealplaner.Search.Ingrediant.Presenter.IngrediantPresenter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 import java.util.ArrayList;
@@ -47,6 +49,8 @@ public class IngrediantSearch extends AppCompatActivity implements IngrediantSet
     Button retry;
     LottieAnimationView load;
     ImageView wifi;
+    FirebaseAuth auth;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +58,8 @@ public class IngrediantSearch extends AppCompatActivity implements IngrediantSet
         setContentView(R.layout.activity_ingrediant_search);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         navigationBar();
+        auth=FirebaseAuth.getInstance();
+        user=auth.getCurrentUser();
         rvIngrediant=findViewById(R.id.rv_search_meal);
          ingrediantAdapter = new IngrediantAdapter();
          ingrediantSearch = findViewById(R.id.country_search);
@@ -116,7 +122,7 @@ public class IngrediantSearch extends AppCompatActivity implements IngrediantSet
                     case R.id.search:
                         return true;
                     case R.id.love:
-                        if (userType.equals("guest")) {
+                        if (user==null) {
                             Toast.makeText(IngrediantSearch.this, "You should login first", Toast.LENGTH_SHORT).show();
                         } else {
                             startActivity(new Intent(getApplicationContext(), FavouriteMealActivity.class));
@@ -124,7 +130,7 @@ public class IngrediantSearch extends AppCompatActivity implements IngrediantSet
                             return true;
                         }
                     case R.id.calendar:
-                        if (userType.equals("guest")) {
+                        if (user==null) {
                             Toast.makeText(IngrediantSearch.this, "You should login first", Toast.LENGTH_SHORT).show();
                         } else {
                             startActivity(new Intent(getApplicationContext(), CalendarActivity.class));

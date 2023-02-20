@@ -30,6 +30,8 @@ import com.example.mealplaner.Search.Category.InterFaces.CategoryInter;
 import com.example.mealplaner.Search.Category.InterFaces.FilterCategory;
 import com.example.mealplaner.Search.Category.Presenter.CategoryPresenter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 import java.util.ArrayList;
@@ -47,6 +49,9 @@ public class CategorySearch extends AppCompatActivity implements CategoryInter, 
     Button retry;
     LottieAnimationView load;
     ImageView wifi;
+    FirebaseAuth auth;
+    FirebaseUser user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,8 @@ public class CategorySearch extends AppCompatActivity implements CategoryInter, 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         navigationBar();
         btnBack=findViewById(R.id.btn_back);
+        auth=FirebaseAuth.getInstance();
+        user=auth.getCurrentUser();
         categoryRecyclView = findViewById(R.id.rv_search_meal);
         oops = findViewById(R.id.oops_tv_category);
         noInternet = findViewById(R.id.noInternet_tv_category);
@@ -114,7 +121,7 @@ public class CategorySearch extends AppCompatActivity implements CategoryInter, 
                     case R.id.search:
                         return true;
                     case R.id.love:
-                        if (userType.equals("guest")) {
+                        if (user==null) {
                             Toast.makeText(CategorySearch.this, "You should login first", Toast.LENGTH_SHORT).show();
                         } else {
                             startActivity(new Intent(getApplicationContext(), FavouriteMealActivity.class));
@@ -122,7 +129,7 @@ public class CategorySearch extends AppCompatActivity implements CategoryInter, 
                             return true;
                         }
                     case R.id.calendar:
-                        if (userType.equals("guest")) {
+                        if (user==null) {
                             Toast.makeText(CategorySearch.this, "You should login first", Toast.LENGTH_SHORT).show();
                         } else {
                             startActivity(new Intent(getApplicationContext(), CalendarActivity.class));

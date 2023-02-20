@@ -119,8 +119,8 @@ public class ProfileActivity extends AppCompatActivity {
                         name.setText(uname);
                         email.setText(uemail);
                         try {
-                            profImg.setImageURI(Uri.fromFile(new File(uimage)));
-                           // Glide.with(ProfileActivity.this).load(uimage).into(profImg);
+                           // profImg.setImageURI(Uri.fromFile(new File(uimage)));
+                           Glide.with(ProfileActivity.this).load(uimage).into(profImg);
                         } catch (Exception e) {
 
                         }
