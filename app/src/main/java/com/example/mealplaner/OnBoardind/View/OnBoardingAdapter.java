@@ -2,6 +2,7 @@ package com.example.mealplaner.OnBoardind.View;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.airbnb.lottie.LottieDrawable;
 import com.example.mealplaner.OnBoardind.Interface.MoveFragment;
 
 import com.example.mealplaner.Login.View.LoginActivity;
@@ -35,17 +38,18 @@ public class OnBoardingAdapter extends RecyclerView.Adapter<OnBoardingAdapter.Vi
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.view_pager_iteam, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
+
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.setData(onBoardinfIteams.get(position).getTvDiscript());
+
+        holder.setData(onBoardinfIteams.get(position).getTvDiscript(),(onBoardinfIteams.get(position).getLotteName()));
         if(position== onBoardinfIteams.size()-1){
             holder.btnNext.setVisibility(View.VISIBLE);
             holder.btnNext.setOnClickListener(view -> {
                 Intent intent = new Intent(context, LoginActivity.class);
-               //context.startActivity(intent);
                moveFragment.move();
 
             });
@@ -57,15 +61,25 @@ public class OnBoardingAdapter extends RecyclerView.Adapter<OnBoardingAdapter.Vi
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
+        LottieAnimationView animationView;
         TextView tvDescript;
         Button btnNext;
+        Resources res;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvDescript= itemView.findViewById(R.id.tvDescription);
             btnNext=itemView.findViewById(R.id.next);
+            animationView=itemView.findViewById(R.id.lottie_onboarding);
+            res=itemView.getResources();
         }
-        public void setData(String descrip){
+        public void setData(String descrip,String raw){
             tvDescript.setText(descrip);
+
+            int resourceId = res.getIdentifier(raw, "raw",
+                    animationView.getContext().getPackageName());//initialize res and context in adapter's contructor
+            animationView.setAnimation(resourceId);
+            animationView.setRepeatCount(50);
+
         }
     }
 }

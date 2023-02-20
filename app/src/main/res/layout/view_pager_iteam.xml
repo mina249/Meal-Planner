@@ -4,43 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000">
+    android:background="#59FFFFFF">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="76dp"
-        app:layout_constraintBottom_toTopOf="@+id/tvDescription"
-        app:layout_constraintEnd_toEndOf="@+id/tvDescription"
-        app:layout_constraintHorizontal_bias="0.42"
-        app:layout_constraintStart_toStartOf="@+id/tvDescription"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_onboarding"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerInParent="true"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.249"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/splash" />
 
     <TextView
         android:id="@+id/tvDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:shadowColor="#9E8F8F"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:shadowColor="#FFFFFF"
         android:text="Tesst "
-        android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textColor="#f99417"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/lottie_onboarding"
+        app:layout_constraintVertical_bias="0.267" />
 
     <Button
         android:id="@+id/next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="124dp"
+        android:background="@drawable/round_btutton"
         android:text="next"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.869"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewPager" />
+        app:layout_constraintTop_toBottomOf="@+id/lottie_onboarding"
+        app:layout_constraintVertical_bias="0.828" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

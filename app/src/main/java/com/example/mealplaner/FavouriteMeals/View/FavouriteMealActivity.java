@@ -26,7 +26,9 @@ import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickLi
 import com.example.mealplaner.Network.MealService;
 import com.example.mealplaner.R;
 import com.example.mealplaner.Search.HomeSearchPage.SearchActivity;
+import com.example.mealplaner.Search.MealSearch.MealSearchActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +43,7 @@ public class FavouriteMealActivity extends AppCompatActivity implements Favourit
     FavoriteAdapter favAdapter;
     FavouriteMealPresenterInterface favouriteMealPresenterInterface;
     MealPresenterInterface mealPresenterInterface;
+    FloatingActionButton btnAddFromFav;
 
 
 
@@ -58,6 +61,11 @@ public class FavouriteMealActivity extends AppCompatActivity implements Favourit
         favRV.setLayoutManager(lm);
         favRV.setAdapter(favAdapter);
         favouriteMealPresenterInterface.getFavouriteMeals();
+        btnAddFromFav=findViewById(R.id.btn_add_from_fav);
+        btnAddFromFav.setOnClickListener(view->{
+            Intent intent = new Intent(this, MealSearchActivity.class);
+            startActivity(intent);
+        });
 
 
 

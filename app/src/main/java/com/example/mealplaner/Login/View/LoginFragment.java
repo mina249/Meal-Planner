@@ -220,8 +220,12 @@ public class LoginFragment extends Fragment {
         builder.setPositiveButton("Recover", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
                 String email = et_email.getText().toString().trim();
-                beginRecover(email);
+                if(!email.isEmpty())
+                    beginRecover(email);
+                else
+                    Toast.makeText(getActivity(), "Entre valid Email ", Toast.LENGTH_SHORT).show();
 
             }
         });

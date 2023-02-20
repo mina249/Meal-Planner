@@ -75,6 +75,9 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
             intent.putExtra("id",bundle);
             context.startActivity(intent);
         });
+        if(meals.getStatus()=="favourite"){
+            holder.fav.setBackgroundResource(R.drawable.heart);
+        }
         String [] days ={"Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday"};
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1,days);
         holder.autoCompleteTextView.setAdapter(adapter);

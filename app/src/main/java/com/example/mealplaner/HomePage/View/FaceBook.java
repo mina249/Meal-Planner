@@ -118,6 +118,7 @@ public class FaceBook extends LoginActivity {
             startActivity(intent);
 
             result.put("image", user.getPhotoUrl().toString());
+
             reference.child(user.getUid()).updateChildren(result);
         }
     }

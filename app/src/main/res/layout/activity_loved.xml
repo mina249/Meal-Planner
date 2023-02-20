@@ -26,45 +26,42 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fav_rv"
-        android:layout_width="412dp"
-        android:layout_height="455dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="-155dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginBottom="50dp"
         android:text="@string/enjoy"
-        android:textColor="#f9c406"
-        android:textSize="30sp"
+        android:textColor="#F99417"
+        android:textSize="24sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/fav_rv"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.146"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.283" />
+        app:layout_constraintVertical_bias="0.045" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/btn_add_from_fav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="270dp"
         android:clickable="true"
-        app:backgroundTint="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/fav_rv"
+        app:backgroundTint="#F99417"
+        app:layout_constraintBottom_toBottomOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.188"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.543"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toTopOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@mipmap/add_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

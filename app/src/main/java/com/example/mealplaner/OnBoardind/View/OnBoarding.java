@@ -22,6 +22,7 @@ public class OnBoarding extends AppCompatActivity implements MoveFragment {
     ViewPager2 viewPager ;
     String  [] descriptions;
     ArrayList<OnBoardinfIteam> iteams;
+    String [] lotteNames;
 
 
     @Override
@@ -30,10 +31,15 @@ public class OnBoarding extends AppCompatActivity implements MoveFragment {
         setContentView(R.layout.activity_onboarding);
         viewPager = findViewById(R.id.viewPager);
 
-        descriptions= new String[]{"test 1", "test 2", "test 3"};
+        descriptions= new String[]{"لو انت عازب \n و بتدور علي طريقة تعمل بيها اكلة سهلة ؟؟",
+                "لو انت ست بيت \n و محتارة تطبخي ايه النهاردة ؟؟ ",
+                "اهل بيك \n انت هنا في المكان الصح "};
+        lotteNames= new String[]{"meals", "wommen", "foodies"};
+
+
         iteams =new ArrayList<>();
         for (int i =0 ; i<descriptions.length;i++){
-            OnBoardinfIteam pagerIteam = new OnBoardinfIteam(descriptions[i]);
+            OnBoardinfIteam pagerIteam = new OnBoardinfIteam(descriptions[i],lotteNames[i]);
             iteams.add(pagerIteam);
         }
         OnBoardingAdapter adapter = new OnBoardingAdapter(iteams,this);

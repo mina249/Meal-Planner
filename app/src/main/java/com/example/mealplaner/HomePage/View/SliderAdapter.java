@@ -41,6 +41,8 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.ViewHolder
 
     FirebaseAuth auth;
     FirebaseUser user;
+    boolean[] isFavorite ;
+
 
 
     public SliderAdapter(ViewPager2 viewPager,ArrayList<Meal> meals,Context context,OnAddToFavouriteClickListener favListener,  OnDeleteFromFavClickListener deleteListener) {
@@ -51,11 +53,13 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.ViewHolder
         this.context = context;
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
+        isFavorite = new boolean[meals.size()];
     }
     public void setMeals(ArrayList<Meal> meals){
         this.meals=meals;
         notifyDataSetChanged();
         this.context = context;
+        isFavorite = new boolean[meals.size()];
     }
 
     @NonNull
@@ -71,17 +75,17 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.setMeal(meals.get(position));
         holder.btnFavourit.setOnClickListener(view->{
-          boolean isFavorite = false;
+
             if(user!=null) {
-                if (!isFavorite) {
+                if (!isFavorite[position]) {
                     holder.btnFavourit.setBackgroundResource(R.drawable.heart);
                     meals.get(position).setStatus("favourite");
                     favListener.onClick(meals.get(position));
                     FireBaseData.addFavouriteToFirebase(context,meals.get(position));
-                    isFavorite = true;
+                    isFavorite[position] = true;
                 } else {
                     holder.btnFavourit.setBackgroundResource(R.drawable.fav);
-                    isFavorite = false;
+                    isFavorite[position] = false;
                     deleteListener.onDeleteClick(meals.get(position));
                     FireBaseData.removeFavouriteFromFirebase(context,meals.get(position));
                 }
