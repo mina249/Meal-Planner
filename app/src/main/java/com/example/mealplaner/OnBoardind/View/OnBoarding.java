@@ -54,9 +54,8 @@ public class OnBoarding extends AppCompatActivity implements MoveFragment {
             startActivity(new Intent(OnBoarding.this, LoginActivity.class));
         }
 
-        descriptions= new String[]{"لو انت عازب \n و بتدور علي طريقة تعمل بيها اكلة سهلة ؟؟",
-                "لو انت ست بيت \n و محتارة تطبخي ايه النهاردة ؟؟ ",
-                "اهل بيك \n انت هنا في المكان الصح "};
+        descriptions= new String[]{getString(R.string.lotte1),getString(R.string.lotte2)
+                ,getString(R.string.lotte3)};
         lotteNames= new String[]{"meals", "wommen", "foodies"};
 
 

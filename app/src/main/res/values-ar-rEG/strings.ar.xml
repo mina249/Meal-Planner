@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name">MealPlaner</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="sunday">الاحد</string>
+    <string name="day_meals">وجبات اليوم</string>
+    <string name="login">تسجيل  دخول</string>
+    <string name="signup">انشاء حساب</string>
+    <string name="forgetpass">هل نسيت ال رقم السري</string>
+    <string name="name">الاسم</string>
+    <string name="todo">TODO</string>
+    <string name="descript">التفاصيل</string>
+    <string name="todo1">TODO</string>
+    <string name="Catigories">التصنيفات</string>
+    <string name="relatedMeals">الوجبات المتعلقة</string>
+    <string name="meal_name">اسم الوجبة</string>
+    <string name="Category">التصنيف</string>
+
+    <string name="enjoy">استمتع ب وجاتك المفضلة</string>
+    <string name="Meal_instructions">التعليمات</string>
+    <string name="meal_tag">اهم العناصر</string>
+    <string name="Ingridiant">المكونات</string>
+    <string name="addTogoogleCalendar">أضف إلى نتيجة Google</string>
+    <string name="meal_country">دولة</string>
+    <string name="Ingrediant">المكونات</string>
+    <string name="category">التصنيف</string>
+
+    <string name="email">الحساب</string>
+    <string name="pass">الرقم السري</string>
+    <string name="confirm_pass">تاكيد الرقم السري</string>
+    <string name="guest">زائر</string>
+    <string name="oops">OOPS!</string>
+    <string name="no_internet">لا يوجد  اتصال بالانترنت </string>
+    <string name="rety">حاول</string>
+    <string name="country">الدولة</string>
+    <string name="meal">الوجبة</string>
+    <string name="search_by"> البحث ب واصتة</string>
+    <string name="daily_meals">وجبات الاسبوع</string>
+    <string name="monday">الاثنين</string>
+    <string name="tuesday">الثلاثاء</string>
+    <string name="wednesday">الاربعاء</string>
+    <string name="tharsday">الخميس</string>
+    <string name="friday">الجمعة</string>
+    <string name="satarday">السبت</string>
+    <string name="search_methoda">البحث ب واصتة</string>
+    <string name="countries">الدول</string>
+    <string name="meals">الوجبات</string>
+    <string name="back">رجوع</string>
+    <string name="drop_hint">اضف الي وجبات الاسبوع     </string>
+    <string name="recommended">المقترحات</string>
+    <string name="add_to_plan">اضف الي الوجبات</string>
+    <string name="lotte1">   لو انت عازب و بتدور علي طريقة تعمل بيها اكلة سهلة ؟؟</string>
+    <string name="lotte2">  لو انت ست بيت و محتارة تطبخي ايه النهاردة ؟؟ </string>
+    <string name="lotte3">اهل بيك  انت هنا في المكان الصح </string>
+
+
+
+
+    <string name="facebook_app_id">1201578387138291</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="facebook_client_token">56789</string>
+    <string name="logout">تسجيل خروج</string>
+
+
+</resources>

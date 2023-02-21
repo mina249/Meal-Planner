@@ -2,12 +2,14 @@ package com.example.mealplaner.DataBase;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
+import androidx.room.Entity;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import com.example.mealplaner.Models.Meal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Completable;
@@ -38,5 +40,7 @@ public interface MealDAO {
 
     @Query("DELETE FROM Meals")
     Completable deleteTableRecords();
+    @Query("SELECT * From Meals WHERE idMeal LIKE :id")
+    Observable<List<Meal>> getMeal(String id);
 
 }

@@ -19,5 +19,7 @@ public interface LocalSource {
     public Observable<List<Meal>> getFridayProducts();
 
     public void deleteAllTable();
+    public Observable<List<Meal>> getMeal(String id);
+
 
 }

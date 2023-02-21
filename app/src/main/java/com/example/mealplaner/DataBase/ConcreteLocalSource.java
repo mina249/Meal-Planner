@@ -131,4 +131,11 @@ public class ConcreteLocalSource implements LocalSource{
             }
         });
     }
+
+    @Override
+    public Observable<List<Meal>> getMeal(String id) {
+        return dao.getMeal(id);
+    }
+
+
 }

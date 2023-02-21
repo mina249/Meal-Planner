@@ -135,13 +135,15 @@ public class MealData extends AppCompatActivity implements MealInterface , MealV
     }
 
     @Override
-    public void SetMealData(Meal meal, LinkedList<Pair<String, String>> ingridient) {
+    public void SetMealData(Meal meal, LinkedList<Pair<String, String>> ingridient,String getMethod) {
         this.meal=meal;
         tvCategory.setText(meal.getStrCategory());
         load.setVisibility(View.GONE);
         tvMealName.setText(meal.getStrMeal());
         tvCategory.setText(meal.getStrCategory());
         tvInstructions.setText(meal.getStrInstructions());
+        if(getMethod.equals("DB")&&meal.getStatus().equals("favourite"))
+            btnAddtoToFav.setBackgroundResource(R.drawable.heart);
         if (meal.getStrTags() == null || meal.getStrTags().isEmpty()) {
             tvTag.setVisibility(View.GONE);
             tvTagStr.setVisibility(View.GONE);
@@ -204,7 +206,7 @@ public class MealData extends AppCompatActivity implements MealInterface , MealV
             retry.setVisibility(View.GONE);
             load.setVisibility(View.VISIBLE);
             rvIngrediant.setVisibility(View.VISIBLE);
-            mealPresenter = new MealPresenter(this);
+            mealPresenter = new MealPresenter(this,this);
             mealPresenter.getData(mealID);
 
             btnAddToCalendar.setVisibility(View.VISIBLE);

@@ -7,5 +7,5 @@ import com.example.mealplaner.Models.Meal;
 import java.util.LinkedList;
 
 public interface MealInterface {
-    void SetMealData(Meal meal , LinkedList<Pair<String, String>> ingridient);
+    void SetMealData(Meal meal , LinkedList<Pair<String, String>> ingridient ,String getMethod);
 }
