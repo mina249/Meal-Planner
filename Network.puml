@@ -1,0 +1,56 @@
+@startuml
+class com.example.mealplaner.Network.FireBaseData {
++ {static} void addFavouriteToFirebase(Context,Meal)
++ {static} void addPlanToFirebase(Context,Meal)
++ {static} void getFavouriteFromFirebase(Context,FirebaseUser)
++ {static} void getPlanFromFireBase(Context,FirebaseUser,String)
++ {static} void removeFavouriteFromFirebase(Context,Meal)
++ {static} void removePlanFromFireBase(Context,Meal)
+}
+class com.example.mealplaner.Network.Repositry {
+- {static} MutableLiveData<ArrayList<Category>> mutableLiveData
+- {static} MutableLiveData<ArrayList<Meal>> mealsMutableLiveData
+- {static} ArrayList<Category> categoryList
+- {static} ArrayList<Meal> mealList
++ {static} MutableLiveData<ArrayList<Category>> getCategories()
++ {static} MutableLiveData<ArrayList<Meal>> getCategoryMeals(String)
+}
+interface com.example.mealplaner.Network.Interfaces.APIs {
+~ Call<AllCategories> getCategories()
+~ Call<Meals> getCategoryMeals(String)
+~ Call<Meals> getRandomMeal()
+~ Observable<Meals> getRecommendedMeals()
+}
+class com.example.mealplaner.Network.NetworkListener {
++ {static} Boolean getConnectivity(Context)
+}
+class com.example.mealplaner.Network.CatigoryConn {
+- {static} retrofit2.Retrofit.Builder builder
+- {static} Retrofit retrofit
+- {static} APIs postApi
++ {static} APIs getPostApi()
+}
+class com.example.mealplaner.Network.MealService {
+- String BASE_URL
+- {static} MealService mealService
++ {static} MutableLiveData<ArrayList<Meal>> liveMeals
+~ int number
+~ ArrayList<Meal> meals
++ {static} MealService getInstance()
++ void callRandomMeal(Call<Meals>,NetworkDelegate)
++ void enqueueCall(NetworkDelegate)
++ void enqueueRecommended(NetworkDelegate)
+}
+interface com.example.mealplaner.Network.Interfaces.NetworkDelegate {
++ void onSuccess(ArrayList<Meal>)
++ void onRecommendedSuccess(ArrayList<Meal>)
++ void onFailure(String)
+}
+interface com.example.mealplaner.Network.Interfaces.RemoteSource {
++ void enqueueCall(NetworkDelegate)
++ void enqueueRecommended(NetworkDelegate)
+}
+
+
+com.example.mealplaner.Network.Interfaces.RemoteSource <|.. com.example.mealplaner.Network.MealService
+@enduml

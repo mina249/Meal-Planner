@@ -1,0 +1,65 @@
+@startuml
+class com.example.mealplaner.FavouriteMeals.Presenter.FavouriteMealPresenter {
+~ FavouriteViewInterface favouriteViewInterface
+~ LocalSource localSource
++ void getFavouriteMeals()
++ void removeFav(Meal)
+}
+interface com.example.mealplaner.FavouriteMeals.Intercafaces.FavouriteMealPresenterInterface {
++ void getFavouriteMeals()
++ void removeFav(Meal)
+}
+interface com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickListener {
++ void onDeleteClick(Meal)
+}
+class com.example.mealplaner.FavouriteMeals.View.FavoriteAdapter {
+~ List<Meal> Meals
+~ Context context
+~ OnDeleteFromFavClickListener listener
+~ OnAddToFavouriteClickListener favouriteClickListener
+~ FirebaseAuth auth
+~ FirebaseUser user
++ FavoriteViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(FavoriteViewHolder,int)
++ void setList(List<Meal>)
++ int getItemCount()
+}
+class com.example.mealplaner.FavouriteMeals.View.FavoriteAdapter.FavoriteViewHolder {
+~ TextView mealName
+~ ImageView mealImg
+~ Button delete
+~ AutoCompleteTextView autoCompleteTextView
+~ CardView cvMealPlanIteam
+}
+class com.example.mealplaner.FavouriteMeals.View.FavouriteMealActivity {
+~ RecyclerView favRV
+~ FavoriteAdapter favAdapter
+~ FavouriteMealPresenterInterface favouriteMealPresenterInterface
+~ MealPresenterInterface mealPresenterInterface
+~ FloatingActionButton btnAddFromFav
+# void onCreate(Bundle)
+- void navigationBar()
++ void remove(Meal)
++ void showFav(Observable<List<Meal>>)
++ void onDeleteClick(Meal)
++ void showData(ArrayList<Meal>)
++ void addToFav(Meal)
++ void showRecommendedMeals(ArrayList<Meal>)
++ void onClick(Meal)
+}
+interface com.example.mealplaner.FavouriteMeals.Intercafaces.FavouriteViewInterface {
++ void remove(Meal)
++ void showFav(Observable<List<Meal>>)
+}
+
+
+com.example.mealplaner.FavouriteMeals.Intercafaces.FavouriteMealPresenterInterface <|.. com.example.mealplaner.FavouriteMeals.Presenter.FavouriteMealPresenter
+com.example.mealplaner.FavouriteMeals.View.Adapter <|-- com.example.mealplaner.FavouriteMeals.View.FavoriteAdapter
+com.example.mealplaner.FavouriteMeals.View.FavoriteAdapter +.. com.example.mealplaner.FavouriteMeals.View.FavoriteAdapter.FavoriteViewHolder
+com.example.mealplaner.FavouriteMeals.View.ViewHolder <|-- com.example.mealplaner.FavouriteMeals.View.FavoriteAdapter.FavoriteViewHolder
+com.example.mealplaner.FavouriteMeals.Intercafaces.FavouriteViewInterface <|.. com.example.mealplaner.FavouriteMeals.View.FavouriteMealActivity
+com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickListener <|.. com.example.mealplaner.FavouriteMeals.View.FavouriteMealActivity
+com.example.mealplaner.HomePage.Interfaces.OnAddToFavouriteClickListener <|.. com.example.mealplaner.FavouriteMeals.View.FavouriteMealActivity
+com.example.mealplaner.HomePage.Interfaces.MealViewInterface <|.. com.example.mealplaner.FavouriteMeals.View.FavouriteMealActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.mealplaner.FavouriteMeals.View.FavouriteMealActivity
+@enduml

@@ -1,0 +1,38 @@
+@startuml
+class com.example.mealplaner.Category.Presenter.MealsPresenter {
+- MealInter mealInter
+- {static} MutableLiveData<ArrayList<Meal>> mutableLiveData
+}
+interface com.example.mealplaner.Category.InterFace.MealInter {
+~ void setMeal(ArrayList<Meal>)
+}
+class com.example.mealplaner.Category.View.CategoryMealAdapter {
+~ ArrayList<Meal> meals
+~ Context context
++ void setMeals(ArrayList<Meal>)
++ ViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ViewHolder,int)
++ int getItemCount()
+}
+class com.example.mealplaner.Category.View.CategoryMealAdapter.ViewHolder {
+~ ImageView ivMeal
+~ TextView tvMealName
+~ CardView cvMealIteam
++ void setMeal(Meal)
+}
+class com.example.mealplaner.Category.View.CategoryData {
+~ Category category
+~ ImageView ivCategory
+~ TextView tvCatName
+~ RecyclerView rvMeals
+# void onCreate(Bundle)
++ void setMeal(ArrayList<Meal>)
+}
+
+
+com.example.mealplaner.Category.View.Adapter <|-- com.example.mealplaner.Category.View.CategoryMealAdapter
+com.example.mealplaner.Category.View.CategoryMealAdapter +.. com.example.mealplaner.Category.View.CategoryMealAdapter.ViewHolder
+com.example.mealplaner.Category.View.ViewHolder <|-- com.example.mealplaner.Category.View.CategoryMealAdapter.ViewHolder
+com.example.mealplaner.Category.InterFace.MealInter <|.. com.example.mealplaner.Category.View.CategoryData
+androidx.appcompat.app.AppCompatActivity <|-- com.example.mealplaner.Category.View.CategoryData
+@enduml
