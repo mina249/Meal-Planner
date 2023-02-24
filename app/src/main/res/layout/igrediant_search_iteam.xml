@@ -7,10 +7,10 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_ing_item"
+        style="@style/Card"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="#272727"
         android:padding="10dp"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,18 +18,18 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/Card"
             android:layout_width="match_parent"
             android:layout_height="125dp"
-            android:background="#272727"
             android:padding="5dp">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_home_meal"
+                style="@style/Card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
-                android:background="#272727"
                 app:cardCornerRadius="50dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -52,7 +52,7 @@
                 android:layout_margin="5dp"
                 android:gravity="center"
                 android:text="TextView"
-                android:textColor="#A4FFFFFF"
+                android:textColor="#ff9417"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

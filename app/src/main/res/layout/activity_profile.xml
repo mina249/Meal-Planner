@@ -2,16 +2,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/theme"
-    tools:context=".Profile.ProfileActivity">
+    tools:context=".Profile.View.ProfileActivity">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageView
                 android:id="@+id/prof_cover"
                 android:layout_width="match_parent"
@@ -24,8 +27,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="100dp">
+                android:layout_marginTop="100dp"
+                android:orientation="horizontal">
 
                 <ImageView
 
@@ -36,13 +39,13 @@
                     android:layout_marginLeft="20dp"
                     android:background="@color/white"
                     android:padding="5dp"
-                    android:src="@drawable/ic_add_prof_img"
-                    />
+                    android:src="@drawable/ic_add_prof_img" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/name_prof_tv"
                         android:layout_width="match_parent"
@@ -50,9 +53,10 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="5dp"
-                        android:textSize="25sp"
                         android:text="Name"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white"
+                        android:textSize="25sp" />
+
                     <TextView
                         android:id="@+id/email_prof_tv"
                         android:layout_width="match_parent"
@@ -60,7 +64,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginLeft="5dp"
                         android:text="Email"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -80,17 +84,30 @@
 
 
     </ScrollView>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fb_edit_prof"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:layout_margin="15dp"
-        android:src="@drawable/ic_edit_prof"
         android:background="#F99417"
-        android:backgroundTint="#F99417"/>
+        android:backgroundTint="#F99417"
+        android:src="@drawable/ic_edit_prof" />
+
+    <Switch
+        android:id="@+id/switch_theme"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="500dp"
+        android:text="Switch" />
 
 
 </RelativeLayout>

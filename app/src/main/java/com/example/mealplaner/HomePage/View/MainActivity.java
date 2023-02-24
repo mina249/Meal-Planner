@@ -1,17 +1,25 @@
 package com.example.mealplaner.HomePage.View;
 
+import static com.example.mealplaner.Profile.View.ProfileActivity.editor;
+import static com.example.mealplaner.Profile.View.ProfileActivity.sharedPreferences;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Context;
 import android.content.Intent;
+
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -92,12 +100,13 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
     FirebaseUser user;
     ArrayList<Meal> random;
     TextView tvRecomnded,tvDailyIns;
-
-
-
-
+    BottomNavigationView bottomNavigationView;
     FirebaseDatabase database;
     DatabaseReference reference;
+
+    public SharedPreferences sharedPreferences;
+    public  SharedPreferences.Editor editor;
+    boolean nightMode;
 
 
 
@@ -111,14 +120,14 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
         user = aut.getCurrentUser();
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("Users");
-
-        navigationBar();
         inflateUI();
+        navigationBar();
         checkNetwork();
         favouriteMealPresenterInterface = new FavouriteMealPresenter(this, ConcreteLocalSource.getInstance(this));
         firebaseAuth = FirebaseAuth.getInstance();
         setHomeViewPager();
         random = new ArrayList<>();
+
 
 
         userType = getIntent().getStringExtra("checkUserType");
@@ -158,11 +167,15 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
                 FireBaseData.getFavouriteFromFirebase(MainActivity.this,user);
             }
         });
+
+
     }
 
     private void navigationBar() {
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
         bottomNavigationView.setSelectedItemId(R.id.home);
+       Menu m = bottomNavigationView.getMenu();
+       m.findItem(R.id.home).setIcon(R.drawable.fav);
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -254,6 +267,8 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
         vpRecommended =findViewById(R.id.viewpager_recommended);
         daily = findViewById(R.id.tv_inspiration);
         tvRecomnded =findViewById(R.id.tv_recomended);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+
 
 
         vpRecommended.setAdapter(sliderAdapter);

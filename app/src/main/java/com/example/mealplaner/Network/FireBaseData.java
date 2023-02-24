@@ -23,7 +23,6 @@ public class FireBaseData {
     public static void addFavouriteToFirebase(Context context, Meal meal) {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser() == null) {
-            Toast.makeText(context, "You should login first", Toast.LENGTH_SHORT).show();
         } else {
 
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Registered Users Meals");
@@ -31,7 +30,6 @@ public class FireBaseData {
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
-                            Toast.makeText(context, "added to firebase", Toast.LENGTH_SHORT).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -45,7 +43,7 @@ public class FireBaseData {
     public static void addPlanToFirebase(Context context, Meal meal) {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser() == null) {
-            Toast.makeText(context, "you\re not logged in", Toast.LENGTH_SHORT).show();
+
         } else {
 
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Registered Users Meals");
@@ -53,7 +51,6 @@ public class FireBaseData {
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
-                            Toast.makeText(context, "added to firebase", Toast.LENGTH_SHORT).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -109,11 +106,10 @@ public class FireBaseData {
 
     }
 
-
     public static void removeFavouriteFromFirebase(Context context, Meal myMeal) {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser() == null) {
-            Toast.makeText(context, "you\re not logged in", Toast.LENGTH_SHORT).show();
+
         } else {
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Registered Users Meals");
             ref.child(firebaseAuth.getUid()).child("Favorites").child(myMeal.getStrMeal()).removeValue()

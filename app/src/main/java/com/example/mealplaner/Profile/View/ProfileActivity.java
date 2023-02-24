@@ -5,9 +5,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +32,7 @@ import com.example.mealplaner.Login.View.LoginActivity;
 import com.example.mealplaner.Profile.Presenter.ProfilePresenter;
 import com.example.mealplaner.Profile.Presenter.ProfilePresenyterInterface;
 import com.example.mealplaner.R;
+import com.example.mealplaner.SplashScree.View.SplashScreen;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -57,6 +63,10 @@ public class ProfileActivity extends AppCompatActivity {
     FloatingActionButton editProf;
     ProfilePresenyterInterface profilePresenyterInterface;
     static final int IMA_PICK_GALLERY_CODE = 200;
+    Switch themeSwitch;
+    public static boolean nightMode ;
+   public static SharedPreferences sharedPreferences;
+    public static SharedPreferences.Editor editor;
 
 
     @Override
@@ -70,6 +80,9 @@ public class ProfileActivity extends AppCompatActivity {
         reference = database.getReference("Users");
         profilePresenyterInterface = new ProfilePresenter(ConcreteLocalSource.getInstance(this));
         getUserDataFromFireBase();
+
+
+
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +98,17 @@ public class ProfileActivity extends AppCompatActivity {
                 showEditProfDialog();
             }
         });
+       /* themeSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checked = themeSwitch.isChecked();
+                if (checked == true) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                } else if (checked == false) {// Night mode is active, we're using dark theme
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                }
+            }
+        });*/
 
     }
 
@@ -94,6 +118,7 @@ public class ProfileActivity extends AppCompatActivity {
         email = findViewById(R.id.email_prof_tv);
         logout = findViewById(R.id.logout);
         editProf = findViewById(R.id.fb_edit_prof);
+        themeSwitch = findViewById(R.id.switch_theme);
     }
 
     private void checkUserStatus() {

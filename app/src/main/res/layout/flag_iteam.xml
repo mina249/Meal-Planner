@@ -16,9 +16,9 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/Card"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#272727"
             android:padding="5dp">
 
             <TextView
@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
-                android:textColor="#A4FFFFFF"
+                android:textColor="#ff9417"
                 android:textStyle="bold|italic"
                 app:layout_constraintBottom_toBottomOf="@+id/cardView2"
                 app:layout_constraintEnd_toEndOf="parent"

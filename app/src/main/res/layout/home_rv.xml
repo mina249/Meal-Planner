@@ -3,16 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
 
-    >
+    android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
 
         android:id="@+id/cv_home_meal"
+        style="@style/Card"
         android:layout_width="250dp"
         android:layout_height="200dp"
-        android:backgroundTint="#272727"
         app:cardCornerRadius="50dp"
         app:cardElevation="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -45,6 +44,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="120dp"
                 android:background="@drawable/fav"
+                android:backgroundTint="#DA1414"
                 android:elevation="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -79,10 +79,10 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/image_card"
+        style="@style/Card"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#272727"
-        app:cardCornerRadius="65dp"
+        app:cardCornerRadius="75dp"
         app:cardElevation="40dp"
         app:layout_constraintBottom_toTopOf="@+id/cv_home_meal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,6 +91,7 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_meal"
+            style="@style/Card"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@drawable/pizza" />

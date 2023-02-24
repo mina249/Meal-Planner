@@ -59,7 +59,8 @@
             android:exported="false" />
         <activity
         android:name=".HomePage.View.FaceBook"
-        android:exported="false" />
+        android:exported="false"
+            />
         <activity
             android:name=".OnBoardind.View.OnBoarding"
             android:exported="false" />
@@ -73,7 +74,8 @@
 
         <activity
             android:name=".SplashScree.View.SplashScreen"
-            android:exported="true">
+            android:exported="true"
+            android:configChanges="uiMode">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

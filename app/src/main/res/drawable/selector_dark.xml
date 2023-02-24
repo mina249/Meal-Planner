@@ -6,6 +6,6 @@
         android:color="#F99417"/>
     <item
         android:state_selected="false"
-        android:color="#696969"/>
+        android:color="@color/black"/>
 
 </selector>

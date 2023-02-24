@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.MealPlaner" parent="Theme.AppCompat.DayNight.DarkActionBar">
+    <style name="Theme.MealPlaner" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_200</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -12,5 +12,20 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+    </style>
+    <style name="Screen">
+        <item name="android:background">@color/theme</item>
+    </style>
+    <style name="Card">
+        <item name="android:background">#272727</item>
+    </style>
+    <style name="Text">
+        <item name="android:textColor">#fff</item>
+    </style>
+    <style name="Image">
+        <item name="android:background">#fff</item>
+    </style>
+    <style name="icon">
+        <item name="android:backgroundTint">#fff</item>
     </style>
 </resources>

@@ -20,6 +20,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/Screen"
         android:layout_width="412dp"
         android:layout_height="580dp"
         android:background="@drawable/v_pager"
@@ -67,9 +68,9 @@
             android:id="@+id/fab_google"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
             android:contentDescription="@string/app_name"
             android:elevation="35dp"
-            android:backgroundTint="@color/white"
 
             android:src="@drawable/google_icon"
 
@@ -83,9 +84,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:backgroundTint="@color/white"
             android:contentDescription="@string/app_name"
             android:elevation="35dp"
-            android:backgroundTint="@color/white"
             android:src="@drawable/face_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/fab_google"
@@ -98,10 +99,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:backgroundTint="@color/white"
             android:contentDescription="@string/app_name"
             android:elevation="35dp"
-            android:backgroundTint="@color/white"
-
 
 
             android:src="@drawable/twitter_icon"

@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#212121"
     tools:context=".IngridiantData.IngridiantActivity">
 
     <androidx.core.widget.NestedScrollView
@@ -40,12 +40,12 @@
 
             <TextView
                 android:id="@+id/tv_ing_disc"
+                style="@style/Text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center|center_vertical"
                 android:text="TextView"
-                android:textColor="#A4FFFFFF"
                 android:textSize="12sp" />
 
             <TextView
@@ -62,8 +62,7 @@
                 android:id="@+id/rv_ingrediant_meals"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/category_item"
-                />
+                tools:listitem="@layout/category_item" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
