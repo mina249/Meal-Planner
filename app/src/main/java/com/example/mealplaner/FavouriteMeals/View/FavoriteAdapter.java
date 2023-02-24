@@ -1,5 +1,6 @@
 package com.example.mealplaner.FavouriteMeals.View;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,8 +67,8 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onDeleteClick(meals);
-                FireBaseData.removeFavouriteFromFirebase(context,meals);
+
+                holder.showDeleteMealDialog(meals);
             }
         });
         String[] days = {"Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
@@ -169,5 +171,29 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
             cvMealPlanIteam = itemView.findViewById(R.id.cv_meal_plan_iteam);
 
         }
+        private void showDeleteMealDialog(Meal meals) {
+            AlertDialog builder = new AlertDialog.Builder(context).create();
+            ViewGroup viewGroup = new LinearLayout(context);
+            LayoutInflater inflater = LayoutInflater.from(context);
+            View view = inflater.inflate(R.layout.delete_iteam, viewGroup,false);
+            Button deletMeal =view.findViewById(R.id.btn_delete_Meal);
+            TextView tvConfirmation = view.findViewById(R.id.tv_confirmation);
+            tvConfirmation.setText(context.getString(R.string.delete_from_favourit));
+            deletMeal.setOnClickListener(view1 -> {
+                listener.onDeleteClick(meals);
+                FireBaseData.removeFavouriteFromFirebase(context,meals);
+                builder.dismiss();
+
+            });
+            Button btnCancle =view.findViewById(R.id.btn_cancle);
+            btnCancle.setOnClickListener(view1 -> {
+                builder.dismiss();
+            });
+
+            builder.setView(view);
+            builder.show();
+
+        }
+
     }
 }

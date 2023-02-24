@@ -20,7 +20,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="125dp"
             android:background="#272727"
             android:padding="5dp">
 
@@ -39,8 +39,8 @@
 
                 <ImageView
                     android:id="@+id/iv_ingreadient_iteam_image"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/face_icon" />
 
@@ -53,8 +53,8 @@
                 android:layout_margin="5dp"
                 android:gravity="center"
                 android:text="TextView"
-                android:textColor="#A4FFFFFF"
-                android:textSize="12sp"
+                android:textColor="#F99417"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

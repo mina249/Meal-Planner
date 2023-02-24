@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
+import com.example.mealplaner.DataBase.ConcreteLocalSource;
 import com.example.mealplaner.HomePage.Interfaces.OnAddToFavouriteClickListener;
 import com.example.mealplaner.Meal.View.MealData;
 import com.example.mealplaner.Models.Meal;
@@ -30,6 +31,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHolder> {
 
@@ -75,9 +81,15 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
             intent.putExtra("id",bundle);
             context.startActivity(intent);
         });
-        if(meals.getStatus()=="favourite"){
-            holder.fav.setBackgroundResource(R.drawable.heart);
-        }
+        Observable<List<Meal>> observable = ConcreteLocalSource.getInstance(context).getMeal(meals.getIdMeal());
+        observable.observeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
+                meals1 -> { if( meals1.get(0)!=null&&meals1.get(0).getStatus().equals("favourite"))
+                {
+                    holder.fav.setBackgroundResource(R.drawable.heart);
+                }}
+
+                        ,throwable -> {});
+
         String [] days ={"Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday"};
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1,days);
         holder.autoCompleteTextView.setAdapter(adapter);
