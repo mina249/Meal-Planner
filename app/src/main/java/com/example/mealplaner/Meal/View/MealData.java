@@ -354,7 +354,6 @@ public class MealData extends AppCompatActivity implements MealInterface , MealV
     public void showRecommendedMeals(ArrayList<Meal> recommendedMeals) {
 
     }
-
     @Override
     public void onClick(Meal meal) {
         addToFav(meal);
