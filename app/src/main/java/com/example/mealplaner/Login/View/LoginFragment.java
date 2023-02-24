@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mealplaner.Models.Meal;
 import com.example.mealplaner.Network.FireBaseData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -135,9 +136,9 @@ public class LoginFragment extends Fragment {
         guest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), MainActivity.class);
-                i.putExtra("checkUserType","guest");
-                startActivity(i);
+
+                showConfirmationDialog();
+
             }
         });
     }
@@ -257,4 +258,31 @@ public class LoginFragment extends Fragment {
             }
         });
     }
+    private void showConfirmationDialog() {
+        AlertDialog builder = new AlertDialog.Builder(getActivity()).create();
+        ViewGroup viewGroup = new LinearLayout(getActivity());
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+        View view = inflater.inflate(R.layout.delete_iteam, viewGroup,false);
+        Button registerAsGest =view.findViewById(R.id.btn_delete_Meal);
+        TextView tvConfirmation = view.findViewById(R.id.tv_confirmation);
+        tvConfirmation.setText(getString(R.string.login_as_gest));
+
+        registerAsGest.setText("Yes");
+        registerAsGest.setOnClickListener(view1 -> {
+            Intent i = new Intent(getActivity(), MainActivity.class);
+            i.putExtra("checkUserType","guest");
+            startActivity(i);
+            builder.dismiss();
+
+        });
+        Button btnCancle =view.findViewById(R.id.btn_cancle);
+        btnCancle.setOnClickListener(view1 -> {
+            builder.dismiss();
+        });
+
+        builder.setView(view);
+        builder.show();
+
+    }
+
 }
