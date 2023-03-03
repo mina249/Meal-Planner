@@ -5,7 +5,6 @@
     style="@style/Screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#212121"
     tools:context=".Meal.View.MealData">
 
     <com.airbnb.lottie.LottieAnimationView
@@ -35,11 +34,10 @@
 
     <TextView
         android:id="@+id/noInternet_tv_meal_data"
+        style="@style/Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/no_internet"
-        android:textColor="@color/white"
-        android:textSize="20sp"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/btn_add_to_fav"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,9 +46,10 @@
 
     <ImageView
         android:id="@+id/wifi_img_meal_data"
-        style="@style/Image"
+        style="@style/Text"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:background="@color/theme"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/btn_add_to_fav"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +63,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/oops"
-        android:textColor="@color/white"
         android:textSize="18sp"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/noInternet_tv_meal_data"
@@ -115,12 +113,12 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    style="@style/Card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:padding="10dp"
-                    app:cardBackgroundColor="#DD000000"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="10dp"
                     app:layout_constraintBottom_toBottomOf="@+id/cardView6"
@@ -154,12 +152,13 @@
 
                         <TextView
                             android:id="@+id/tv_meal_category"
+                            style="@style/Text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text=""
-                            android:textColor="#A4FFFFFF"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tv_country_string"
@@ -172,12 +171,12 @@
 
                         <TextView
                             android:id="@+id/tv_country"
+                            style="@style/Text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
                             android:gravity="center"
                             android:text=""
-                            android:textColor="#A4FFFFFF"
                             android:textSize="14sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -221,26 +220,29 @@
                     android:layout_height="30dp"
                     android:layout_marginVertical="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_weight="0.25"
-                    android:background="@drawable/fav" />
+                    android:layout_weight="0.18"
+                    android:background="@drawable/fav"
+                    android:backgroundTint="#DA1414"
+                    android:elevation="5dp" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_meal_instruction_str"
+                style="@style/Text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/Meal_instructions"
-                android:textColor="#f9c406"
+                android:textColor="#FF9800"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_Instructions"
+                style="@style/Text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text=""
-                android:textColor="#A4FFFFFF"
                 android:textSize="16sp" />
 
             <TextView
@@ -254,11 +256,11 @@
 
             <TextView
                 android:id="@+id/tv_meal_tag"
+                style="@style/Text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text=""
-                android:textColor="#A4FFFFFF"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 

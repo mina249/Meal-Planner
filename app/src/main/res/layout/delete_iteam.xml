@@ -2,9 +2,9 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="#272727"
     tools:ignore="ExtraText">
 
         android:layout_width="0dp"
@@ -20,19 +20,20 @@
         app:layout_constraintVertical_bias="0.101">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/Card"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#272727"
-            android:backgroundTint="#272727"
             android:padding="20dp">
 
                 <TextView
                     android:id="@+id/tv_confirmation"
+                    style="@style/Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/delete_meal"
-                    android:textColor="#F99417"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.498"

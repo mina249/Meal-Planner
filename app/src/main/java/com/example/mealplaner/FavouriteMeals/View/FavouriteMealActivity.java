@@ -23,12 +23,14 @@ import com.example.mealplaner.HomePage.Presenter.MealPresenter;
 import com.example.mealplaner.HomePage.View.MainActivity;
 import com.example.mealplaner.Models.Meal;
 import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickListener;
+import com.example.mealplaner.Network.FireBaseData;
 import com.example.mealplaner.Network.MealService;
 import com.example.mealplaner.R;
 import com.example.mealplaner.Search.HomeSearchPage.SearchActivity;
 import com.example.mealplaner.Search.MealSearch.MealSearchActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,15 +46,13 @@ public class FavouriteMealActivity extends AppCompatActivity implements Favourit
     FavouriteMealPresenterInterface favouriteMealPresenterInterface;
     MealPresenterInterface mealPresenterInterface;
     FloatingActionButton btnAddFromFav;
-
-
-
-
+    FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loved);
         navigationBar();
+        auth = FirebaseAuth.getInstance();
         mealPresenterInterface = new MealPresenter(MealService.getInstance(), this, this, ConcreteLocalSource.getInstance(this));
         favRV = findViewById(R.id.fav_rv);
         favAdapter = new FavoriteAdapter(this,new ArrayList<>(),this,this);
@@ -66,7 +66,7 @@ public class FavouriteMealActivity extends AppCompatActivity implements Favourit
             Intent intent = new Intent(this, MealSearchActivity.class);
             startActivity(intent);
         });
-
+        FireBaseData.getFavouriteFromFirebase(this,auth.getCurrentUser());
 
 
     }

@@ -15,9 +15,11 @@ import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickLi
 import com.example.mealplaner.FavouriteMeals.View.FavouriteMealActivity;
 import com.example.mealplaner.HomePage.View.MainActivity;
 import com.example.mealplaner.Models.Meal;
+import com.example.mealplaner.Network.FireBaseData;
 import com.example.mealplaner.R;
 import com.example.mealplaner.Search.HomeSearchPage.SearchActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,10 +35,13 @@ public class CalendarActivity extends AppCompatActivity implements CalendarViewI
     CardView  cvSunday,cvMonday,cvTuesday,cvThurasday,cvWednesday,cvFriday,cvSatrday;
 
     CalendarPresenterInterface calendarPresenterInterface;
+
+    FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
+        mAuth = FirebaseAuth.getInstance();
 
         cvSatrday=findViewById(R.id.cv_saterday);
         cvFriday=findViewById(R.id.cv_friday);
@@ -54,6 +59,13 @@ public class CalendarActivity extends AppCompatActivity implements CalendarViewI
         rvWednesday=findViewById(R.id.rv_wednesday);
         rvFriday=findViewById(R.id.rv_friday);
         rvSatrday=findViewById(R.id.rv_satarday);
+        FireBaseData.getPlanFromFireBase(this,mAuth.getCurrentUser(),"saturday");
+        FireBaseData.getPlanFromFireBase(this,mAuth.getCurrentUser(),"sunday");
+        FireBaseData.getPlanFromFireBase(this,mAuth.getCurrentUser(),"monday");
+        FireBaseData.getPlanFromFireBase(this,mAuth.getCurrentUser(),"tuesday");
+        FireBaseData.getPlanFromFireBase(this,mAuth.getCurrentUser(),"wednesday");
+        FireBaseData.getPlanFromFireBase(this,mAuth.getCurrentUser(),"thursday");
+        FireBaseData.getPlanFromFireBase(this,mAuth.getCurrentUser(),"friday");
 
         sundayAdapter=new ClenderAdapter(this,cvSunday);
         mondayAdapter=new ClenderAdapter(this,cvMonday);

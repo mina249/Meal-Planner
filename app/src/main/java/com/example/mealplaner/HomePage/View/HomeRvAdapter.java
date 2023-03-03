@@ -1,5 +1,6 @@
 package com.example.mealplaner.HomePage.View;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.bumptech.glide.Glide;
 import com.example.mealplaner.DataBase.ConcreteLocalSource;
 import com.example.mealplaner.HomePage.Interfaces.OnAddToFavouriteClickListener;
+import com.example.mealplaner.Login.View.LoginActivity;
 import com.example.mealplaner.Meal.View.MealData;
 import com.example.mealplaner.Models.Meal;
 import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickListener;
@@ -99,7 +102,8 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
                     if(user!=null) {
                         holder.autoCompleteTextView.showDropDown();
                     }else{
-                        Toast.makeText(context, "You Should Login first", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(context, "You Should Login first", Toast.LENGTH_SHORT).show();
+                        showConfirmationDialog();
                     }
             }
         });
@@ -160,9 +164,9 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
 
         holder.fav.setOnClickListener(new View.OnClickListener() {
             boolean isFavorite = false;
-
             @Override
             public void onClick(View v) {
+
                 if(user!=null) {
                     if (!isFavorite) {
                         holder.fav.setBackgroundResource(R.drawable.heart);
@@ -179,7 +183,8 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
                         FireBaseData.removeFavouriteFromFirebase(context,meals);
                     }
                 }else {
-                    Toast.makeText(context, "You Should Login first", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(context, "You Should Login first", Toast.LENGTH_SHORT).show();
+                    showConfirmationDialog();
                 }
 
             }
@@ -225,6 +230,30 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.HomeRvHold
             notifyDataSetChanged();
         }
     };
+    private void showConfirmationDialog() {
+        AlertDialog builder = new AlertDialog.Builder(context).create();
+        ViewGroup viewGroup = new LinearLayout(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.delete_iteam, viewGroup,false);
+        Button registerAsGest =view.findViewById(R.id.btn_delete_Meal);
+        TextView tvConfirmation = view.findViewById(R.id.tv_confirmation);
+        tvConfirmation.setText(context.getString(R.string.message_for_login));
+
+        registerAsGest.setText("Login");
+        registerAsGest.setOnClickListener(view1 -> {
+            context.startActivity(new Intent(context, LoginActivity.class));
+            builder.dismiss();
+
+        });
+        Button btnCancle =view.findViewById(R.id.btn_cancle);
+        btnCancle.setOnClickListener(view1 -> {
+            builder.dismiss();
+        });
+
+        builder.setView(view);
+        builder.show();
+
+    }
 
 }
 

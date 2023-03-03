@@ -1,5 +1,6 @@
 package com.example.mealplaner.HomePage.View;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,8 +22,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
+import com.example.mealplaner.DataBase.ConcreteLocalSource;
 import com.example.mealplaner.FavouriteMeals.Intercafaces.OnDeleteFromFavClickListener;
 import com.example.mealplaner.HomePage.Interfaces.OnAddToFavouriteClickListener;
+import com.example.mealplaner.Login.View.LoginActivity;
 import com.example.mealplaner.Meal.View.MealData;
 import com.example.mealplaner.Models.Meal;
 import com.example.mealplaner.Network.FireBaseData;
@@ -30,6 +34,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.ViewHolder> {
     ArrayList<Meal> meals;
@@ -90,9 +99,18 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.ViewHolder
                     FireBaseData.removeFavouriteFromFirebase(context,meals.get(position));
                 }
             }else {
-                Toast.makeText(context, "You Should Login first", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "You Should Login first", Toast.LENGTH_SHORT).show();
+                showConfirmationDialog();
             }
         });
+        Observable<List<Meal>> observable = ConcreteLocalSource.getInstance(context).getMeal(meals.get(position).getIdMeal());
+        observable.observeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
+                meals1 -> { if( meals1.get(0)!=null&&meals1.get(0).getStatus().equals("favourite"))
+                {
+                    holder.btnFavourit.setBackgroundResource(R.drawable.heart);
+                }}
+
+                ,throwable -> {});
         if(position==meals.size()-2){
         viewPager.post(holder.runnable);
         }
@@ -106,7 +124,8 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.ViewHolder
                 if(user!=null) {
                     holder.daysDroplist.showDropDown();
                 }else{
-                    Toast.makeText(context, "You Should Login first", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(context, "You Should Login first", Toast.LENGTH_SHORT).show();
+                    showConfirmationDialog();
                 }
             }
         });
@@ -211,6 +230,30 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.ViewHolder
         }
 
 
+
+    }
+    private void showConfirmationDialog() {
+        AlertDialog builder = new AlertDialog.Builder(context).create();
+        ViewGroup viewGroup = new LinearLayout(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.delete_iteam, viewGroup,false);
+        Button registerAsGest =view.findViewById(R.id.btn_delete_Meal);
+        TextView tvConfirmation = view.findViewById(R.id.tv_confirmation);
+        tvConfirmation.setText(context.getString(R.string.message_for_login));
+
+        registerAsGest.setText("Login");
+        registerAsGest.setOnClickListener(view1 -> {
+            context.startActivity(new Intent(context, LoginActivity.class));
+            builder.dismiss();
+
+        });
+        Button btnCancle =view.findViewById(R.id.btn_cancle);
+        btnCancle.setOnClickListener(view1 -> {
+            builder.dismiss();
+        });
+
+        builder.setView(view);
+        builder.show();
 
     }
 }

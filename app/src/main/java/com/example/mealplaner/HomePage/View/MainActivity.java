@@ -12,6 +12,7 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 
@@ -19,12 +20,15 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.airbnb.lottie.LottieAnimationView;
@@ -190,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
                         return true;
                     case R.id.love:
                         if (user == null) {
-                            Toast.makeText(MainActivity.this, "You should login first", Toast.LENGTH_SHORT).show();
+                           showConfirmationDialog();
                         } else {
                             startActivity(new Intent(MainActivity.this, FavouriteMealActivity.class));
                             overridePendingTransition(0, 0);
@@ -198,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
                         }
                     case R.id.calendar:
                         if (user == null) {
-                            Toast.makeText(MainActivity.this, "You should login first", Toast.LENGTH_SHORT).show();
+                            showConfirmationDialog();
                         } else {
                             startActivity(new Intent(MainActivity.this, CalendarActivity.class));
                             overridePendingTransition(0, 0);
@@ -327,6 +331,7 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
             oops.setVisibility(View.GONE);
             retry.setVisibility(View.GONE);
             loadingBar.setVisibility(View.VISIBLE);
+            loadingBar.setRepeatCount(1000);
             mealPresenterInterface = new MealPresenter(MealService.getInstance(), this, this, ConcreteLocalSource.getInstance(this));
             mealPresenterInterface.getMeal();
             mealPresenterInterface.getRecommendedMeal();
@@ -395,4 +400,30 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
             });
         }
     }
+    private void showConfirmationDialog() {
+        AlertDialog builder = new AlertDialog.Builder(this).create();
+        ViewGroup viewGroup = new LinearLayout(this);
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View view = inflater.inflate(R.layout.delete_iteam, viewGroup,false);
+        Button registerAsGest =view.findViewById(R.id.btn_delete_Meal);
+        TextView tvConfirmation = view.findViewById(R.id.tv_confirmation);
+        tvConfirmation.setText(getString(R.string.message_for_login));
+
+        registerAsGest.setText("Login");
+        registerAsGest.setOnClickListener(view1 -> {
+           startActivity(new Intent(MainActivity.this,LoginActivity.class));
+           finish();
+           builder.dismiss();
+
+        });
+        Button btnCancle =view.findViewById(R.id.btn_cancle);
+        btnCancle.setOnClickListener(view1 -> {
+            builder.dismiss();
+        });
+
+        builder.setView(view);
+        builder.show();
+
+    }
+
 }

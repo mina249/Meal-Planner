@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -47,8 +48,10 @@ public class LoginActivity extends AppCompatActivity {
     SignupFragment signupFragment;
     private FirebaseAuth mAuth;
 
-    private static final int RC_SIGN_IN = 200;
+    private static final int RC_SIGN_IN = 100;
     GoogleSignInClient googleSignInClient;
+
+    Drawable login;
    // FirebaseUser user;
 
     @Override
@@ -58,6 +61,8 @@ public class LoginActivity extends AppCompatActivity {
         loginFragment = new LoginFragment();
         signupFragment = new SignupFragment();
         mAuth = FirebaseAuth.getInstance();
+
+
 
         inflateUi();
         settingTableLayout();
@@ -82,11 +87,11 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-        if (mAuth.getCurrentUser() != null) {
+       /* if (mAuth.getCurrentUser() != null) {
             // When user already sign in redirect to profile activity
             startActivity(new Intent(this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 
-        }
+        }*/
     }
 
     public void animateUi() {
@@ -126,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RC_SIGN_IN) {
@@ -136,15 +141,16 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     GoogleSignInAccount googleSignInAccount = signInAccountTask.getResult(ApiException.class);
                     if (googleSignInAccount != null) {
-                        AuthCredential authCredential = GoogleAuthProvider.getCredential(googleSignInAccount.getIdToken(), null);
+                        firebaseAuthWithGoogleAccount(googleSignInAccount);
+                      /*  AuthCredential authCredential = GoogleAuthProvider.getCredential(googleSignInAccount.getIdToken(), null);
 
-                        mAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                       mAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 // Check condition
                                 if (task.isSuccessful()) {
                                    FirebaseUser user = mAuth.getCurrentUser();
-                                  //  firebaseAuthWithGoogleAccount(googleSignInAccount);
+
                                     if (task.getResult().getAdditionalUserInfo().isNewUser()) {
                                         String email = user.getEmail();
                                         String uId = user.getUid();
@@ -165,14 +171,13 @@ public class LoginActivity extends AppCompatActivity {
                                         FireBaseData.getPlanFromFireBase(LoginActivity.this,mAuth.getCurrentUser(),"friday");
                                         FireBaseData.getFavouriteFromFirebase(LoginActivity.this,mAuth.getCurrentUser());
                                     }
-                                    startActivity(new Intent(LoginActivity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                                    finish();
+
                                 } else {
 
 
                                 }
                             }
-                        });
+                        });*/
                     }
                 } catch (ApiException e) {
                     e.printStackTrace();
@@ -183,17 +188,35 @@ public class LoginActivity extends AppCompatActivity {
 
        private void firebaseAuthWithGoogleAccount (GoogleSignInAccount account){
             AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
-            mAuth.signInWithCredential(credential).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+            mAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
-                public void onSuccess(AuthResult authResult) {
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    if (authResult.getAdditionalUserInfo().isNewUser()) {
-                        Toast.makeText(LoginActivity.this, "Account created", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Existing user", Toast.LENGTH_SHORT).show();
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        if (task.getResult().getAdditionalUserInfo().isNewUser()) {
+                            String email = user.getEmail();
+                            String uId = user.getUid();
+                            HashMap<Object, String> userData = new HashMap<>();
+                            userData.put("email", email);
+                            userData.put("uid", uId);
+                            userData.put("name", user.getDisplayName());
+                            userData.put("image", "");
+                            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                            DatabaseReference reference = firebaseDatabase.getReference("Users");
+                            reference.child(uId).setValue(userData);
+                            FireBaseData.getPlanFromFireBase(LoginActivity.this, mAuth.getCurrentUser(), "saturday");
+                            FireBaseData.getPlanFromFireBase(LoginActivity.this, mAuth.getCurrentUser(), "sunday");
+                            FireBaseData.getPlanFromFireBase(LoginActivity.this, mAuth.getCurrentUser(), "monday");
+                            FireBaseData.getPlanFromFireBase(LoginActivity.this, mAuth.getCurrentUser(), "tuesday");
+                            FireBaseData.getPlanFromFireBase(LoginActivity.this, mAuth.getCurrentUser(), "wednesday");
+                            FireBaseData.getPlanFromFireBase(LoginActivity.this, mAuth.getCurrentUser(), "thursday");
+                            FireBaseData.getPlanFromFireBase(LoginActivity.this, mAuth.getCurrentUser(), "friday");
+                            FireBaseData.getFavouriteFromFirebase(LoginActivity.this, mAuth.getCurrentUser());
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            finish();
+                        }
+
                     }
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    finish();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

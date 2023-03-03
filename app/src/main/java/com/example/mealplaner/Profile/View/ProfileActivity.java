@@ -98,17 +98,7 @@ public class ProfileActivity extends AppCompatActivity {
                 showEditProfDialog();
             }
         });
-       /* themeSwitch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean checked = themeSwitch.isChecked();
-                if (checked == true) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                } else if (checked == false) {// Night mode is active, we're using dark theme
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                }
-            }
-        });*/
+
 
     }
 
@@ -144,10 +134,9 @@ public class ProfileActivity extends AppCompatActivity {
                         name.setText(uname);
                         email.setText(uemail);
                         try {
-                           // profImg.setImageURI(Uri.fromFile(new File(uimage)));
                            Glide.with(ProfileActivity.this).load(uimage).into(profImg);
                         } catch (Exception e) {
-
+                            profImg.setImageResource(R.drawable.ic_add_prof_img);
                         }
                     }
                 }
@@ -160,7 +149,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void showEditProfDialog() {
-        String[] options = {"Edit Name", "Edit Profile image", "Go to Favourite", "Go to your plan"};
+        String[] options = {"Edit Name", "Edit Profile image"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Edit profile data");
         builder.setItems(options, new DialogInterface.OnClickListener() {
@@ -171,12 +160,6 @@ public class ProfileActivity extends AppCompatActivity {
 
                 } else if (which == 1) {
                     pickFromGallery();
-                } else if (which == 2) {
-                    startActivity(new Intent(ProfileActivity.this, FavouriteMealActivity.class));
-                    finish();
-                } else if (which == 3) {
-                    startActivity(new Intent(ProfileActivity.this, CalendarActivity.class));
-                    finish();
                 }
             }
         });

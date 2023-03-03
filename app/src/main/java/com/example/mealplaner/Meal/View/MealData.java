@@ -1,16 +1,20 @@
 package com.example.mealplaner.Meal.View;
 
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.util.Pair;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +32,7 @@ import com.example.mealplaner.FavouriteMeals.Presenter.FavouriteMealPresenter;
 import com.example.mealplaner.HomePage.Interfaces.MealPresenterInterface;
 import com.example.mealplaner.HomePage.Interfaces.MealViewInterface;
 import com.example.mealplaner.HomePage.Interfaces.OnAddToFavouriteClickListener;
+import com.example.mealplaner.Login.View.LoginActivity;
 import com.example.mealplaner.Meal.Controllers.YouTubeID;
 import com.example.mealplaner.Meal.Interfaces.MealInterface;
 import com.example.mealplaner.Meal.Presenter.MealPresenter;
@@ -265,7 +270,8 @@ public class MealData extends AppCompatActivity implements MealInterface , MealV
                 if(user!=null) {
                     autoCompleteTextView.showDropDown();
                 }else{
-                    Toast.makeText(MealData.this, "You Should Login first", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(MealData.this, "You Should Login first", Toast.LENGTH_SHORT).show();
+                    showConfirmationDialog();
                 }
             }
         });
@@ -380,10 +386,36 @@ public class MealData extends AppCompatActivity implements MealInterface , MealV
                         FireBaseData.addFavouriteToFirebase(MealData.this,meal);
                     }
                 }else {
-                    Toast.makeText(MealData.this, "You Should Login first", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MealData.this, "You Should Login first", Toast.LENGTH_SHORT).show();
+                    showConfirmationDialog();
                 }
 
             }
         });
+    }
+    private void showConfirmationDialog() {
+        AlertDialog builder = new AlertDialog.Builder(this).create();
+        ViewGroup viewGroup = new LinearLayout(this);
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View view = inflater.inflate(R.layout.delete_iteam, viewGroup,false);
+        Button registerAsGest =view.findViewById(R.id.btn_delete_Meal);
+        TextView tvConfirmation = view.findViewById(R.id.tv_confirmation);
+        tvConfirmation.setText(getString(R.string.message_for_login));
+
+        registerAsGest.setText("Login");
+        registerAsGest.setOnClickListener(view1 -> {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            builder.dismiss();
+
+        });
+        Button btnCancle =view.findViewById(R.id.btn_cancle);
+        btnCancle.setOnClickListener(view1 -> {
+            builder.dismiss();
+        });
+
+        builder.setView(view);
+        builder.show();
+
     }
 }
