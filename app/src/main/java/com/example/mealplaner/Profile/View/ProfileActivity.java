@@ -108,7 +108,6 @@ public class ProfileActivity extends AppCompatActivity {
         email = findViewById(R.id.email_prof_tv);
         logout = findViewById(R.id.logout);
         editProf = findViewById(R.id.fb_edit_prof);
-        themeSwitch = findViewById(R.id.switch_theme);
     }
 
     private void checkUserStatus() {

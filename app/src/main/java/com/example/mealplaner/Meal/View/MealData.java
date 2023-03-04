@@ -79,10 +79,10 @@ public class MealData extends AppCompatActivity implements MealInterface , MealV
     Meal meal;
     FavouriteMealPresenterInterface favouriteMealPresenterInterface;
     MealPresenterInterface mealPresenterInterface;
+    public String getMealFrom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_data);
@@ -138,6 +138,16 @@ public class MealData extends AppCompatActivity implements MealInterface , MealV
         });
         checkNetwork();
     }
+    String setMealInstruction(String instr){
+        String [] resltArray;
+        String reslt="";
+        resltArray=instr.split("-");
+        for (int i =0;i<resltArray.length;i++){
+            reslt+="\n"+resltArray[i]+"\n";
+        }
+
+        return reslt;
+    }
 
     @Override
     public void SetMealData(Meal meal, LinkedList<Pair<String, String>> ingridient,String getMethod) {
@@ -146,7 +156,8 @@ public class MealData extends AppCompatActivity implements MealInterface , MealV
         load.setVisibility(View.GONE);
         tvMealName.setText(meal.getStrMeal());
         tvCategory.setText(meal.getStrCategory());
-        tvInstructions.setText(meal.getStrInstructions());
+
+        tvInstructions.setText(setMealInstruction(meal.getStrInstructions()));
         if(getMethod.equals("DB")&&meal.getStatus().equals("favourite"))
             btnAddtoToFav.setBackgroundResource(R.drawable.heart);
         if (meal.getStrTags() == null || meal.getStrTags().isEmpty()) {
@@ -229,6 +240,8 @@ public class MealData extends AppCompatActivity implements MealInterface , MealV
 
 
         } else {
+
+
             wifi.setVisibility(View.VISIBLE);
             noInternet.setVisibility(View.VISIBLE);
             oops.setVisibility(View.VISIBLE);
@@ -257,6 +270,7 @@ public class MealData extends AppCompatActivity implements MealInterface , MealV
                 }
             });
         }
+
     }
     private void showPlanList(){
 

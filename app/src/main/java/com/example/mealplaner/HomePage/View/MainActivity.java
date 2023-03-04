@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements MealViewInterface
 
         bottomNavigationView.setSelectedItemId(R.id.home);
        Menu m = bottomNavigationView.getMenu();
-       m.findItem(R.id.home).setIcon(R.drawable.fav);
+       m.findItem(R.id.home).setIcon(R.drawable.home);
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

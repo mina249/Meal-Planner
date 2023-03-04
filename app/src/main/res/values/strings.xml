@@ -50,9 +50,9 @@
     <string name="drop_hint">Add to plan     </string>
     <string name="recommended">Recommended for you</string>
     <string name="add_to_plan">Add To  Plan</string>
-    <string name="lotte1">  if you are single and need easy way to cook ??</string>
-    <string name="lotte2">If you are a house wife and dont know what kind of food you cook </string>
-    <string name="lotte3">welcome you are in right app </string>
+    <string name="lotte1">Explore different recipes</string>
+    <string name="lotte2">Add recipes to your favorite list </string>
+    <string name="lotte3">Put a plan for your week</string>
     <string name="login_as_gest">Are you sure you want to enter as a guest?
  </string>
     <string name="delete_from_plan">Are you sure you want to delete this meal from your plan?
